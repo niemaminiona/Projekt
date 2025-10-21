@@ -126,7 +126,11 @@ namespace Projekt
                         HorizontalOptions = LayoutOptions.Start,
                         OnColor = Colors.White,
                         ThumbColor = Colors.Black,
-
+                        Shadow = new Shadow
+                        {
+                            Brush = Colors.Black,
+                            Opacity = 0.25f
+                        }
                     };
                     if (item.toggled)
                     {
@@ -180,7 +184,7 @@ namespace Projekt
                         CornerRadius = 15,
                         BackgroundColor = Colors.LightGrey,
                         Padding = 10,
-                        HasShadow = false,
+                        HasShadow = true,
                         Content = notifGrid
                     };
 
@@ -245,7 +249,6 @@ namespace Projekt
         }
         private class Suplement
         {
-            public int id;
             public String name;
             public Suplement(String name)
             {
