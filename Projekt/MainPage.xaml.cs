@@ -30,6 +30,7 @@ namespace Projekt
                     new RowDefinition { Height = 1 }, //Line
                     new RowDefinition { Height = GridLength.Star } //scrollView
                 },
+                BackgroundColor = Colors.White
             };
 
             //Header 
@@ -97,10 +98,10 @@ namespace Projekt
                 {
                     ColumnDefinitions =
                     {
-                        new ColumnDefinition { Width = GridLength.Star },    //for Switch
-                        new ColumnDefinition { Width = GridLength.Star },    //for nameLabel
-                        new ColumnDefinition { Width = GridLength.Star },    //for dateLabel
-                        new ColumnDefinition { Width = GridLength.Star },    //for deleteButton
+                        new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },  // *
+                        new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) },  // 2*
+                        new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) },  // 2*
+                        new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },  // *
                     }
                 };
 
@@ -114,7 +115,7 @@ namespace Projekt
                 };
                 var nameLabel = new Label()
                 {
-                    Text = item.suplement.name,
+                    Text = item.id + " " + item.suplement.name + $"({item.suplement.id})",
                     HorizontalOptions = LayoutOptions.Center,
                     VerticalOptions = LayoutOptions.Center
                 };
@@ -191,17 +192,18 @@ namespace Projekt
         //klasa powiadomienia
         private class Notification
         {
-            private static int nextId = 0;
+            private static int numberofInstances = 0;
             public int id;
             public Suplement suplement;
             public int amount;
             public DateTime date;
             public Notification(Suplement suplement, int amount, DateTime date)
             {
-                int id = nextId++;
+                this.id = numberofInstances;
                 this.suplement = suplement;
                 this.amount = amount;
                 this.date = date;
+                numberofInstances++;
             }
         }
         private class Suplement
