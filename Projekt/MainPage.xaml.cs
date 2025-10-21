@@ -115,7 +115,7 @@ namespace Projekt
                 };
                 var nameLabel = new Label()
                 {
-                    Text = item.id + " " + item.suplement.name + $"({item.suplement.id})",
+                    Text = item.suplement.name,
                     HorizontalOptions = LayoutOptions.Center,
                     VerticalOptions = LayoutOptions.Center
                 };
