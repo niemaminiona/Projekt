@@ -17,6 +17,7 @@ namespace Projekt
             CreateMainMenu();
         }
 
+        //metoda ktora tworzy glowny ekran z powiadomieniami
         private void CreateMainMenu()
         {
             //Main grid troche logiczne
@@ -90,79 +91,113 @@ namespace Projekt
                 Spacing = 10,
             };
 
-            //wyswietla te powiadomienia z listy
-            foreach(Notification item in listOfActiveNotifications)
+            //jesli lista popwiadomien jest pusta to pokazuje napis
+            if (!listOfActiveNotifications.Any())
             {
-                //budowa powiadomienia pojedynczego
-                Grid notifGrid = new Grid()
+                notificationsLayout.Children.Add(new Label
                 {
-                    ColumnDefinitions =
+                    Text = "You have no notifications.",
+                    HorizontalOptions = LayoutOptions.Center,
+                    Margin = new Thickness(0,40,0,0),
+                    TextColor = Colors.Gray,
+                    FontSize = 15
+                });
+            }
+            //jesli nie to wypisuje powiadomienia
+            else
+            {
+                //wyswietla te powiadomienia z listy
+                foreach (Notification item in listOfActiveNotifications)
+                {
+                    //budowa powiadomienia pojedynczego
+                    Grid notifGrid = new Grid()
+                    {
+                        ColumnDefinitions =
                     {
                         new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },  // *
                         new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) },  // 2*
                         new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) },  // 2*
                         new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },  // *
                     }
-                };
+                    };
 
-                var switcher = new Switch()
-                {
-                    HorizontalOptions = LayoutOptions.Start,
-                    IsToggled = true,
-                    OnColor = Colors.White,
-                    ThumbColor = Colors.Black,
+                    var switcher = new Switch()
+                    {
+                        HorizontalOptions = LayoutOptions.Start,
+                        OnColor = Colors.White,
+                        ThumbColor = Colors.Black,
 
-                };
-                var nameLabel = new Label()
-                {
-                    Text = item.suplement.name,
-                    HorizontalOptions = LayoutOptions.Center,
-                    VerticalOptions = LayoutOptions.Center
-                };
-                var dateLabel = new Label()
-                {
-                    Text = item.date.ToString(),
-                    HorizontalOptions = LayoutOptions.Center,
-                    VerticalOptions = LayoutOptions.Center
-                };
-                var deleteButton = new Button() 
-                {
-                    HorizontalOptions = LayoutOptions.End,
-                    BackgroundColor = Colors.Crimson,
-                    Text = "X",
-                    WidthRequest = 50,
-                    HeightRequest = 50,
-                    CornerRadius = 15,
-                    FontSize = 20
-                };
-                deleteButton.Clicked += (sender, e) => { 
-                    listOfActiveNotifications.Remove(item);
-                    CreateMainMenu();
-                };
+                    };
+                    if (item.toggled)
+                    {
+                        switcher.IsToggled = true;
+                    }
+                    switcher.Toggled += (sender, e) =>
+                    {
+                        if (e.Value)
+                        {
+                            item.toggled = true;
+                        }
+                        else{
+                            item.toggled = false;
+                        }
+                    };
 
-                //pakuje wszystko w frame zeby ladnie to wygladalo
-                //wywala blad zeby uzyc "border" ale border nie ma corner radius wiec nie bardzo jest wybor
-                var frame = new Frame
-                {
-                    CornerRadius = 15,
-                    BackgroundColor = Colors.LightGrey,
-                    Padding = 10,
-                    HasShadow = false,
-                    Content = notifGrid
-                };
+                    var nameLabel = new Label()
+                    {
+                        Text = item.suplement.name,
+                        HorizontalOptions = LayoutOptions.Center,
+                        VerticalOptions = LayoutOptions.Center
+                    };
 
-                //dodaje wszystko
-                notifGrid.Children.Add(switcher);
-                notifGrid.Children.Add(nameLabel);
-                notifGrid.Children.Add(dateLabel);
-                notifGrid.Children.Add(deleteButton);
-                notifGrid.SetColumn(switcher, 0);
-                notifGrid.SetColumn(nameLabel, 1);
-                notifGrid.SetColumn(dateLabel, 2);
-                notifGrid.SetColumn(deleteButton, 3);
+                    var dateLabel = new Label()
+                    {
+                        Text = item.date.ToString(),
+                        HorizontalOptions = LayoutOptions.Center,
+                        VerticalOptions = LayoutOptions.Center
+                    };
 
-                notificationsLayout.Children.Add(frame);
+                    var deleteButton = new Button()
+                    {
+                        HorizontalOptions = LayoutOptions.End,
+                        BackgroundColor = Colors.Crimson,
+                        Text = "X",
+                        WidthRequest = 50,
+                        HeightRequest = 50,
+                        CornerRadius = 15,
+                        FontSize = 20
+                    };
+                    deleteButton.Clicked += (sender, e) =>
+                    {
+                        listOfActiveNotifications.Remove(item);
+                        CreateMainMenu();
+                    };
+
+                    //pakuje wszystko w frame zeby ladnie to wygladalo
+                    //wywala blad zeby uzyc "border" ale border nie ma corner radius wiec nie bardzo jest wybor
+                    var frame = new Frame
+                    {
+                        CornerRadius = 15,
+                        BackgroundColor = Colors.LightGrey,
+                        Padding = 10,
+                        HasShadow = false,
+                        Content = notifGrid
+                    };
+
+                    //dodaje wszystko
+                    notifGrid.Children.Add(switcher);
+                    notifGrid.Children.Add(nameLabel);
+                    notifGrid.Children.Add(dateLabel);
+                    notifGrid.Children.Add(deleteButton);
+                    notifGrid.SetColumn(switcher, 0);
+                    notifGrid.SetColumn(nameLabel, 1);
+                    notifGrid.SetColumn(dateLabel, 2);
+                    notifGrid.SetColumn(deleteButton, 3);
+
+                    notificationsLayout.Children.Add(frame);
+                }
             }
+                
 
             // Scrollable content
             ScrollView scroll = new ScrollView
@@ -197,12 +232,14 @@ namespace Projekt
             public Suplement suplement;
             public int amount;
             public DateTime date;
-            public Notification(Suplement suplement, int amount, DateTime date)
+            public Boolean toggled;
+            public Notification(Suplement suplement, int amount, DateTime date, Boolean toggled = true)
             {
                 this.id = numberofInstances;
                 this.suplement = suplement;
                 this.amount = amount;
                 this.date = date;
+                this.toggled = toggled;
                 numberofInstances++;
             }
         }
