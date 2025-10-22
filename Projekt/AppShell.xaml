@@ -3,11 +3,11 @@
     x:Class="Projekt.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:Projekt"
+    xmlns:views="clr-namespace:Projekt.Views"
     Title="Projekt">
 
-    <ShellContent
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <TabBar>
+        <ShellContent Title="Kalendarz" ContentTemplate="{DataTemplate views:Calendar}"/>
+    </TabBar>
 
 </Shell>

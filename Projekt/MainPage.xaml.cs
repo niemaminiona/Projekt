@@ -188,6 +188,8 @@ namespace Projekt
                         Content = notifGrid
                     };
 
+                    
+
                     //dodaje wszystko
                     notifGrid.Children.Add(switcher);
                     notifGrid.Children.Add(nameLabel);
@@ -200,8 +202,11 @@ namespace Projekt
 
                     notificationsLayout.Children.Add(frame);
                 }
+
+
             }
                 
+
 
             // Scrollable content
             ScrollView scroll = new ScrollView
