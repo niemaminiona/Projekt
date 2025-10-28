@@ -6,7 +6,7 @@
     xmlns:views="clr-namespace:Projekt.Views"
     Title="Projekt"
     Shell.NavBarIsVisible="False"
-    Shell.TabBarBackgroundColor="LightGray"
+    Shell.TabBarBackgroundColor="#FFC9C9C9"
     Shell.TabBarTitleColor="Black"
     Shell.TabBarForegroundColor="Black"
     Shell.TabBarUnselectedColor="#FF363636"
@@ -27,6 +27,7 @@
 
         <!-- Home Tab -->
         <ShellContent
+        Route="Home"
         Title="Home"
         Icon="home.svg"
         ContentTemplate="{DataTemplate views:HomePage}" />
