@@ -84,14 +84,16 @@ namespace Projekt.Views
                     {
                         Text = item.suplement.name,
                         HorizontalOptions = LayoutOptions.Center,
-                        VerticalOptions = LayoutOptions.Center
+                        VerticalOptions = LayoutOptions.Center,
+                        TextColor = Colors.Black
                     };
 
                     var dateLabel = new Label()
                     {
                         Text = item.date.ToString(),
                         HorizontalOptions = LayoutOptions.Center,
-                        VerticalOptions = LayoutOptions.Center
+                        VerticalOptions = LayoutOptions.Center,
+                        TextColor = Colors.Black
                     };
 
                     var deleteButton = new ImageButton()

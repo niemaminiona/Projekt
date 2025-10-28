@@ -3,10 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Projekt.Views.InfoPage"
              Title="InfoPage">
-    <VerticalStackLayout>
+    <VerticalStackLayout BackgroundColor="White">
         <Label 
             Text="Info about suplements"
             VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            HorizontalOptions="Center" 
+            TextColor="Black"
+            />
     </VerticalStackLayout>
 </ContentPage>

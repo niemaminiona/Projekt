@@ -11,7 +11,7 @@
     Shell.TabBarForegroundColor="Black"
     Shell.TabBarUnselectedColor="#FF363636"
     >
-
+    
     <TabBar>
         <!-- Info Tab -->
         <ShellContent
