@@ -20,75 +20,11 @@ namespace Projekt
         //metoda ktora tworzy glowny ekran z powiadomieniami
         private void CreateMainMenu()
         {
-            //Main grid troche logiczne
-            Grid mainGrid = new Grid()
-            {
-                Padding = 5,
-                RowSpacing = 10,
-                RowDefinitions =
-                {
-                    new RowDefinition { Height = 50 }, //Header
-                    new RowDefinition { Height = 1 }, //Line
-                    new RowDefinition { Height = GridLength.Star } //scrollView
-                },
-                BackgroundColor = Colors.White
-            };
-
-            //Header 
-            Grid header = new Grid
-            {
-                ColumnDefinitions =
-                {
-                    new ColumnDefinition { Width = GridLength.Star }, //button 1
-                    new ColumnDefinition { Width = GridLength.Star }, //label
-                    new ColumnDefinition { Width = GridLength.Star }  //button 2
-                }
-            };
-
-            //te przyciski do headeru
-            Button idkButton = new Button { 
-                Text = "M", 
-                WidthRequest = 50,
-                HorizontalOptions = LayoutOptions.Start,
-                BackgroundColor = Colors.Black,
-                CornerRadius = 15,
-                FontAttributes = FontAttributes.Bold
-            };
-            idkButton.Clicked += (sender, e) => { Content = null; };//usuwa strone, wsm nwm po co
-
-            Button addButton = new Button { 
-                Text = "+", 
-                WidthRequest = 50,
-                HorizontalOptions = LayoutOptions.End,
-                BackgroundColor = Colors.Black,
-                CornerRadius = 15,
-                FontAttributes = FontAttributes.Bold
-            };
-            addButton.Clicked += (sender, e) => { 
-                listOfActiveNotifications.Add(new Notification(new Suplement("Magnesium"), 1, new DateTime(2020, 1, 1))); //na szybko dodane
-                CreateMainMenu();
-            };
-
-            Label titleLabel = new Label
-            {
-                Text = "Aplikacja",
-                HorizontalOptions = LayoutOptions.Center,
-                VerticalOptions = LayoutOptions.Center,
-                TextColor = Colors.Black,
-                FontSize = 20,
-                FontAttributes = FontAttributes.Bold
-            };
-
-            //dodaje przyciski do headeru
-            header.Add(idkButton, 0, 0);
-            header.Add(titleLabel, 1, 0);
-            header.Add(addButton, 2, 0);
-
-
             //definiuje ten panel z ustawionymi powiadomieniami
             VerticalStackLayout notificationsLayout = new VerticalStackLayout
             {
                 Spacing = 10,
+                Padding = 10
             };
 
             //jesli lista popwiadomien jest pusta to pokazuje napis
@@ -98,7 +34,7 @@ namespace Projekt
                 {
                     Text = "You have no notifications.",
                     HorizontalOptions = LayoutOptions.Center,
-                    Margin = new Thickness(0,40,0,0),
+                    Margin = new Thickness(0, 40, 0, 0),
                     TextColor = Colors.Gray,
                     FontSize = 15
                 });
@@ -142,7 +78,8 @@ namespace Projekt
                         {
                             item.toggled = true;
                         }
-                        else{
+                        else
+                        {
                             item.toggled = false;
                         }
                     };
@@ -188,7 +125,7 @@ namespace Projekt
                         Content = notifGrid
                     };
 
-                    
+
 
                     //dodaje wszystko
                     notifGrid.Children.Add(switcher);
@@ -205,32 +142,13 @@ namespace Projekt
 
 
             }
-                
 
-
-            // Scrollable content
-            ScrollView scroll = new ScrollView
+            // dodaje wszystko zeby bylo widac ladnie
+            Content = null; // usuwa poprzedni stan jesli jakis byl
+            Content = new ScrollView
             {
                 Content = notificationsLayout
             };
-
-            //dodaje wszystko
-            mainGrid.Add(header);
-            Grid.SetRow(header, 0);
-
-            Label line = new Label() 
-            {
-                BackgroundColor = Colors.Black,
-            };
-
-            mainGrid.Add(line);
-            Grid.SetRow(line, 1);
-
-            mainGrid.Add(scroll);
-            Grid.SetRow(scroll, 2);
-
-            Content = null; //Czysci poprzednia strone
-            Content = mainGrid;
         }
 
         //klasa powiadomienia
