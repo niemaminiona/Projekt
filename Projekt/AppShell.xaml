@@ -14,31 +14,31 @@
         <!-- Info Tab -->
         <ShellContent
         Title="Info"
-        Icon="info.png"
+        Icon="info.svg"
         ContentTemplate="{DataTemplate views:InfoPage}" />
 
         <!-- Calendar Tab -->
         <ShellContent
         Title="Calendar"
-        Icon="calendar.png"
+        Icon="calendar.svg"
         ContentTemplate="{DataTemplate views:CalendarPage}" />
 
         <!-- Home Tab -->
         <ShellContent
         Title="Home"
-        Icon="home.png"
+        Icon="home.svg"
         ContentTemplate="{DataTemplate views:HomePage}" />
 
         <!-- Statistics Tab -->
         <ShellContent
         Title="Stats"
-        Icon="stats.png"
+        Icon="stats.svg"
         ContentTemplate="{DataTemplate views:StatisticsPage}" />
 
         <!-- Settings Tab -->
         <ShellContent
         Title="Settings"
-        Icon="settings.png"
+        Icon="settings.svg"
         ContentTemplate="{DataTemplate views:SettingsPage}" />
     </TabBar>
 
