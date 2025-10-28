@@ -1,4 +1,5 @@
 ﻿using Microsoft.Maui.Controls;
+using Microsoft.Maui.Controls.Shapes;
 
 namespace Projekt.Views
 {
@@ -10,9 +11,10 @@ namespace Projekt.Views
         {
             InitializeComponent();
 
-            listOfActiveNotifications.Add(new Notification(new Suplement("Magnesium"), 1, new DateTime(2025, 8, 25)));
-            listOfActiveNotifications.Add(new Notification(new Suplement("Potasium"), 3, new DateTime(2025, 8, 28)));
-            listOfActiveNotifications.Add(new Notification(new Suplement("Creatine"), 1, new DateTime(2025, 8, 24)));
+            for(int i = 0; i < 15; i++)
+            {
+                listOfActiveNotifications.Add(new Notification(new Suplement("Magnesium"), 1, new DateTime(2025, 8, 25)));
+            }
 
             CreateMainMenu();
         }
@@ -20,17 +22,11 @@ namespace Projekt.Views
         //metoda ktora tworzy glowny ekran z powiadomieniami
         private void CreateMainMenu()
         {
-            //definiuje ten panel z ustawionymi powiadomieniami
-            VerticalStackLayout notificationsLayout = new VerticalStackLayout
-            {
-                Spacing = 10,
-                Padding = 10
-            };
-
+            NotificationLayout.Children.Clear();// czysci poprzednie powiadomienia
             //jesli lista popwiadomien jest pusta to pokazuje napis
             if (!listOfActiveNotifications.Any())
             {
-                notificationsLayout.Children.Add(new Label
+                NotificationLayout.Children.Add(new Label
                 {
                     Text = "You have no notifications.",
                     HorizontalOptions = LayoutOptions.Center,
@@ -114,14 +110,22 @@ namespace Projekt.Views
                         CreateMainMenu();
                     };
 
-                    //pakuje wszystko w frame zeby ladnie to wygladalo
-                    //wywala blad zeby uzyc "border" ale border nie ma corner radius wiec nie bardzo jest wybor
-                    var frame = new Frame
+                    //pakuje wszystkie kontrolki do bordera ktory tworzy tlo
+                    Border border = new Border
                     {
-                        CornerRadius = 15,
+                        StrokeShape = new RoundRectangle
+                        {
+                            CornerRadius = 15
+                        },
                         BackgroundColor = Colors.LightGrey,
                         Padding = 10,
-                        HasShadow = true,
+                        Shadow = new Shadow
+                        {
+                            Brush = Colors.Black,
+                            Opacity = 0.25f,
+                            Offset = new Point(5, 5),
+                            Radius = 10
+                        },
                         Content = notifGrid
                     };
 
@@ -137,18 +141,11 @@ namespace Projekt.Views
                     notifGrid.SetColumn(dateLabel, 2);
                     notifGrid.SetColumn(deleteButton, 3);
 
-                    notificationsLayout.Children.Add(frame);
+                    NotificationLayout.Children.Add(border);
                 }
 
 
             }
-
-            // dodaje wszystko zeby bylo widac ladnie
-            Content = null; // usuwa poprzedni stan jesli jakis byl
-            Content = new ScrollView
-            {
-                Content = notificationsLayout
-            };
         }
 
         //klasa powiadomienia
