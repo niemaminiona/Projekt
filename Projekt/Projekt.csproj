@@ -60,12 +60,56 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <AndroidResource Remove="Nowy folder\**" />
+	  <AndroidResource Remove="Resources\Nowy folder\**" />
+	  <AndroidResource Remove="Views\Nowy folder1\**" />
+	  <AndroidResource Remove="Views\Nowy folder\**" />
+	  <Compile Remove="Nowy folder\**" />
+	  <Compile Remove="Resources\Nowy folder\**" />
+	  <Compile Remove="Views\Nowy folder1\**" />
+	  <Compile Remove="Views\Nowy folder\**" />
+	  <EmbeddedResource Remove="Nowy folder\**" />
+	  <EmbeddedResource Remove="Resources\Nowy folder\**" />
+	  <EmbeddedResource Remove="Views\Nowy folder1\**" />
+	  <EmbeddedResource Remove="Views\Nowy folder\**" />
+	  <MauiCss Remove="Nowy folder\**" />
+	  <MauiCss Remove="Resources\Nowy folder\**" />
+	  <MauiCss Remove="Views\Nowy folder1\**" />
+	  <MauiCss Remove="Views\Nowy folder\**" />
+	  <MauiXaml Remove="Nowy folder\**" />
+	  <MauiXaml Remove="Resources\Nowy folder\**" />
+	  <MauiXaml Remove="Views\Nowy folder1\**" />
+	  <MauiXaml Remove="Views\Nowy folder\**" />
+	  <None Remove="Nowy folder\**" />
+	  <None Remove="Resources\Nowy folder\**" />
+	  <None Remove="Views\Nowy folder1\**" />
+	  <None Remove="Views\Nowy folder\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Views\NewPage1.xaml.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Remove="Views\NewPage1.xaml" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="calendar.png" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Views\" />
+	  <MauiXaml Update="Views\CalendarPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\SettingsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>

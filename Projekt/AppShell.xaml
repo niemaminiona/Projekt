@@ -3,13 +3,33 @@
     x:Class="Projekt.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:Projekt"
-    Title="Projekt">
+    xmlns:views="clr-namespace:Projekt.Views"
+    Title="Projekt"
+    Shell.NavBarIsVisible="False"
+    Shell.TabBarBackgroundColor="LightGray"
+    Shell.TabBarForegroundColor="White"
+    >
 
+    <TabBar>
+        
 
-    <ShellContent
-        Title=""
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+        <!-- Calendar Tab -->
+        <ShellContent
+            Title="Calendar"
+            Icon="calendar.png"
+            ContentTemplate="{DataTemplate views:CalendarPage}" />
+        
+        <!-- Home Tab -->
+        <ShellContent
+            Title="Home"
+            Icon="home.png"
+            ContentTemplate="{DataTemplate views:MainPage}" />
+
+        <!-- Settings Tab -->
+        <ShellContent
+            Title="Settings"
+            Icon="settings.png"
+            ContentTemplate="{DataTemplate views:SettingsPage}" />
+    </TabBar>
 
 </Shell>

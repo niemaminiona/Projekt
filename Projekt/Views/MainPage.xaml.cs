@@ -1,6 +1,6 @@
 ﻿using Microsoft.Maui.Controls;
 
-namespace Projekt
+namespace Projekt.Views
 {
     public partial class MainPage : ContentPage
     {
