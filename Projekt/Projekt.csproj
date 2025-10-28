@@ -87,10 +87,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Views\MainPage.xaml.cs" />
 	  <Compile Remove="Views\NewPage1.xaml.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Remove="Views\MainPage.xaml" />
 	  <MauiXaml Remove="Views\NewPage1.xaml" />
 	</ItemGroup>
 
@@ -105,6 +107,9 @@
 
 	<ItemGroup>
 	  <MauiXaml Update="Views\CalendarPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\HomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\InfoPage.xaml">

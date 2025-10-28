@@ -1,17 +1,17 @@
-﻿using Microsoft.Maui.Controls;
+using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.Shapes;
 
 namespace Projekt.Views
 {
-    public partial class MainPage : ContentPage
+    public partial class HomePage : ContentPage
     {
         List<Notification> listOfActiveNotifications = new List<Notification>();
 
-        public MainPage()
+        public HomePage()
         {
             InitializeComponent();
 
-            for(int i = 0; i < 15; i++)
+            for (int i = 0; i < 15; i++)
             {
                 listOfActiveNotifications.Add(new Notification(new Suplement("Magnesium"), 1, new DateTime(2025, 8, 25)));
             }

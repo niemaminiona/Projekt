@@ -27,7 +27,7 @@
         <ShellContent
         Title="Home"
         Icon="home.png"
-        ContentTemplate="{DataTemplate views:MainPage}" />
+        ContentTemplate="{DataTemplate views:HomePage}" />
 
         <!-- Statistics Tab -->
         <ShellContent
