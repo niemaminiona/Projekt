@@ -45,12 +45,12 @@ namespace Projekt.Views
                     Grid notifGrid = new Grid()
                     {
                         ColumnDefinitions =
-                    {
-                        new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },  // *
-                        new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) },  // 2*
-                        new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) },  // 2*
-                        new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },  // *
-                    }
+                        {
+                            new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },  // *
+                            new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) },  // 2*
+                            new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) },  // 2*
+                            new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },  // *
+                        }
                     };
 
                     var switcher = new Switch()

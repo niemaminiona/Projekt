@@ -8,6 +8,8 @@
     Shell.NavBarIsVisible="False"
     Shell.TabBarBackgroundColor="LightGray"
     Shell.TabBarTitleColor="Black"
+    Shell.TabBarForegroundColor="Black"
+    Shell.TabBarUnselectedColor="#FF363636"
     >
 
     <TabBar>
