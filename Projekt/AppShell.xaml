@@ -11,25 +11,36 @@
     >
 
     <TabBar>
-        
+        <!-- Info Tab -->
+        <ShellContent
+        Title="Info"
+        Icon="info.png"
+        ContentTemplate="{DataTemplate views:InfoPage}" />
 
         <!-- Calendar Tab -->
         <ShellContent
-            Title="Calendar"
-            Icon="calendar.png"
-            ContentTemplate="{DataTemplate views:CalendarPage}" />
-        
+        Title="Calendar"
+        Icon="calendar.png"
+        ContentTemplate="{DataTemplate views:CalendarPage}" />
+
         <!-- Home Tab -->
         <ShellContent
-            Title="Home"
-            Icon="home.png"
-            ContentTemplate="{DataTemplate views:MainPage}" />
+        Title="Home"
+        Icon="home.png"
+        ContentTemplate="{DataTemplate views:MainPage}" />
+
+        <!-- Statistics Tab -->
+        <ShellContent
+        Title="Stats"
+        Icon="stats.png"
+        ContentTemplate="{DataTemplate views:StatisticsPage}" />
 
         <!-- Settings Tab -->
         <ShellContent
-            Title="Settings"
-            Icon="settings.png"
-            ContentTemplate="{DataTemplate views:SettingsPage}" />
+        Title="Settings"
+        Icon="settings.png"
+        ContentTemplate="{DataTemplate views:SettingsPage}" />
     </TabBar>
+
 
 </Shell>
