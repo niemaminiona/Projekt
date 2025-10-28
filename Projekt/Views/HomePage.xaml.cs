@@ -45,18 +45,18 @@ namespace Projekt.Views
                     Grid notifGrid = new Grid()
                     {
                         ColumnDefinitions =
-                    {
-                        new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },  // *
-                        new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) },  // 2*
-                        new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) },  // 2*
-                        new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },  // *
-                    }
+                        {
+                            new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },  // *
+                            new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) },  // 2*
+                            new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) },  // 2*
+                            new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },  // *
+                        }
                     };
 
                     var switcher = new Switch()
                     {
                         HorizontalOptions = LayoutOptions.Start,
-                        OnColor = Colors.White,
+                        OnColor = Color.FromArgb("#E0FDFF"),
                         ThumbColor = Colors.Black,
                         Shadow = new Shadow
                         {
@@ -84,25 +84,28 @@ namespace Projekt.Views
                     {
                         Text = item.suplement.name,
                         HorizontalOptions = LayoutOptions.Center,
-                        VerticalOptions = LayoutOptions.Center
+                        VerticalOptions = LayoutOptions.Center,
+                        TextColor = Colors.Black
                     };
 
                     var dateLabel = new Label()
                     {
                         Text = item.date.ToString(),
                         HorizontalOptions = LayoutOptions.Center,
-                        VerticalOptions = LayoutOptions.Center
+                        VerticalOptions = LayoutOptions.Center,
+                        TextColor = Colors.Black
                     };
 
-                    var deleteButton = new Button()
+                    var deleteButton = new ImageButton()
                     {
                         HorizontalOptions = LayoutOptions.End,
-                        BackgroundColor = Colors.Crimson,
-                        Text = "X",
+                        BackgroundColor = Color.FromArgb("#D62929"),
                         WidthRequest = 50,
                         HeightRequest = 50,
                         CornerRadius = 15,
-                        FontSize = 20
+                        Source = "delete.svg",
+                        Aspect = Aspect.AspectFit,
+                        //Padding = 0
                     };
                     deleteButton.Clicked += (sender, e) =>
                     {
