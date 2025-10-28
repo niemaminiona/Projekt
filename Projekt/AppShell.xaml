@@ -7,7 +7,7 @@
     Title="Projekt"
     Shell.NavBarIsVisible="False"
     Shell.TabBarBackgroundColor="LightGray"
-    Shell.TabBarForegroundColor="White"
+    Shell.TabBarTitleColor="Black"
     >
 
     <TabBar>
