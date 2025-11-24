@@ -51,15 +51,15 @@ public partial class CalendarPage : ContentPage
 		for (int i = 0; i < 8; i++)
 			CalendarGrid.RowDefinitions.Add(new RowDefinition(GridLength.Star));
 
-		var LeftSwitchButton = new Button
-		{
+		var LeftSwitchButton = new Button //przycisk do prze³¹czania miesiêcy w lewo
+        {
 			Text = "<",
 			FontSize = 40,
             BackgroundColor = Colors.White,
 			TextColor = Colors.Black,
         };
 
-        var RightSwitchButton = new Button
+        var RightSwitchButton = new Button //przycisk do prze³¹czania miesiêcy w prawo
         {
             Text = ">",
             FontSize = 40,
@@ -67,8 +67,8 @@ public partial class CalendarPage : ContentPage
             TextColor = Colors.Black,
         };
 
-	    SelectMonthBox = new Label
-		{
+	    SelectMonthBox = new Label //blok wyœwietlaj¹cy aktualny miesi¹c
+        {
 			Text = currentMonth.Name,
 			FontSize = 30,
 			HorizontalTextAlignment = TextAlignment.Center,
@@ -76,15 +76,16 @@ public partial class CalendarPage : ContentPage
 		};
 
 
-        var dayWindow = new Label
-		{
+        var dayWindow = new Label //okienko dnia
+        {
 			Text = currentMonth.Days.ToString(),
 			FontSize = 20,
 			HorizontalTextAlignment = TextAlignment.End,
 			VerticalTextAlignment = TextAlignment.Start,
 		}; //stworzenie wygladu jednego okienka kalendarza
 
-		//ustawienie bloku odpowiedzialnego za wybranie miesiaca
+
+		//ustawienie pe³nego bloku bloku odpowiedzialnego za wybranie miesiaca <---
 		CalendarGrid.SetRow(LeftSwitchButton, 0);
 		CalendarGrid.SetColumn(LeftSwitchButton, 2);
 
@@ -96,6 +97,7 @@ public partial class CalendarPage : ContentPage
 
         LeftSwitchButton.Clicked += SwitchLeftCurrentMonth;
         RightSwitchButton.Clicked += RightSwitchButton_Clicked;
+		//------>
 
 		CalendarGrid.Children.Add(LeftSwitchButton);
         CalendarGrid.Children.Add(RightSwitchButton);
@@ -103,7 +105,7 @@ public partial class CalendarPage : ContentPage
 		this.Content = CalendarGrid;
     }
 
-    private void RightSwitchButton_Clicked(object? sender, EventArgs e)
+    private void RightSwitchButton_Clicked(object? sender, EventArgs e) //Funkcja oblsugujaca przycisk prze³¹czania miesiêcy w prawo
     {
         if (currentMonth == Months[Months.Count - 1])
         {
@@ -117,7 +119,7 @@ public partial class CalendarPage : ContentPage
         }
     }
 
-    private void SwitchLeftCurrentMonth(object? sender, EventArgs e)
+    private void SwitchLeftCurrentMonth(object? sender, EventArgs e) //Funkcja oblsugujaca przycisk prze³¹czania miesiêcy w lewo
     {
         if (currentMonth == Months[0])
         {
