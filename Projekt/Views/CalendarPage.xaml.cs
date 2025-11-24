@@ -1,4 +1,4 @@
-using Windows.Security.Cryptography.Core;
+
 
 namespace Projekt.Views;
 
@@ -54,7 +54,7 @@ public partial class CalendarPage : ContentPage
 		var LeftSwitchButton = new Button //przycisk do prze³¹czania miesiêcy w lewo
         {
 			Text = "<",
-			FontSize = 40,
+			FontSize = 30,
             BackgroundColor = Colors.White,
 			TextColor = Colors.Black,
         };
@@ -62,7 +62,7 @@ public partial class CalendarPage : ContentPage
         var RightSwitchButton = new Button //przycisk do prze³¹czania miesiêcy w prawo
         {
             Text = ">",
-            FontSize = 40,
+            FontSize = 30,
 			BackgroundColor = Colors.White,
             TextColor = Colors.Black,
         };
@@ -70,7 +70,7 @@ public partial class CalendarPage : ContentPage
 	    SelectMonthBox = new Label //blok wyœwietlaj¹cy aktualny miesi¹c
         {
 			Text = currentMonth.Name,
-			FontSize = 30,
+			FontSize = 20,
 			HorizontalTextAlignment = TextAlignment.Center,
 			VerticalTextAlignment = TextAlignment.Center,
 		};
@@ -87,14 +87,14 @@ public partial class CalendarPage : ContentPage
 
 		//ustawienie pe³nego bloku bloku odpowiedzialnego za wybranie miesiaca <---
 		CalendarGrid.SetRow(LeftSwitchButton, 0);
-		CalendarGrid.SetColumn(LeftSwitchButton, 2);
+		CalendarGrid.SetColumn(LeftSwitchButton, 1);
 
 		CalendarGrid.SetRow(RightSwitchButton, 0);
-		CalendarGrid.SetColumn(RightSwitchButton, 4);
+		CalendarGrid.SetColumn(RightSwitchButton, 5);
 
 		CalendarGrid.SetRow(SelectMonthBox, 0);
-		CalendarGrid.SetColumn(SelectMonthBox, 3);
-
+		CalendarGrid.SetColumn(SelectMonthBox, 2);
+        CalendarGrid.SetColumnSpan(SelectMonthBox, 3);
         LeftSwitchButton.Clicked += SwitchLeftCurrentMonth;
         RightSwitchButton.Clicked += RightSwitchButton_Clicked;
 		//------>
