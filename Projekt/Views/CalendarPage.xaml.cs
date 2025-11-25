@@ -59,6 +59,15 @@ public partial class CalendarPage : ContentPage
 		for (int i = 0; i < 9; i++)
 			CalendarGrid.RowDefinitions.Add(new RowDefinition(GridLength.Star));
 
+        var CalendarHeader = new Label
+        {
+            Text = "kalendarz",
+            FontSize = 40,
+            TextColor = Colors.Tomato,
+            FontAttributes = FontAttributes.Bold,
+            HorizontalTextAlignment = TextAlignment.Center,
+            VerticalTextAlignment = TextAlignment.Center,
+        };
 		var LeftSwitchButton = new Button //przycisk do prze³¹czania miesiêcy w lewo
         {
 			Text = "<",
@@ -87,9 +96,11 @@ public partial class CalendarPage : ContentPage
         };
 
 
-        
 
-
+        //ustawienie nag³ówka kalendarza
+        CalendarGrid.SetRow(CalendarHeader, 0);
+        CalendarGrid.SetColumn(CalendarHeader, 0);
+        CalendarGrid.SetColumnSpan(CalendarHeader, 7);
 		//ustawienie pe³nego bloku bloku odpowiedzialnego za wybranie miesiaca <---
 		CalendarGrid.SetRow(LeftSwitchButton, 1);
 		CalendarGrid.SetColumn(LeftSwitchButton, 1);
@@ -148,7 +159,8 @@ public partial class CalendarPage : ContentPage
 
         CalendarGrid.Children.Add(LeftSwitchButton);
         CalendarGrid.Children.Add(RightSwitchButton);
-        CalendarGrid.Children.Add(SelectMonthBox);	
+        CalendarGrid.Children.Add(SelectMonthBox);
+        CalendarGrid.Children.Add(CalendarHeader);
         this.Content = CalendarGrid;
     }
 
