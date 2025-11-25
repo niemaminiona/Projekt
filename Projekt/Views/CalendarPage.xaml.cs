@@ -1,5 +1,8 @@
 
 
+using Microsoft.Maui.Controls.Shapes;
+using Microsoft.Maui.Graphics.Text;
+
 namespace Projekt.Views;
 
 public partial class CalendarPage : ContentPage
@@ -46,16 +49,22 @@ public partial class CalendarPage : ContentPage
 	{
         Grid CalendarGrid = new Grid();//utworzenie grida
 
+        //style Girda
+        CalendarGrid.RowSpacing = 1;
+        CalendarGrid.ColumnSpacing = 1;
+        CalendarGrid.BackgroundColor = Colors.LightSlateGrey;
+
 		for (int i = 0; i < 7; i++)
 			CalendarGrid.ColumnDefinitions.Add(new ColumnDefinition(GridLength.Star));
-		for (int i = 0; i < 8; i++)
+		for (int i = 0; i < 9; i++)
 			CalendarGrid.RowDefinitions.Add(new RowDefinition(GridLength.Star));
 
 		var LeftSwitchButton = new Button //przycisk do prze³¹czania miesiêcy w lewo
         {
 			Text = "<",
 			FontSize = 30,
-            BackgroundColor = Colors.White,
+            FontAttributes = FontAttributes.Bold,
+            BackgroundColor = Colors.LightSlateGrey,
 			TextColor = Colors.Black,
         };
 
@@ -63,30 +72,32 @@ public partial class CalendarPage : ContentPage
         {
             Text = ">",
             FontSize = 30,
-			BackgroundColor = Colors.White,
+            FontAttributes = FontAttributes.Bold,
+            BackgroundColor = Colors.LightSlateGrey,
             TextColor = Colors.Black,
         };
 
-	    SelectMonthBox = new Label //blok wyœwietlaj¹cy aktualny miesi¹c
+        SelectMonthBox = new Label //blok wyœwietlaj¹cy aktualny miesi¹c
         {
-			Text = currentMonth.Name,
-			FontSize = 20,
-			HorizontalTextAlignment = TextAlignment.Center,
-			VerticalTextAlignment = TextAlignment.Center,
-		};
+            Text = currentMonth.Name,
+            FontSize = 25,
+            FontAttributes = FontAttributes.Italic,
+            HorizontalTextAlignment = TextAlignment.Center,
+            VerticalTextAlignment = TextAlignment.Center,
+        };
 
 
         
 
 
 		//ustawienie pe³nego bloku bloku odpowiedzialnego za wybranie miesiaca <---
-		CalendarGrid.SetRow(LeftSwitchButton, 0);
+		CalendarGrid.SetRow(LeftSwitchButton, 1);
 		CalendarGrid.SetColumn(LeftSwitchButton, 1);
 
-		CalendarGrid.SetRow(RightSwitchButton, 0);
+		CalendarGrid.SetRow(RightSwitchButton, 1);
 		CalendarGrid.SetColumn(RightSwitchButton, 5);
 
-		CalendarGrid.SetRow(SelectMonthBox, 0);
+		CalendarGrid.SetRow(SelectMonthBox, 1);
 		CalendarGrid.SetColumn(SelectMonthBox, 2);
         CalendarGrid.SetColumnSpan(SelectMonthBox, 3);
         LeftSwitchButton.Clicked += SwitchLeftCurrentMonth;
@@ -97,7 +108,7 @@ public partial class CalendarPage : ContentPage
         //tworzenie okienek kalendarza
 		int dayCounter = 1;
 
-		for(int rowsCounter = 1; rowsCounter <= 8; rowsCounter++)
+		for(int rowsCounter = 2; rowsCounter <= 10; rowsCounter++)
 		{
 			
 
@@ -108,15 +119,26 @@ public partial class CalendarPage : ContentPage
                 {
                     break;
                 }
-                var dayWindow = new Label //okienko dnia
+                var dayWindow = new Border
                 {
-                    FontSize = 20,
-                    HorizontalTextAlignment = TextAlignment.End,
-                    VerticalTextAlignment = TextAlignment.Start,
+                    Background = Colors.LightGray,
+                    Stroke = Colors.Red,
+                    StrokeThickness = 1,
+                    Padding = new Thickness(3),
+                    Margin = new Thickness(1),
+                    StrokeShape = new RoundRectangle { CornerRadius = 6 },
+
+                    Content = new Label
+                    {
+                        Text = dayCounter.ToString(),
+                        FontSize = 18,
+                        HorizontalTextAlignment = TextAlignment.End,
+                        VerticalTextAlignment = TextAlignment.Start,
+                        TextColor = Colors.Black,
+                    }
                 }; //stworzenie wygladu jednego okienka kalendarza
 
-
-                dayWindow.Text = dayCounter.ToString();
+                
                 CalendarGrid.SetRow(dayWindow, rowsCounter);
 				CalendarGrid.SetColumn(dayWindow, columnCounter);
 				dayCounter++;
