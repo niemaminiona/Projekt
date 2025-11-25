@@ -40,10 +40,10 @@ public partial class CalendarPage : ContentPage
 		Months.Add(new Month("PaŸdziernik", 31));
 		Months.Add(new Month("Listopad", 30));
 		Months.Add(new Month("Grudzieñ", 31));
+        currentMonth = Months[0];
     }
     private void CreateCalendarLayout()
 	{
-		currentMonth = Months[0];
         Grid CalendarGrid = new Grid();//utworzenie grida
 
 		for (int i = 0; i < 7; i++)
@@ -76,13 +76,7 @@ public partial class CalendarPage : ContentPage
 		};
 
 
-        var dayWindow = new Label //okienko dnia
-        {
-			Text = currentMonth.Days.ToString(),
-			FontSize = 20,
-			HorizontalTextAlignment = TextAlignment.End,
-			VerticalTextAlignment = TextAlignment.Start,
-		}; //stworzenie wygladu jednego okienka kalendarza
+        
 
 
 		//ustawienie pe³nego bloku bloku odpowiedzialnego za wybranie miesiaca <---
@@ -97,12 +91,43 @@ public partial class CalendarPage : ContentPage
         CalendarGrid.SetColumnSpan(SelectMonthBox, 3);
         LeftSwitchButton.Clicked += SwitchLeftCurrentMonth;
         RightSwitchButton.Clicked += RightSwitchButton_Clicked;
-		//------>
+        //------>
 
-		CalendarGrid.Children.Add(LeftSwitchButton);
+
+        //tworzenie okienek kalendarza
+		int dayCounter = 1;
+
+		for(int rowsCounter = 1; rowsCounter <= 8; rowsCounter++)
+		{
+			
+
+			for(int columnCounter = 0; columnCounter < 7; columnCounter++)
+			{
+                //jesli licznik dni przekroczy liczbe dni miesiaca petla sie konczy
+                if (dayCounter > currentMonth.Days)
+                {
+                    break;
+                }
+                var dayWindow = new Label //okienko dnia
+                {
+                    FontSize = 20,
+                    HorizontalTextAlignment = TextAlignment.End,
+                    VerticalTextAlignment = TextAlignment.Start,
+                }; //stworzenie wygladu jednego okienka kalendarza
+
+
+                dayWindow.Text = dayCounter.ToString();
+                CalendarGrid.SetRow(dayWindow, rowsCounter);
+				CalendarGrid.SetColumn(dayWindow, columnCounter);
+				dayCounter++;
+                CalendarGrid.Children.Add(dayWindow);
+            }
+        }
+
+        CalendarGrid.Children.Add(LeftSwitchButton);
         CalendarGrid.Children.Add(RightSwitchButton);
-        CalendarGrid.Children.Add(SelectMonthBox);
-		this.Content = CalendarGrid;
+        CalendarGrid.Children.Add(SelectMonthBox);	
+        this.Content = CalendarGrid;
     }
 
     private void RightSwitchButton_Clicked(object? sender, EventArgs e) //Funkcja oblsugujaca przycisk prze³¹czania miesiêcy w prawo
@@ -117,6 +142,10 @@ public partial class CalendarPage : ContentPage
             currentMonth = Months[currentIndex + 1];
 			SelectMonthBox.Text = currentMonth.Name;
         }
+
+        //po zmianie miesiaca cala zawartosc znika i generuje sie na nowo z nowym miesiacem
+        this.Content = null;
+        CreateCalendarLayout();
     }
 
     private void SwitchLeftCurrentMonth(object? sender, EventArgs e) //Funkcja oblsugujaca przycisk prze³¹czania miesiêcy w lewo
@@ -131,5 +160,9 @@ public partial class CalendarPage : ContentPage
             currentMonth = Months[currentIndex - 1];
             SelectMonthBox.Text = currentMonth.Name;
         }
+
+        //po zmianie miesiaca cala zawartosc znika i generuje sie na nowo z nowym miesiacem
+        this.Content = null;
+        CreateCalendarLayout();
     }
 }
