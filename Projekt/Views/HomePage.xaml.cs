@@ -1,11 +1,12 @@
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.Shapes;
+using Projekt.Data; //Korzystanie w klas oraz danych z folderu Data
 
 namespace Projekt.Views
 {
     public partial class HomePage : ContentPage
     {
-        List<Notification> listOfActiveNotifications = new List<Notification>();
+        List<Notif> listOfActiveNotifications = new List<Notif>();
 
         public HomePage()
         {
@@ -13,7 +14,7 @@ namespace Projekt.Views
 
             for (int i = 0; i < 15; i++)
             {
-                listOfActiveNotifications.Add(new Notification(new Suplement("Magnesium"), 1, new DateTime(2025, 8, 25)));
+                listOfActiveNotifications.Add(new Notif(new Suplement("Magnesium"), 1, new DateTime(2025, 8, 25)));
             }
 
             CreateMainMenu();
@@ -39,7 +40,7 @@ namespace Projekt.Views
             else
             {
                 //wyswietla te powiadomienia z listy
-                foreach (Notification item in listOfActiveNotifications)
+                foreach (Notif item in listOfActiveNotifications)
                 {
                     //budowa powiadomienia pojedynczego
                     Grid notifGrid = new Grid()
@@ -148,34 +149,6 @@ namespace Projekt.Views
                 }
 
 
-            }
-        }
-
-        //klasa powiadomienia
-        private class Notification
-        {
-            private static int numberofInstances = 0;
-            public int id;
-            public Suplement suplement;
-            public int amount;
-            public DateTime date;
-            public Boolean toggled;
-            public Notification(Suplement suplement, int amount, DateTime date, Boolean toggled = true)
-            {
-                this.id = numberofInstances;
-                this.suplement = suplement;
-                this.amount = amount;
-                this.date = date;
-                this.toggled = toggled;
-                numberofInstances++;
-            }
-        }
-        private class Suplement
-        {
-            public String name;
-            public Suplement(String name)
-            {
-                this.name = name;
             }
         }
     }
