@@ -1,20 +1,14 @@
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.Shapes;
+using Projekt.DataHandling; //Korzystanie w klas oraz danych z folderu Data
 
 namespace Projekt.Views
 {
     public partial class HomePage : ContentPage
     {
-        List<Notification> listOfActiveNotifications = new List<Notification>();
-
         public HomePage()
         {
             InitializeComponent();
-
-            for (int i = 0; i < 15; i++)
-            {
-                listOfActiveNotifications.Add(new Notification(new Suplement("Magnesium"), 1, new DateTime(2025, 8, 25)));
-            }
 
             CreateMainMenu();
         }
@@ -24,7 +18,8 @@ namespace Projekt.Views
         {
             NotificationLayout.Children.Clear();// czysci poprzednie powiadomienia
             //jesli lista popwiadomien jest pusta to pokazuje napis
-            if (!listOfActiveNotifications.Any())
+            //NotifData.Refresh();
+            if (!NotifData.list.Any())
             {
                 NotificationLayout.Children.Add(new Label
                 {
@@ -39,7 +34,7 @@ namespace Projekt.Views
             else
             {
                 //wyswietla te powiadomienia z listy
-                foreach (Notification item in listOfActiveNotifications)
+                foreach (Notif item in NotifData.list)
                 {
                     //budowa powiadomienia pojedynczego
                     Grid notifGrid = new Grid()
@@ -107,9 +102,10 @@ namespace Projekt.Views
                         Aspect = Aspect.AspectFit,
                         //Padding = 0
                     };
-                    deleteButton.Clicked += (sender, e) =>
+                    deleteButton.Clicked += async (sender, e) =>
                     {
-                        listOfActiveNotifications.Remove(item);
+                        NotifData.list.Remove(item);
+                        //await NotifData.Save();
                         CreateMainMenu();
                     };
 
@@ -145,38 +141,25 @@ namespace Projekt.Views
                     notifGrid.SetColumn(deleteButton, 3);
 
                     NotificationLayout.Children.Add(border);
-                }
-
-
+                } // <--------- koniec foreach
             }
-        }
-
-        //klasa powiadomienia
-        private class Notification
-        {
-            private static int numberofInstances = 0;
-            public int id;
-            public Suplement suplement;
-            public int amount;
-            public DateTime date;
-            public Boolean toggled;
-            public Notification(Suplement suplement, int amount, DateTime date, Boolean toggled = true)
+            Button btn = new()
             {
-                this.id = numberofInstances;
-                this.suplement = suplement;
-                this.amount = amount;
-                this.date = date;
-                this.toggled = toggled;
-                numberofInstances++;
-            }
-        }
-        private class Suplement
-        {
-            public String name;
-            public Suplement(String name)
+                Text = "Add (test)"
+            };
+
+            btn.Clicked += async (sender, e) =>
             {
-                this.name = name;
-            }
+                NotifData.list.Add(
+                    new Notif(new Suplement("Creatine"), 2, DateTime.Now, new Random().Next(2) == 0)
+                );
+
+                //await NotifData.Save();  // now OK
+                CreateMainMenu();
+            };
+
+
+            NotificationLayout.Children.Add(btn);
         }
     }
 }
