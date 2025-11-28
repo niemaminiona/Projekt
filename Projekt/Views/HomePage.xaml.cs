@@ -6,15 +6,9 @@ namespace Projekt.Views
 {
     public partial class HomePage : ContentPage
     {
-        List<Notif> listOfActiveNotifications = new();
-
-        
-
         public HomePage()
         {
             InitializeComponent();
-
-            listOfActiveNotifications = Data.GetListTest();
 
             CreateMainMenu();
         }
@@ -24,7 +18,8 @@ namespace Projekt.Views
         {
             NotificationLayout.Children.Clear();// czysci poprzednie powiadomienia
             //jesli lista popwiadomien jest pusta to pokazuje napis
-            if (!listOfActiveNotifications.Any())
+            //NotifData.Refresh();
+            if (!NotifData.list.Any())
             {
                 NotificationLayout.Children.Add(new Label
                 {
@@ -39,7 +34,7 @@ namespace Projekt.Views
             else
             {
                 //wyswietla te powiadomienia z listy
-                foreach (Notif item in listOfActiveNotifications)
+                foreach (Notif item in NotifData.list)
                 {
                     //budowa powiadomienia pojedynczego
                     Grid notifGrid = new Grid()
@@ -107,9 +102,10 @@ namespace Projekt.Views
                         Aspect = Aspect.AspectFit,
                         //Padding = 0
                     };
-                    deleteButton.Clicked += (sender, e) =>
+                    deleteButton.Clicked += async (sender, e) =>
                     {
-                        listOfActiveNotifications.Remove(item);
+                        NotifData.list.Remove(item);
+                        //await NotifData.Save();
                         CreateMainMenu();
                     };
 
@@ -149,16 +145,19 @@ namespace Projekt.Views
             }
             Button btn = new()
             {
-                Text = "Add"
+                Text = "Add (test)"
             };
 
-            btn.Clicked += (sender, e) =>
+            btn.Clicked += async (sender, e) =>
             {
-                listOfActiveNotifications.Add(
+                NotifData.list.Add(
                     new Notif(new Suplement("Creatine"), 2, DateTime.Now, new Random().Next(2) == 0)
                 );
+
+                //await NotifData.Save();  // now OK
                 CreateMainMenu();
             };
+
 
             NotificationLayout.Children.Add(btn);
         }
