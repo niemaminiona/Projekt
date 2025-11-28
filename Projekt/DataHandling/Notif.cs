@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Projekt.Data
+namespace Projekt.DataHandling
 {
     public class Notif
     {

@@ -1,21 +1,20 @@
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.Shapes;
-using Projekt.Data; //Korzystanie w klas oraz danych z folderu Data
+using Projekt.DataHandling; //Korzystanie w klas oraz danych z folderu Data
 
 namespace Projekt.Views
 {
     public partial class HomePage : ContentPage
     {
-        List<Notif> listOfActiveNotifications = new List<Notif>();
+        List<Notif> listOfActiveNotifications = new();
+
+        
 
         public HomePage()
         {
             InitializeComponent();
 
-            for (int i = 0; i < 15; i++)
-            {
-                listOfActiveNotifications.Add(new Notif(new Suplement("Magnesium"), 1, new DateTime(2025, 8, 25)));
-            }
+            listOfActiveNotifications = Data.GetListTest();
 
             CreateMainMenu();
         }
@@ -146,10 +145,22 @@ namespace Projekt.Views
                     notifGrid.SetColumn(deleteButton, 3);
 
                     NotificationLayout.Children.Add(border);
-                }
-
-
+                } // <--------- koniec foreach
             }
+            Button btn = new()
+            {
+                Text = "Add"
+            };
+
+            btn.Clicked += (sender, e) =>
+            {
+                listOfActiveNotifications.Add(
+                    new Notif(new Suplement("Creatine"), 2, DateTime.Now, new Random().Next(2) == 0)
+                );
+                CreateMainMenu();
+            };
+
+            NotificationLayout.Children.Add(btn);
         }
     }
 }
