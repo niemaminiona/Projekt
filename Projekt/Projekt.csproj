@@ -102,12 +102,17 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiFont Remove="Resources\Fonts\Archivo-VariableFont_wdth,wght.ttf" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Remove="Views\MainPage.xaml" />
 	  <MauiXaml Remove="Views\NewPage1.xaml" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <None Remove="calendar.png" />
+	  <None Remove="Resources\Fonts\Archivo-VariableFont_wdth,wght.ttf" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -132,6 +137,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Settings\SettingsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Settings\ViewSettingsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\StatisticsPage.xaml">
