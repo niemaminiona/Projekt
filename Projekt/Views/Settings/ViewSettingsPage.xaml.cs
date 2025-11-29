@@ -8,6 +8,6 @@ public partial class ViewSettingsPage : ContentPage
 	}
     private async void GoToSettings(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("..");
+        await Shell.Current.GoToAsync("Settings");
     }
 }

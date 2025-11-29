@@ -9,6 +9,6 @@ public partial class NotificationSettingsPage : ContentPage
 
     private async void GoToSettings(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("..");
+        await Shell.Current.GoToAsync("Settings");
     }
 }
