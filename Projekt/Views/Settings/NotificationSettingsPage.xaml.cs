@@ -7,7 +7,7 @@ public partial class NotificationSettingsPage : ContentPage
 		InitializeComponent();
 	}
 
-    private async void BackButton_Clicked(object sender, EventArgs e)
+    private async void GoToSettings(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync("..");
     }
