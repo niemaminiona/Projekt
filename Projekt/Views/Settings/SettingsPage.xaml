@@ -27,27 +27,11 @@
                             <TapGestureRecognizer Tapped="GoToNotificationSettings"/>
                         </Grid.GestureRecognizers>
                         <!---->
-                        <Image Source="notification.png" Grid.Column="0"/>
+                        <Image Source="notification.svg" Grid.Column="0"/>
                         <Label Text="Notifications" Grid.Column="1" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontSize="15" FontAttributes="Bold"/>
                         <Label Text=">" Grid.Column="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="15" FontAttributes="Bold"/>
                     </Grid>
 
-                    <BoxView
-                        BackgroundColor="Grey"
-                        HeightRequest="1"
-                        HorizontalOptions="Fill"
-                        />
-
-                    <Grid BackgroundColor="Transparent" ColumnDefinitions="*,6*,*" HeightRequest="40">
-                        <!--Caly grid jest teraz buttonem oraz wykonuje funckje-->
-                        <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="GoToViewSettings"/>
-                        </Grid.GestureRecognizers>
-                        <!---->
-                        <Image Source="View.png" Grid.Column="0" HeightRequest="35"/>
-                        <Label Text="View" Grid.Column="1" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontSize="15" FontAttributes="Bold"/>
-                        <Label Text=">" Grid.Column="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="15" FontAttributes="Bold"/>
-                    </Grid>
                     
                     <BoxView
                         BackgroundColor="Grey"
@@ -55,17 +39,36 @@
                         HorizontalOptions="Fill"
                         />
 
+                    
                     <Grid BackgroundColor="Transparent" ColumnDefinitions="*,6*,*" HeightRequest="40">
                         <!--Caly grid jest teraz buttonem oraz wykonuje funckje-->
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Tapped="GoToViewSettings"/>
                         </Grid.GestureRecognizers>
                         <!---->
-                        <Image Source="View.png" Grid.Column="0" HeightRequest="35"/>
+                        <Image Source="view2.svg" Grid.Column="0" HeightRequest="35"/>
                         <Label Text="View" Grid.Column="1" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontSize="15" FontAttributes="Bold"/>
                         <Label Text=">" Grid.Column="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="15" FontAttributes="Bold"/>
                     </Grid>
                     
+                    
+                    <BoxView
+                        BackgroundColor="Grey"
+                        HeightRequest="1"
+                        HorizontalOptions="Fill"
+                        />
+
+
+                    <Grid BackgroundColor="Transparent" ColumnDefinitions="*,6*,*" HeightRequest="40">
+                        <!--Caly grid jest teraz buttonem oraz wykonuje funckje-->
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="GoToLanguageSettings"/>
+                        </Grid.GestureRecognizers>
+                        <!---->
+                        <Image Source="language.svg" Grid.Column="0" HeightRequest="30"/>
+                        <Label Text="Language" Grid.Column="1" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontSize="15" FontAttributes="Bold"/>
+                        <Label Text=">" Grid.Column="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="15" FontAttributes="Bold"/>
+                    </Grid>
                 </VerticalStackLayout>
             </Border>
             

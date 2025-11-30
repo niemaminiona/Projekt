@@ -16,4 +16,9 @@ public partial class SettingsPage : ContentPage
     {
         await Shell.Current.GoToAsync("ViewSettings");
     }
+
+    private async void GoToLanguageSettings(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("LanguageSettings");
+    }
 }
