@@ -2,6 +2,7 @@
 
 using Microsoft.Maui.Controls.Shapes;
 using Microsoft.Maui.Graphics.Text;
+using Projekt.DataHandling;
 
 namespace Projekt.Views;
 
@@ -29,6 +30,7 @@ public partial class CalendarPage : ContentPage
 	List<Month> Months = new List<Month>();
 	private Month currentMonth;
 	private Label SelectMonthBox;
+    public List<Notif> NotificationList = new List<Notif>();//lista na powiadomienia
     private void CreateMonthsList()
 	{
 		Months.Add(new Month("Styczeñ", 31));
@@ -68,6 +70,7 @@ public partial class CalendarPage : ContentPage
             HorizontalTextAlignment = TextAlignment.Center,
             VerticalTextAlignment = TextAlignment.Center,
         };
+
 		var LeftSwitchButton = new Button //przycisk do prze³¹czania miesiêcy w lewo
         {
 			Text = "<",
@@ -94,7 +97,6 @@ public partial class CalendarPage : ContentPage
             HorizontalTextAlignment = TextAlignment.Center,
             VerticalTextAlignment = TextAlignment.Center,
         };
-
 
 
         //ustawienie nag³ówka kalendarza
@@ -199,4 +201,5 @@ public partial class CalendarPage : ContentPage
         this.Content = null;
         CreateCalendarLayout();
     }
+
 }
