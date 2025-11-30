@@ -5,18 +5,61 @@
              Title="LanguageSettingsPage">
     
     <VerticalStackLayout>
-        <HorizontalStackLayout>
-            <Button
-            Text="&lt;"
-            Clicked="GoToSettings"
-            />
+        <!--Header-->
+        <Grid ColumnDefinitions="*,6*,*" Padding="5" HeightRequest="60">
+            <ImageButton 
+                Grid.Column="0" 
+                Clicked="GoToSettings"
+                Source="back.svg"
+                Aspect="Fill"
+                Padding="-6"
+                />
             <Label 
-            Text="Language Settings"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" 
-            />
+                Grid.Column="1"
+                Text="Language Settings"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" 
+                FontAttributes="Bold"
+                FontSize="17"
+                />
+        </Grid>
+        <!---->
 
-        </HorizontalStackLayout>
+        <!-- border z ustawieniami-->
+        <Border
+            BackgroundColor="#C9C9C9"
+            Margin="10"
+            Stroke="Grey"
+            StrokeShape="RoundRectangle 10"
+            >
+            <Border.Shadow>
+                <Shadow
+                    Brush="Grey"
+                    Opacity="0.5"
+                    Radius="100"
+                    />
+            </Border.Shadow>
 
+            <Grid ColumnDefinitions="*,*">
+                <Label 
+                    Grid.Column="0" 
+                    Text="Language"
+                    HorizontalOptions="End"
+                    VerticalOptions="Center"
+                    Padding="5"
+                    />
+                <Picker
+                    x:Name="LanguagePicker"
+                    Grid.Column="1"
+                    SelectedIndex="1"
+                    >
+                    <Picker.Items>
+                        <x:String>English</x:String>
+                        <x:String>Polski</x:String>
+                    </Picker.Items>
+                </Picker>
+            </Grid>
+        </Border>
+        <!---->
     </VerticalStackLayout>
 </ContentPage>

@@ -5,6 +5,8 @@ public partial class ViewSettingsPage : ContentPage
 	public ViewSettingsPage()
 	{
 		InitializeComponent();
+
+        ThemePicker.SelectedIndex = 0;
 	}
     private async void GoToSettings(object sender, EventArgs e)
     {
