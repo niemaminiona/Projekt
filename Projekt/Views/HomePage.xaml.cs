@@ -6,12 +6,20 @@ namespace Projekt.Views
 {
     public partial class HomePage : ContentPage
     {
+
+
+
+        //Glowny kod tutaj
         public HomePage()
         {
             InitializeComponent();
 
             CreateMainMenu();
         }
+        //---------------
+
+
+
 
         //metoda ktora tworzy glowny ekran z powiadomieniami
         private void CreateMainMenu()
