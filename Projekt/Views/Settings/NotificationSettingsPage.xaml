@@ -13,6 +13,7 @@
                     Source="back.svg"
                     Aspect="Fill"
                     Padding="-6"
+                    WidthRequest="50"
                     />
                 <Label 
                     Grid.Column="1"
@@ -21,6 +22,7 @@
                     HorizontalOptions="Center" 
                     FontAttributes="Bold"
                     FontSize="17"
+                    TextColor="Black"
                     />
             </Grid>
             <!---->
@@ -49,6 +51,7 @@
                         VerticalOptions="Center"
                         Padding="10,0,0,0"
                         FontAttributes="Bold"
+                        TextColor="Black"
                         />
                     <Switch 
                         x:Name="NotificationEnableSwitch"

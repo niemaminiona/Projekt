@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Projekt.Views.Settings.SettingsPage"
              Title="SettingsPage">
-    <ScrollView>
+    <ScrollView BackgroundColor="White">
         <VerticalStackLayout>
             <Label 
                 Text="Settings"
@@ -12,6 +12,7 @@
                 Padding="75"
                 FontAttributes="Bold"
                 FontSize="30"
+                TextColor="Black"
                 />
             <Border
                 BackgroundColor="#C9C9C9"
@@ -35,8 +36,8 @@
                         </Grid.GestureRecognizers>
                         <!---->
                         <Image Source="notification.svg" Grid.Column="0"/>
-                        <Label Text="Notifications" Grid.Column="1" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontSize="15" FontAttributes="Bold"/>
-                        <Label Text=">" Grid.Column="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="17" FontAttributes="Bold"/>
+                        <Label Text="Notifications" Grid.Column="1" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontSize="15" FontAttributes="Bold" TextColor="Black"/>
+                        <Label Text=">" Grid.Column="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="17" FontAttributes="Bold" TextColor="Black"/>
                     </Grid>
 
                     <Grid ColumnDefinitions="*,50*,*">
@@ -57,8 +58,8 @@
                         </Grid.GestureRecognizers>
                         <!---->
                         <Image Source="view2.svg" Grid.Column="0" HeightRequest="35"/>
-                        <Label Text="View" Grid.Column="1" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontSize="15" FontAttributes="Bold"/>
-                        <Label Text=">" Grid.Column="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="17" FontAttributes="Bold"/>
+                        <Label Text="View" Grid.Column="1" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontSize="15" FontAttributes="Bold" TextColor="Black"/>
+                        <Label Text=">" Grid.Column="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="17" FontAttributes="Bold" TextColor="Black"/>
                     </Grid>
 
 
@@ -79,8 +80,8 @@
                         </Grid.GestureRecognizers>
                         <!---->
                         <Image Source="language.svg" Grid.Column="0" HeightRequest="30"/>
-                        <Label Text="Language" Grid.Column="1" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontSize="15" FontAttributes="Bold"/>
-                        <Label Text=">" Grid.Column="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="17" FontAttributes="Bold"/>
+                        <Label Text="Language" Grid.Column="1" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontSize="15" FontAttributes="Bold" TextColor="Black"/>
+                        <Label Text=">" Grid.Column="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="17" FontAttributes="Bold" TextColor="Black"/>
                     </Grid>
                 </VerticalStackLayout>
             </Border>
