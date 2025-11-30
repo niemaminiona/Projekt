@@ -151,23 +151,19 @@ namespace Projekt.Views
                     NotificationLayout.Children.Add(border);
                 } // <--------- koniec foreach
             }
-            Button btn = new()
+            Button btn = new() 
             {
-                Text = "Add (test)"
+                Text = "Add"
             };
 
-            btn.Clicked += async (sender, e) =>
-            {
-                NotifData.list.Add(
-                    new Notif(new Suplement("Creatine"), 2, DateTime.Now, new Random().Next(2) == 0)
-                );
-
-                //await NotifData.Save();  // now OK
-                CreateMainMenu();
-            };
-
+            btn.Clicked += GoToAddingNotification;
 
             NotificationLayout.Children.Add(btn);
         }
+        private async void GoToAddingNotification(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("AddingNotification");
+        }
     }
+        
 }

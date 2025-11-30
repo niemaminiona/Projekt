@@ -1,12 +1,109 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Projekt.Views.Settings.AddingNotificationPage"
+             x:Class="Projekt.Views.AddingNotificationPage"
              Title="AddingNotificationPage">
+    
     <VerticalStackLayout>
-        <Label 
-            Text="Dodawanie"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <!--Header-->
+        <Grid ColumnDefinitions="*,6*,*" Padding="5" HeightRequest="60">
+            <ImageButton 
+                Grid.Column="0" 
+                Clicked="GoToHome"
+                Source="back.svg"
+                Aspect="Fill"
+                Padding="-6"
+                />
+            <Label 
+                Grid.Column="1"
+                Text="Add Notification"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" 
+                FontAttributes="Bold"
+                FontSize="17"
+                />
+        </Grid>
+        <!---->
+        <BoxView 
+            HeightRequest="50"
+            BackgroundColor="Transparent"
+            />
+        <!-- border z ustawieniami-->
+        <Border
+            BackgroundColor="#C9C9C9"
+            Margin="10"
+            Stroke="Grey"
+            StrokeShape="RoundRectangle 10"
+            >
+            <Border.Shadow>
+                <Shadow
+                    Brush="Grey"
+                    Opacity="0.5"
+                    Radius="100"
+                    />
+            </Border.Shadow>
+            <VerticalStackLayout>
+                <!-- Suplement -->
+                <Grid ColumnDefinitions="*,3*">
+                    <Label 
+                        Grid.Column="0" 
+                        Text="Suplement:"
+                        HorizontalOptions="End"
+                        VerticalOptions="Center"
+                        Padding="5"
+                        />
+                    <Picker
+                        x:Name="SuplementPicker"
+                        Grid.Column="1"
+                        SelectedIndexChanged="SuplementPickerChanged"
+                        >
+                        <Picker.Items>
+                            <x:String>Magnesium</x:String>
+                            <x:String>Creatine</x:String>
+                        </Picker.Items>
+                    </Picker>
+                </Grid>
+
+                <!-- Ilosc -->
+                <Grid ColumnDefinitions="*,3*">
+                    <Label 
+                        Grid.Column="0" 
+                        Text="Amount:"
+                        HorizontalOptions="End"
+                        VerticalOptions="Center"
+                        Padding="5"
+                        />
+                    <Entry
+                        Grid.Column="1"
+                        Keyboard="Date"
+                        />
+                </Grid>
+
+                <!-- Data -->
+                <Grid ColumnDefinitions="*,1.5*,1.5*">
+                    <Label 
+                        Grid.Column="0" 
+                        Text="Date:"
+                        HorizontalOptions="End"
+                        VerticalOptions="Center"
+                        Padding="5"
+                        />
+                    
+                    <DatePicker
+                        Grid.Column="1" 
+                        Format="dd.MM.yyyy"
+                        />
+                    <TimePicker
+                        Grid.Column="2"
+                        />
+                </Grid>
+                <Button
+                    Margin="5"
+                    Text="Add"
+                    />
+            </VerticalStackLayout>
+            
+        </Border>
+        <!---->
     </VerticalStackLayout>
 </ContentPage>
