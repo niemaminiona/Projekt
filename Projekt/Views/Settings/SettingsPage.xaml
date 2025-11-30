@@ -36,7 +36,7 @@
                         <!---->
                         <Image Source="notification.svg" Grid.Column="0"/>
                         <Label Text="Notifications" Grid.Column="1" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontSize="15" FontAttributes="Bold"/>
-                        <Label Text=">" Grid.Column="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="15" FontAttributes="Bold"/>
+                        <Label Text=">" Grid.Column="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="17" FontAttributes="Bold"/>
                     </Grid>
 
                     <Grid ColumnDefinitions="*,50*,*">
@@ -58,7 +58,7 @@
                         <!---->
                         <Image Source="view2.svg" Grid.Column="0" HeightRequest="35"/>
                         <Label Text="View" Grid.Column="1" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontSize="15" FontAttributes="Bold"/>
-                        <Label Text=">" Grid.Column="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="15" FontAttributes="Bold"/>
+                        <Label Text=">" Grid.Column="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="17" FontAttributes="Bold"/>
                     </Grid>
 
 
@@ -80,7 +80,7 @@
                         <!---->
                         <Image Source="language.svg" Grid.Column="0" HeightRequest="30"/>
                         <Label Text="Language" Grid.Column="1" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontSize="15" FontAttributes="Bold"/>
-                        <Label Text=">" Grid.Column="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="15" FontAttributes="Bold"/>
+                        <Label Text=">" Grid.Column="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="17" FontAttributes="Bold"/>
                     </Grid>
                 </VerticalStackLayout>
             </Border>
