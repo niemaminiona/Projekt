@@ -13,10 +13,46 @@ public partial class AddingNotificationPage : ContentPage
     {
         await Shell.Current.GoToAsync("//Home");
     }
-    private void SuplementPickerChanged(object sender, EventArgs e)
+    private async void VerifyAdding(object sender, EventArgs e)
     {
-        var picker = (Picker)sender;
-        if (picker.SelectedIndex == -1) return; // nic nie zaznaczono
-        //SettingsData.Language = (short)picker.SelectedIndex;
+        ErrorLayout.Children.Clear();
+
+        bool isValid = true;
+
+        if(SuplementPicker.SelectedIndex < 0)
+        {
+            AddError("Select Suplement.");
+            isValid = false;
+        }
+
+        if (string.IsNullOrWhiteSpace(AmountEntry.Text))
+        {
+            AddError("Enter amount.");
+            isValid = false;
+        }
+        else if(!Int32.TryParse(AmountEntry.Text, out int x))
+        {
+            AddError("Enter number.");
+            isValid = false;
+        }
+
+        if (isValid)
+        {
+            NotifData.list.Add(new Notif(new Suplement((string)SuplementPicker.SelectedItem), int.Parse(AmountEntry.Text), DatePicker.Date + TimePicker.Time));
+            await Shell.Current.GoToAsync("//Home");
+
+            NotifData.displayList();
+        }
+    }
+
+    private void AddError(string message)
+    {
+        ErrorLayout.Children.Add(new Label
+        {
+            Text = message,
+            TextColor = Colors.Red,
+            FontAttributes = FontAttributes.Bold,
+            HorizontalOptions = LayoutOptions.Center
+        });
     }
 }

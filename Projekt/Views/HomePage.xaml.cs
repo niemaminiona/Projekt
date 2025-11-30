@@ -15,6 +15,12 @@ namespace Projekt.Views
             InitializeComponent();
 
             CreateMainMenu();
+
+            NotifData.list.CollectionChanged += (s, e) =>
+            {
+                // Za kazdym razem gdy dodasz lub usuniesz element odswiezy menu
+                CreateMainMenu();
+            };
         }
         //---------------
 
@@ -22,7 +28,7 @@ namespace Projekt.Views
 
 
         //metoda ktora tworzy glowny ekran z powiadomieniami
-        private void CreateMainMenu()
+        public void CreateMainMenu()
         {
             NotificationLayout.Children.Clear();// czysci poprzednie powiadomienia
             //jesli lista popwiadomien jest pusta to pokazuje napis

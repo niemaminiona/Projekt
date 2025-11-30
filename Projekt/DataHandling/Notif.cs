@@ -24,6 +24,7 @@ namespace Projekt.DataHandling
             this.date = date;
             this.toggled = toggled;
             numberofInstances++;
+            Console.WriteLine("Created!  <-----------------");
         }
     }    
 }

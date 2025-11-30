@@ -25,7 +25,7 @@
         </Grid>
         <!---->
         <BoxView 
-            HeightRequest="50"
+            HeightRequest="25"
             BackgroundColor="Transparent"
             />
         <!-- border z ustawieniami-->
@@ -51,11 +51,11 @@
                         HorizontalOptions="End"
                         VerticalOptions="Center"
                         Padding="5"
+                        FontAttributes="Bold"
                         />
                     <Picker
                         x:Name="SuplementPicker"
                         Grid.Column="1"
-                        SelectedIndexChanged="SuplementPickerChanged"
                         >
                         <Picker.Items>
                             <x:String>Magnesium</x:String>
@@ -72,8 +72,10 @@
                         HorizontalOptions="End"
                         VerticalOptions="Center"
                         Padding="5"
+                        FontAttributes="Bold"
                         />
                     <Entry
+                        x:Name="AmountEntry"
                         Grid.Column="1"
                         Keyboard="Date"
                         />
@@ -87,23 +89,32 @@
                         HorizontalOptions="End"
                         VerticalOptions="Center"
                         Padding="5"
+                        FontAttributes="Bold"
                         />
-                    
+
                     <DatePicker
+                        x:Name="DatePicker"
                         Grid.Column="1" 
                         Format="dd.MM.yyyy"
+                        FontAttributes="Bold"
                         />
+
                     <TimePicker
+                        x:Name="TimePicker"
                         Grid.Column="2"
+                        FontAttributes="Bold"
                         />
                 </Grid>
+
+                <!-- ADD BUTTON -->
                 <Button
                     Margin="5"
                     Text="Add"
-                    />
+                    Clicked="VerifyAdding" />
             </VerticalStackLayout>
-            
         </Border>
         <!---->
+
+        <VerticalStackLayout x:Name="ErrorLayout"/>
     </VerticalStackLayout>
 </ContentPage>

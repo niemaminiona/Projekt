@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System.Collections.ObjectModel;
+using System.Text.Json;
 using Microsoft.Maui.Storage;
 
 namespace Projekt.DataHandling
@@ -6,7 +7,7 @@ namespace Projekt.DataHandling
     public class NotifData
     {
         //private static readonly string _fileName = Path.Combine(FileSystem.AppDataDirectory, "NotifData.json");
-        public static List<Notif> list = new();
+        public static ObservableCollection<Notif> list = new();
 
         // Copy the JSON file from the package to AppDataDirectory if needed
         //private static async Task CopyIfNotExists()
@@ -32,5 +33,14 @@ namespace Projekt.DataHandling
         //    string json = await File.ReadAllTextAsync(_fileName);
         //    list = JsonSerializer.Deserialize<List<Notif>>(json) ?? new List<Notif>();
         //}
+        public static void displayList()
+        {
+            Console.WriteLine("======================");
+            foreach (Notif item in list)
+            {
+                Console.WriteLine($"{item.id} - {item.suplement.name} - {item.date}");
+            }
+            Console.WriteLine("======================");
+        }
     }
 }
