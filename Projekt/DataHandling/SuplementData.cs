@@ -21,7 +21,8 @@ namespace Projekt.DataHandling
             new Suplement("Iron"),
             new Suplement("Vitamin D3"),
             new Suplement("Vitamin B12"),
-            new Suplement("Potassium")
+            new Suplement("Potassium"),
+            new Suplement("Protein"),
         };
     }
 }

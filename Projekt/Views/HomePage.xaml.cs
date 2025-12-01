@@ -39,7 +39,7 @@ namespace Projekt.Views
                 {
                     Text = "You have no notifications.",
                     HorizontalOptions = LayoutOptions.Center,
-                    Margin = new Thickness(0, 40, 0, 0),
+                    Margin = new Thickness(0, 40, 0, 40),
                     TextColor = Colors.Gray,
                     FontSize = 15
                 });
@@ -157,9 +157,10 @@ namespace Projekt.Views
                     NotificationLayout.Children.Add(border);
                 } // <--------- koniec foreach
             }
-            Button btn = new() 
+            Button btn = new()
             {
-                Text = "Add"
+                Text = "Add",
+                BackgroundColor = Color.FromArgb("#1a1a1a")
             };
 
             btn.Clicked += GoToAddingNotification!;
