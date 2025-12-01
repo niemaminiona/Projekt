@@ -1,5 +1,6 @@
 
 
+using Android.App;
 using Microsoft.Maui.Controls.Shapes;
 using Microsoft.Maui.Graphics.Text;
 using Projekt.DataHandling;
@@ -152,9 +153,42 @@ public partial class CalendarPage : ContentPage
                         VerticalTextAlignment = TextAlignment.Start,
                         TextColor = Colors.Black,
                     }
+
+                    
                 }; //stworzenie wygladu jednego okienka kalendarza
 
-                
+                //dodawanie powiadomien do kalendarza
+                foreach (var notif in NotificationList)
+                {
+                    if (notif.date.Day == dayCounter &&
+                        notif.date.Month == Months.IndexOf(currentMonth) + 1)
+                    {
+                        dayWindow.Content = new StackLayout
+                        {
+                            Spacing = 0,
+                            Children =
+            {
+                new Label
+                {
+                    Text = dayCounter.ToString(),
+                    FontSize = 18,
+                    HorizontalTextAlignment = TextAlignment.End,
+                    VerticalTextAlignment = TextAlignment.Start,
+                    TextColor = Colors.Black,
+                },
+                new Label
+                {
+                    Text = $"• {notif.suplement.name} x{notif.amount}",
+                    FontSize = 14,
+                    HorizontalTextAlignment = TextAlignment.Start,
+                    VerticalTextAlignment = TextAlignment.Center,
+                    TextColor = Colors.DarkGreen,
+                }
+            }
+                        };
+                    }
+                }
+
                 CalendarGrid.SetRow(dayWindow, rowsCounter);
 				CalendarGrid.SetColumn(dayWindow, columnCounter);
 				dayCounter++;
