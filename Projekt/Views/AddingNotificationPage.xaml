@@ -63,10 +63,6 @@
                         Grid.Column="1"
                         TextColor="Black"
                         >
-                        <Picker.Items>
-                            <x:String>Magnesium</x:String>
-                            <x:String>Creatine</x:String>
-                        </Picker.Items>
                     </Picker>
                 </Grid>
 

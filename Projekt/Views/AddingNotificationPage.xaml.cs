@@ -7,6 +7,11 @@ public partial class AddingNotificationPage : ContentPage
     public AddingNotificationPage()
     {
         InitializeComponent();
+
+        foreach (Suplement item in SuplementData.list)
+        {
+            SuplementPicker.Items.Add(item.name);
+        }
     }
 
     private async void GoToHome(object sender, EventArgs e)
@@ -40,8 +45,6 @@ public partial class AddingNotificationPage : ContentPage
         {
             NotifData.list.Add(new Notif(new Suplement((string)SuplementPicker.SelectedItem), int.Parse(AmountEntry.Text), DatePicker.Date + TimePicker.Time));
             await Shell.Current.GoToAsync("//Home");
-
-            NotifData.displayList();
         }
     }
 
