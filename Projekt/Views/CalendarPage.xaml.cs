@@ -245,5 +245,20 @@ public partial class CalendarPage : ContentPage
     {
         NotificationList = new List<Notif>(NotifData.list);
     }
+    //metoda odswiezajaca kalendarz
+    public void RefreshCalendar()
+    {
+        CopyNotifications();
+        this.Content = null;
+        CreateCalendarLayout();
+    }
+    //metoda wywolujaca odswiezenie za kazdym wczytaniem strony
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        // Odœwie¿anie powiadomieñ i kalendarza
+        RefreshCalendar();
+    }
 
 }
