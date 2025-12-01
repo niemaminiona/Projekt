@@ -18,7 +18,6 @@
     <TabBar>
         <!-- Info Tab -->
         <ShellContent
-        Route="Info"
         Title="Info"
         Icon="info.svg"
         ContentTemplate="{DataTemplate info:InfoPage}" />

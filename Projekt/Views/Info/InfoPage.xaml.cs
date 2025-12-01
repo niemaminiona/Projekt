@@ -81,7 +81,6 @@ public partial class InfoPage : ContentPage
                     StrokeShape = new RoundRectangle { CornerRadius = 15 },
                     BackgroundColor = Colors.LightGrey,
 					Padding = 10,
-                    //HeightRequest = 100,
                     Shadow = new Shadow
                     {
                         Brush = Colors.Black,
@@ -93,9 +92,10 @@ public partial class InfoPage : ContentPage
                 };
 
                 TapGestureRecognizer tapGesture = new();
-                tapGesture.Tapped += (s, e) =>
+                tapGesture.Tapped += async (s, e) =>
                 {
-
+                    SuplementData.SelectedInfoIndex = item.getId();
+                    await Shell.Current.GoToAsync("DisplayInfo");
                 };
 
                 border.GestureRecognizers.Add(tapGesture);

@@ -24,5 +24,6 @@ namespace Projekt.DataHandling
             new Suplement("Potassium"),
             new Suplement("Protein"),
         };
+        public static int SelectedInfoIndex = 0;
     }
 }
