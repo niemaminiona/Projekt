@@ -56,7 +56,7 @@ public partial class CalendarPage : ContentPage
         //style Girda
         CalendarGrid.RowSpacing = 1;
         CalendarGrid.ColumnSpacing = 1;
-        CalendarGrid.BackgroundColor = Colors.LightSlateGrey;
+        CalendarGrid.BackgroundColor = Colors.White;
 
         for (int i = 0; i < 7; i++)
             CalendarGrid.ColumnDefinitions.Add(new ColumnDefinition(GridLength.Star));
@@ -78,7 +78,7 @@ public partial class CalendarPage : ContentPage
             Text = "<",
             FontSize = 30,
             FontAttributes = FontAttributes.Bold,
-            BackgroundColor = Colors.LightSlateGrey,
+            BackgroundColor = Colors.White,
             TextColor = Colors.Black,
         };
 
@@ -87,7 +87,7 @@ public partial class CalendarPage : ContentPage
             Text = ">",
             FontSize = 30,
             FontAttributes = FontAttributes.Bold,
-            BackgroundColor = Colors.LightSlateGrey,
+            BackgroundColor = Colors.White,
             TextColor = Colors.Black,
         };
 
