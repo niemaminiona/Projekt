@@ -162,7 +162,7 @@ namespace Projekt.Views
                 Text = "Add"
             };
 
-            btn.Clicked += GoToAddingNotification;
+            btn.Clicked += GoToAddingNotification!;
 
             NotificationLayout.Children.Add(btn);
         }
