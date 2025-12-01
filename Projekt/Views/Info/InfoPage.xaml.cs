@@ -31,7 +31,7 @@ public partial class InfoPage : ContentPage
                 {
                     ColumnDefinitions =
 					{
-						new ColumnDefinition { Width = new GridLength(5, GridUnitType.Star) },
+						new ColumnDefinition { Width = new GridLength(7, GridUnitType.Star) },
                         new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
 					},
                     RowDefinitions =

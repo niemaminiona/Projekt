@@ -20,10 +20,36 @@
                 VerticalOptions="Center" 
                 HorizontalOptions="Center" 
                 FontAttributes="Bold"
-                FontSize="17"
+                FontSize="30"
                 TextColor="Black"
                 />
         </Grid>
         <!---->
+        <ScrollView>
+            <VerticalStackLayout>
+                <Border
+                    BackgroundColor="#C9C9C9"
+                    Margin="10"
+                    Stroke="Grey"
+                    StrokeShape="RoundRectangle 10"
+                    >
+                    <Border.Shadow>
+                        <Shadow
+                            Brush="Grey"
+                            Opacity="0.25"
+                            Radius="10"
+                            />
+                    </Border.Shadow>
+                    <VerticalStackLayout>
+                        <Label
+                            Padding="5"
+                            x:Name="DescriptionLabel"
+                            FontAttributes="Bold"
+                            FontSize="15"
+                            />
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
     </VerticalStackLayout>
 </ContentPage>

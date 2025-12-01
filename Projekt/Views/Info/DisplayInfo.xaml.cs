@@ -13,7 +13,9 @@ public partial class DisplayInfo : ContentPage
 
     private void CreateInfo()
     {
-        Title.Text = SuplementData.list.ElementAt(SuplementData.SelectedInfoIndex).name;
+        Suplement wybranySuplement = SuplementData.list.ElementAt(SuplementData.SelectedInfoIndex);
+        Title.Text = wybranySuplement.name;
+        DescriptionLabel.Text = wybranySuplement.description;
     }
 
     private async void GoToInfo(object sender, EventArgs e)
