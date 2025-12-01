@@ -2,7 +2,7 @@ using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.Shapes;
 using Projekt.DataHandling; //Korzystanie w klas oraz danych z folderu Data
 
-namespace Projekt.Views
+namespace Projekt.Views.Home
 {
     public partial class HomePage : ContentPage
     {
