@@ -118,7 +118,9 @@
                     Margin="5"
                     Text="Add"
                     Clicked="VerifyAdding" 
-                    BackgroundColor="#1a1a1a"/>
+                    BackgroundColor="#1a1a1a"
+                    TextColor="White"
+                    />
             </VerticalStackLayout>
         </Border>
         <Button
@@ -126,6 +128,7 @@
             Text="Quick Add Random (test)"
             Clicked="AddRandom" 
             BackgroundColor="green"
+            TextColor="White"
             />
         <!---->
 

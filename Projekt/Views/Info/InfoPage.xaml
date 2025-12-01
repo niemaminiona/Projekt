@@ -4,7 +4,7 @@
              Title="InfoPage">
 
     <ScrollView>
-        <VerticalStackLayout Padding="10" Spacing="10">
+        <VerticalStackLayout Padding="10" Spacing="10" BackgroundColor="White">
             <Label 
                 Text="Information"
                 HorizontalOptions="Center"

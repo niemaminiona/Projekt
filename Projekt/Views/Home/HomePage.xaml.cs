@@ -160,7 +160,8 @@ namespace Projekt.Views.Home
             Button btn = new()
             {
                 Text = "Add",
-                BackgroundColor = Color.FromArgb("#1a1a1a")
+                BackgroundColor = Color.FromArgb("#1a1a1a"),
+                TextColor = Colors.White
             };
 
             btn.Clicked += GoToAddingNotification!;

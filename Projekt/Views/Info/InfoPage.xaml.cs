@@ -45,13 +45,15 @@ public partial class InfoPage : ContentPage
 					Text = item.name,
 					FontSize = 30,
 					FontAttributes = FontAttributes.Bold,
-                    //BackgroundColor = Colors.Lime
+                    //BackgroundColor = Colors.Lime,
+                    TextColor = Colors.Black
                 };
                 var descriptionLabel = new Label()
                 {
                     Text = item.description,
                     LineBreakMode = LineBreakMode.TailTruncation, // dodaje "..."
-                    //BackgroundColor = Colors.Green
+                    //BackgroundColor = Colors.Green,
+                    TextColor = Colors.Black
 
                 };
 

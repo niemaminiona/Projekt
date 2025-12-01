@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Projekt.Views.Info.DisplayInfo"
              Title="DisplayInfo">
-    <VerticalStackLayout>
+    
+    <VerticalStackLayout BackgroundColor="White">
         <!--Header-->
         <Grid ColumnDefinitions="*,6*,*" Padding="5" HeightRequest="60">
             <ImageButton 
@@ -46,6 +47,7 @@
                             x:Name="DescriptionLabel"
                             FontAttributes="Bold"
                             FontSize="15"
+                            TextColor="Black"
                             />
                     </VerticalStackLayout>
                 </Border>
