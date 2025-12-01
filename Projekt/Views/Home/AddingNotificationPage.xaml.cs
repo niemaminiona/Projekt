@@ -1,6 +1,6 @@
 using Projekt.DataHandling;
 
-namespace Projekt.Views;
+namespace Projekt.Views.Home;
 
 public partial class AddingNotificationPage : ContentPage
 {

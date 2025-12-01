@@ -1,7 +1,7 @@
 using Microsoft.Maui.Controls.Shapes;
 using Projekt.DataHandling;
 
-namespace Projekt.Views;
+namespace Projekt.Views.Info;
 
 public partial class InfoPage : ContentPage
 {
@@ -36,7 +36,7 @@ public partial class InfoPage : ContentPage
 					},
                     RowDefinitions =
 					{
-						new RowDefinition { Height = new GridLength(5, GridUnitType.Star) },
+						new RowDefinition { Height = new GridLength(2, GridUnitType.Star) },
                         new RowDefinition { Height = new GridLength(1, GridUnitType.Star) },
 					}
                 };
@@ -45,12 +45,13 @@ public partial class InfoPage : ContentPage
 					Text = item.name,
 					FontSize = 30,
 					FontAttributes = FontAttributes.Bold,
-                    //BackgroundColor = Colors.Green
-				};
+                    //BackgroundColor = Colors.Lime
+                };
                 var descriptionLabel = new Label()
                 {
                     Text = item.description,
-                    LineBreakMode = LineBreakMode.TailTruncation // dodaje "..."
+                    LineBreakMode = LineBreakMode.TailTruncation, // dodaje "..."
+                    //BackgroundColor = Colors.Green
 
                 };
 
@@ -59,7 +60,6 @@ public partial class InfoPage : ContentPage
 					Source = "continue_icon.svg",
 					HeightRequest = 40,
                     HorizontalOptions = LayoutOptions.Center,
-                    //BackgroundColor = Colors.Lime
                 };
 
                 mainGrid.Children.Add(titleLabel);
@@ -73,27 +73,32 @@ public partial class InfoPage : ContentPage
 
                 mainGrid.Children.Add(ContinueImage);
                 Grid.SetColumn(ContinueImage, 1);
-                Grid.SetRowSpan(ContinueImage, 2);
+                Grid.SetRowSpan(ContinueImage, 3);
                 Grid.SetRow(ContinueImage, 0);
 
-                Border border = new Border
+                Border border = new()
                 {
-                    StrokeShape = new RoundRectangle
-                    {
-                        CornerRadius = 15
-                    },
+                    StrokeShape = new RoundRectangle { CornerRadius = 15 },
                     BackgroundColor = Colors.LightGrey,
 					Padding = 10,
-                    //Shadow = new Shadow
-                    //{
-                    //    Brush = Colors.Black,
-                    //    Opacity = 0.25f,
-                    //    Offset = new Point(5, 5),
-                    //    Radius = 10
-                    //},
+                    //HeightRequest = 100,
+                    Shadow = new Shadow
+                    {
+                        Brush = Colors.Black,
+                        Opacity = 0.25f,
+                        Offset = new Point(5, 5),
+                        Radius = 10
+                    },
                     Content = mainGrid
                 };
 
+                TapGestureRecognizer tapGesture = new();
+                tapGesture.Tapped += (s, e) =>
+                {
+
+                };
+
+                border.GestureRecognizers.Add(tapGesture);
 
 				InfoLayout.Children.Add(border);
             }
