@@ -43,7 +43,7 @@ public partial class AddingNotificationPage : ContentPage
 
         if (isValid)
         {
-            NotifData.list.Add(new Notif(new Suplement((string)SuplementPicker.SelectedItem), int.Parse(AmountEntry.Text), DatePicker.Date + TimePicker.Time));
+            NotifData.list.Add(new Notif(new Suplement(SuplementPicker.SelectedIndex), int.Parse(AmountEntry.Text), DatePicker.Date + TimePicker.Time));
             await Shell.Current.GoToAsync("//Home");
         }
     }
@@ -57,5 +57,11 @@ public partial class AddingNotificationPage : ContentPage
             FontAttributes = FontAttributes.Bold,
             HorizontalOptions = LayoutOptions.Center
         });
+    }
+
+    private async void AddRandom(object sender, EventArgs e)
+    {
+        NotifData.AddRandomNotif();
+        await Shell.Current.GoToAsync("//Home");
     }
 }

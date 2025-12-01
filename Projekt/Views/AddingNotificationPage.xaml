@@ -117,9 +117,16 @@
                 <Button
                     Margin="5"
                     Text="Add"
-                    Clicked="VerifyAdding" />
+                    Clicked="VerifyAdding" 
+                    BackgroundColor="#1a1a1a"/>
             </VerticalStackLayout>
         </Border>
+        <Button
+            Margin="100"
+            Text="Quick Add Random (test)"
+            Clicked="AddRandom" 
+            BackgroundColor="green"
+            />
         <!---->
 
         <VerticalStackLayout x:Name="ErrorLayout"/>

@@ -7,14 +7,16 @@ namespace Projekt.DataHandling
     public class NotifData
     {
         //private static readonly string _fileName = Path.Combine(FileSystem.AppDataDirectory, "NotifData.json");
-        public static ObservableCollection<Notif> list = new() {
-            new Notif(new Suplement(new Random().Next(SuplementData.list.Count)), 3, DateTime.Now),
-            new Notif(new Suplement(new Random().Next(SuplementData.list.Count)), 3, DateTime.Now),
-            new Notif(new Suplement(new Random().Next(SuplementData.list.Count)), 3, DateTime.Now),
-            new Notif(new Suplement(new Random().Next(SuplementData.list.Count)), 3, DateTime.Now),
-            new Notif(new Suplement(new Random().Next(SuplementData.list.Count)), 3, DateTime.Now),
-            new Notif(new Suplement(new Random().Next(SuplementData.list.Count)), 3, DateTime.Now),
-        };
+        public static ObservableCollection<Notif> list = new();
+
+        public static void AddRandomNotif()
+        {
+            if (SuplementData.list.Any())
+            {
+                list.Add(new Notif(new Suplement(new Random().Next(SuplementData.list.Count)), 3, DateTime.Now));
+            }
+            
+        }
 
         // Copy the JSON file from the package to AppDataDirectory if needed
         //private static async Task CopyIfNotExists()
