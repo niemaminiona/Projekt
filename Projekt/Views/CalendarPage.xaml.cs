@@ -1,6 +1,3 @@
-
-
-using Android.App;
 using Microsoft.Maui.Controls.Shapes;
 using Microsoft.Maui.Graphics.Text;
 using Projekt.DataHandling;

@@ -11,6 +11,19 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -21,6 +34,8 @@
             
         </Grid.ColumnDefinitions>
 
+        
+        <!--Nagłówek-->
         <Label
              Text="Statystyki"
              FontSize = "40"
@@ -33,7 +48,7 @@
              Grid.Row="0"
             />
 
-            
+         <!--Sekcja do wpisania wagi-->
         <Label
             Text="Waga"
             FontSize = "20"
@@ -58,6 +73,7 @@
             x:Name="Weight"
             />
 
+        <!--Sekcja do wpisania wzrostu-->
         <Label
             Text="Wzrost"
             FontSize = "20"
@@ -68,7 +84,7 @@
             Grid.RowSpan="2"
             Grid.Column="2"
             />
-        
+
         <Entry
             Placeholder="Wpisz liczbę"
             PlaceholderColor="Grey"
@@ -79,9 +95,229 @@
             VerticalOptions="Center"
             HorizontalOptions="Center"
             x:Name="Height"
+        />
+        
+        <!--Zapychacze-->
+        <Label
+            Text="" 
+            Grid.Row="4"
+            Grid.Column="0"
+            Grid.ColumnSpan="4"
+            />
+        <Label
+            Text="" 
+            Grid.Row="5"
+            Grid.Column="0"
+            Grid.ColumnSpan="4"
+            />
+        <Label
+            Text="" 
+            Grid.Row="6"
+            Grid.Column="0"
+            Grid.ColumnSpan="4"
+            />
+        <Label
+            Text="" 
+            Grid.Row="7"
+            Grid.Column="0"
+            Grid.ColumnSpan="4"
             />
 
-       
+        <!--Wskaznik bmi-->
+        <Label
+            Text="BMI"
+            FontSize = "20"
+            FontAttributes="Bold"
+            Grid.Row="8"
+            Grid.Column="1"
+            HorizontalTextAlignment="Center"
+            VerticalTextAlignment="Center"
+        />
+
+        <Frame
+            Grid.Row="9"
+            Grid.Column="1"
+            Padding="10"
+            BackgroundColor="LightGray"
+            BorderColor="Black"
+            CornerRadius="10"
+            HasShadow="True"
+            Margin="10"
+            HorizontalOptions="Center"
+            VerticalOptions="Center">
+
+            <Label 
+                Text="..."
+                FontSize="20"
+                TextColor="Black"
+                HorizontalTextAlignment="Center"
+                VerticalTextAlignment="Center" 
+                x:Name="BMIFrame"
+             />
+        </Frame>
+
+        <!--BMR (ile kalorii spalasz w spoczynku)-->
+        <Label
+            Text="BMR"
+            FontSize = "20"
+            FontAttributes="Bold"
+            Grid.Row="8"
+            Grid.Column="2"
+            HorizontalTextAlignment="Center"
+            VerticalTextAlignment="Center"
+        />
+        
+        <Frame
+            Grid.Row="9"
+            Grid.Column="2"
+            Padding="10"
+            BackgroundColor="LightGray"
+            BorderColor="Black"
+            CornerRadius="10"
+            HasShadow="True"
+            Margin="10"
+            HorizontalOptions="Center"
+            VerticalOptions="Center">
+
+            <Label 
+                Text="..."
+                FontSize="20"
+                TextColor="Black"
+                HorizontalTextAlignment="Center"
+                VerticalTextAlignment="Center" 
+                x:Name="BMRFrame"
+             />
+        </Frame>  
+        
+        <!--Zapychacze-->
+        <Label
+            Text="" 
+            Grid.Row="10"
+            Grid.Column="0"
+            Grid.ColumnSpan="4"
+            />
+        <Label
+            Text="" 
+            Grid.Row="12"
+            Grid.Column="0"
+            Grid.ColumnSpan="4"
+            />
+
+        <!--Sekcja dla maksymalnego ciezaru na jedno powtorzenie 1RM-->
+        <Label
+            Text="Skala 1RM"
+            FontSize="20"
+            TextColor="Black"
+            HorizontalTextAlignment="Center"
+            VerticalTextAlignment="Center" 
+            Grid.Column="0"
+            Grid.ColumnSpan="4"
+            Grid.Row="12"
+            FontAttributes="Bold"
+            />
+         <!--Cwiczenia-->
+        <Label
+            Text="Bench press"
+            FontSize="20"
+            Grid.Row="13"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Margin="10"
+            />
+        
+        
+        <Label
+            Text="Squat"
+            FontSize="20"
+            Grid.Row="14"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Margin="10"
+            />
+        
+        <Label
+            Text="Deadlift"
+            FontSize="20"
+            Grid.Row="15"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Margin="10"
+        />
+        
+        <!--Miejsce na dane-->
+        <Frame
+            Grid.Row="13"
+            Grid.Column="2"
+            Padding="10"
+            BackgroundColor="LightGray"
+            BorderColor="Black"
+            CornerRadius="10"
+            HasShadow="True"
+            Margin="10"
+            HorizontalOptions="Center"
+            VerticalOptions="Center">
+
+                <Label 
+                Text="..."
+                FontSize="20"
+                TextColor="Black"
+                HorizontalTextAlignment="Center"
+                VerticalTextAlignment="Center" 
+                x:Name="BenchPress1RM"
+             /> 
+        </Frame>
+        
+        <Frame
+            Grid.Row="14"
+            Grid.Column="2"
+            Padding="10"
+            BackgroundColor="LightGray"
+            BorderColor="Black"
+            CornerRadius="10"
+            HasShadow="True"
+            Margin="10"
+            HorizontalOptions="Center"
+            VerticalOptions="Center">
+
+                <Label 
+                Text="..."
+                FontSize="20"
+                TextColor="Black"
+                HorizontalTextAlignment="Center"
+                VerticalTextAlignment="Center" 
+                x:Name="Squat1RM"
+             /> 
+        </Frame>
+        <Frame
+            Grid.Row="15"
+            Grid.Column="2"
+            Padding="10"
+            BackgroundColor="LightGray"
+            BorderColor="Black"
+            CornerRadius="10"
+            HasShadow="True"
+            Margin="10"
+            HorizontalOptions="Center"
+            VerticalOptions="Center">
+
+                <Label 
+                Text="..."
+                FontSize="20"
+                TextColor="Black"
+                HorizontalTextAlignment="Center"
+                VerticalTextAlignment="Center" 
+                x:Name="Deadlift1RM"
+             /> 
+        </Frame>
+
+
+
+
+
+
+
+
+
 
 
     </Grid>
