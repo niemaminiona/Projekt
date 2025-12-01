@@ -121,7 +121,10 @@ public partial class CalendarPage : ContentPage
         //tworzenie okienek kalendarza
 		int dayCounter = 1;
 
-		for(int rowsCounter = 2; rowsCounter <= 10; rowsCounter++)
+        //aktualizacja listy powiadomien
+        CopyNotifications();
+
+        for (int rowsCounter = 2; rowsCounter <= 10; rowsCounter++)
 		{
 			
 
@@ -200,6 +203,11 @@ public partial class CalendarPage : ContentPage
         //po zmianie miesiaca cala zawartosc znika i generuje sie na nowo z nowym miesiacem
         this.Content = null;
         CreateCalendarLayout();
+    }
+
+    private void CopyNotifications() //Funkcja kopiuj¹ca powiadomienia z bazy danych do lokalnej listy
+    {
+        NotificationList = new List<Notif>(NotifData.list);
     }
 
 }
