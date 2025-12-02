@@ -44,7 +44,7 @@ public partial class CalendarPage : ContentPage
         Months.Add(new Month("PaŸdziernik", 31));
         Months.Add(new Month("Listopad", 30));
         Months.Add(new Month("Grudzieñ", 31));
-        int actualMonthIndex = DateTime.Now.Month + 2;
+        int actualMonthIndex = DateTime.Now.Month - 1;
         currentMonth = Months[actualMonthIndex]; ;
     }
     private void CreateCalendarLayout()
