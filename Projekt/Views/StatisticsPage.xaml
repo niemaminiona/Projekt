@@ -3,8 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Projekt.Views.StatisticsPage"
              Title="StatisticsPage">
-    <Grid>
+    <Grid x:Name="MainGrid">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -96,14 +98,19 @@
             HorizontalOptions="Center"
             x:Name="Height"
         />
-        
-        <!--Zapychacze-->
-        <Label
-            Text="" 
+
+        <Button
+            Text="Oblicz"
             Grid.Row="4"
-            Grid.Column="0"
-            Grid.ColumnSpan="4"
-            />
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Clicked="Button_Clicked">   
+
+        </Button>
+        <!--Zapychacze-->
+        
         <Label
             Text="" 
             Grid.Row="5"
@@ -309,6 +316,9 @@
                 x:Name="Deadlift1RM"
              /> 
         </Frame>
+
+        
+        
 
 
 
