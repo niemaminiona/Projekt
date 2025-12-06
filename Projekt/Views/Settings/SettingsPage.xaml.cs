@@ -6,7 +6,6 @@ public partial class SettingsPage : ContentPage
 	{
 		InitializeComponent();
 	}
-
     private async void GoToNotificationSettings(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync("NotificationSettings");
@@ -20,5 +19,9 @@ public partial class SettingsPage : ContentPage
     private async void GoToLanguageSettings(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync("LanguageSettings");
+    }
+    private async void GoToDataSettings(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("DataSettings");
     }
 }

@@ -28,7 +28,8 @@
                         />
                 </Border.Shadow>
                 <VerticalStackLayout Padding="0,5,0,5" Spacing="5">
-
+                    
+                    <!-- Notifications tab -->
                     <Grid BackgroundColor="Transparent" ColumnDefinitions="*,6*,*" HeightRequest="40">
                         <!--Caly grid jest teraz buttonem oraz wykonuje funckje-->
                         <Grid.GestureRecognizers>
@@ -40,6 +41,7 @@
                         <Label Text=">" Grid.Column="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="17" FontAttributes="Bold" TextColor="Black"/>
                     </Grid>
 
+                    
                     <Grid ColumnDefinitions="*,50*,*">
                         <BoxView
                             Grid.Column="1"
@@ -48,9 +50,9 @@
                             HorizontalOptions="Fill"
                             />  
                     </Grid>
-                      
 
-                    
+
+                    <!-- View tab -->
                     <Grid BackgroundColor="Transparent" ColumnDefinitions="*,6*,*" HeightRequest="40">
                         <!--Caly grid jest teraz buttonem oraz wykonuje funckje-->
                         <Grid.GestureRecognizers>
@@ -72,7 +74,8 @@
                             />
                     </Grid>
 
-
+                    
+                    <!-- Language tab -->
                     <Grid BackgroundColor="Transparent" ColumnDefinitions="*,6*,*" HeightRequest="40">
                         <!--Caly grid jest teraz buttonem oraz wykonuje funckje-->
                         <Grid.GestureRecognizers>
@@ -81,6 +84,29 @@
                         <!---->
                         <Image Source="language.svg" Grid.Column="0" HeightRequest="30"/>
                         <Label Text="Language" Grid.Column="1" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontSize="15" FontAttributes="Bold" TextColor="Black"/>
+                        <Label Text=">" Grid.Column="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="17" FontAttributes="Bold" TextColor="Black"/>
+                    </Grid>
+
+                    
+                    <Grid ColumnDefinitions="*,50*,*">
+                        <BoxView
+                            Grid.Column="1"
+                            BackgroundColor="Grey"
+                            HeightRequest="1"
+                            HorizontalOptions="Fill"
+                            />
+                    </Grid>
+
+                    
+                    <!-- Data tab -->
+                    <Grid BackgroundColor="Transparent" ColumnDefinitions="*,6*,*" HeightRequest="40">
+                        <!--Caly grid jest teraz buttonem oraz wykonuje funckje-->
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="GoToDataSettings"/>
+                        </Grid.GestureRecognizers>
+                        <!---->
+                        <Image Source="data.svg" Grid.Column="0" HeightRequest="30"/>
+                        <Label Text="Data" Grid.Column="1" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontSize="15" FontAttributes="Bold" TextColor="Black"/>
                         <Label Text=">" Grid.Column="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="17" FontAttributes="Bold" TextColor="Black"/>
                     </Grid>
                 </VerticalStackLayout>

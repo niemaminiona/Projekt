@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Projekt.Views.Settings.NotificationSettingsPage"
              Title="NotificationSettingsPage">
+    
     <ScrollView BackgroundColor="White">
         <VerticalStackLayout Spacing="20">
             <!--Header-->

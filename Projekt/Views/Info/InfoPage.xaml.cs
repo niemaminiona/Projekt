@@ -124,6 +124,5 @@ public partial class InfoPage : ContentPage
     {
         SearchOnInternet = e.Value;
         CreateInfo();
-        Console.WriteLine(SearchOnInternet + " <---------------");
     }
 }
