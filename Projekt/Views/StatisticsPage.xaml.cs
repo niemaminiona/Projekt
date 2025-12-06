@@ -7,7 +7,8 @@ public partial class StatisticsPage : ContentPage
 		InitializeComponent();
 	}
 
-	private double bodyWeight;
+    //Stworzenie zmiennych globalnych do przechowywania danych
+    private double bodyWeight;
 	private double bodyHeight;
 
 	private string BMILevel = "";
@@ -20,9 +21,11 @@ public partial class StatisticsPage : ContentPage
 
     private void Button_Clicked(object sender, EventArgs e)
     {
-		 bodyWeight = Convert.ToDouble(Weight.Text);
+        //Pobranie danych od uzyytkownika
+        bodyWeight = Convert.ToDouble(Weight.Text);
 		 bodyHeight = Convert.ToDouble(Height.Text);
 
+		//Wywo³ywanie metod
 		BMI();
 		RM1Weight();
 		
@@ -30,8 +33,11 @@ public partial class StatisticsPage : ContentPage
 
 	private void BMI()
 	{
-		double BMI = Math.Round(bodyWeight / Math.Pow((bodyHeight/100),2), 1);
-		if (BMI < 18.5)
+        //obliczanie BMI
+        double BMI = Math.Round(bodyWeight / Math.Pow((bodyHeight/100),2), 1);
+
+        //Okreœlenie poziomu BMI
+        if (BMI < 18.5)
 		{
 			BMILevel = $"{BMI} niedowaga!";
 			BMIFrame.TextColor = Colors.Red;
@@ -48,6 +54,8 @@ public partial class StatisticsPage : ContentPage
             BMILevel = $"{BMI}  nadwaga!";
             BMIFrame.TextColor = Colors.Red;
 		}
+
+        //Wypisywanie wyniku na ekran
         BMIFrame.FontSize = 11;
         BMIFrame.Text = BMILevel;
     }
@@ -59,19 +67,20 @@ public partial class StatisticsPage : ContentPage
 
 	private void RM1Weight()
 	{
+		//obliczanie
 		BenchPress = Convert.ToString(bodyWeight * 1 + "kg");
 		Deadlift = Convert.ToString(bodyWeight * 1.5 + "kg");
 		Squat1 = Convert.ToString(bodyWeight * 2.0 + "kg");
 
-		BenchPress1RM.Text = BenchPress;
+        //Wypisywanie wyników na ekran
+        BenchPress1RM.Text = BenchPress;
 		Deadlift1RM.Text = Deadlift;
 		Squat1RM.Text = Squat1;
 
-		BenchPress1RM.FontSize = 15;
+        //zmiany wielkoœci czcionki
+        BenchPress1RM.FontSize = 15;
 		Deadlift1RM.FontSize = 15;
 		Squat1RM.FontSize = 15;
-
-
 	}
 
 }
