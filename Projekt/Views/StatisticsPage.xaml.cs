@@ -24,14 +24,13 @@ public partial class StatisticsPage : ContentPage
 		 bodyHeight = Convert.ToDouble(Height.Text);
 
 		BMI();
-		BMIFrame.FontSize = 15;
-		BMIFrame.Text = BMILevel;
+		RM1Weight();
+		
     }
 
 	private void BMI()
 	{
-		double BMI = bodyWeight / (bodyHeight/100);
-
+		double BMI = Math.Round(bodyWeight / Math.Pow((bodyHeight/100),2), 1);
 		if (BMI < 18.5)
 		{
 			BMILevel = $"{BMI} niedowaga!";
@@ -48,12 +47,31 @@ public partial class StatisticsPage : ContentPage
 		{
             BMILevel = $"{BMI}  nadwaga!";
             BMIFrame.TextColor = Colors.Red;
-        }
-	}
+		}
+        BMIFrame.FontSize = 11;
+        BMIFrame.Text = BMILevel;
+    }
 
 	private void BMR()
 	{
 
 	}
-	
+
+	private void RM1Weight()
+	{
+		BenchPress = Convert.ToString(bodyWeight * 1 + "kg");
+		Deadlift = Convert.ToString(bodyWeight * 1.5 + "kg");
+		Squat1 = Convert.ToString(bodyWeight * 2.0 + "kg");
+
+		BenchPress1RM.Text = BenchPress;
+		Deadlift1RM.Text = Deadlift;
+		Squat1RM.Text = Squat1;
+
+		BenchPress1RM.FontSize = 15;
+		Deadlift1RM.FontSize = 15;
+		Squat1RM.FontSize = 15;
+
+
+	}
+
 }
