@@ -118,6 +118,7 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
+		<PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -130,7 +131,7 @@
 	  <MauiXaml Update="Views\InfoPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Info\DisplayInfo.xaml">
+	  <MauiXaml Update="Views\Info\DisplayInfoSubPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\SettingsPage.xaml">
@@ -162,6 +163,12 @@
 	
 	<ItemGroup>
 	  <Folder Include="Resources\Splash\" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <Compile Update="Views\Info\DisplayInfoSubPage.xaml.cs">
+	    <DependentUpon>DisplayInfoSubPage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 </Project>

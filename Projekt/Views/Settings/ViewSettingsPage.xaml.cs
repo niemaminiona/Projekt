@@ -10,7 +10,9 @@ public partial class ViewSettingsPage : ContentPage
 		InitializeComponent();
 
         ThemePicker.SelectedIndex = SettingsData.Theme;
-	}
+
+        SearchInfoOnInternetCheckbox.IsChecked = SettingsData.SearchInfoOnInternet;
+    }
     private async void GoToSettings(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync("Settings");
@@ -21,5 +23,10 @@ public partial class ViewSettingsPage : ContentPage
         var picker = (Picker)sender;
         if (picker.SelectedIndex == -1) return; // nic nie zaznaczono
         SettingsData.Theme = (short)picker.SelectedIndex;
+    }
+
+    private void SearchInfoOnInternetChanged(object sender, CheckedChangedEventArgs e)
+    {
+        SettingsData.SearchInfoOnInternet = e.Value;
     }
 }

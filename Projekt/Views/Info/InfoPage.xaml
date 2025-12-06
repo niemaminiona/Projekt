@@ -13,6 +13,20 @@
                 FontAttributes="Bold"
                 Padding="50"
                 />
+            <Grid ColumnDefinitions="5*,*">
+                <Label
+                    Grid.Column="0"
+                    HorizontalOptions="End"
+                    VerticalOptions="Center"
+                    Text="Search on internet:"/>
+                <Switch
+                    x:Name="SearchOnInternetSwitch"
+                    Grid.Column="1"
+                    HeightRequest="10"
+                    HorizontalOptions="Center"
+                    Toggled="searchChanged"
+                    />
+            </Grid>
             <VerticalStackLayout x:Name="InfoLayout" Spacing="10" />
         </VerticalStackLayout>
     </ScrollView>

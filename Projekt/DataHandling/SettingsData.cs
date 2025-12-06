@@ -9,7 +9,8 @@ namespace Projekt.DataHandling
     internal class SettingsData
     {
         public static bool NotificationEnabled = true;
-        public static short Language = 0;
-        public static short Theme = 0;
+        public static int Language = 0;
+        public static int Theme = 0;
+        public static bool SearchInfoOnInternet = false;
     }
 }
