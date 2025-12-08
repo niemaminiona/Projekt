@@ -1,8 +1,5 @@
 ﻿using SQLite;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Projekt.DataHandling
@@ -10,22 +7,18 @@ namespace Projekt.DataHandling
     public class DatabaseService
     {
         private SQLiteAsyncConnection _database;
+
         public DatabaseService()
         {
-            InitializeAsync();
+            _database = new SQLiteAsyncConnection(Path.Combine(FileSystem.AppDataDirectory, "DataHandling","ProjectDataBase.db"));
         }
 
-        private async Task InitializeAsync()
+        // Just one method - gets all data from SuplementData table
+        public async Task<List<Suplement>> GetAllSupplements()
         {
-            if (_database == null)
-            {
-                string dbPath = Path.Combine(FileSystem.AppDataDirectory, "supplements.db");
-                _database = new SQLiteAsyncConnection(dbPath);
-
-                // Create tables if they don't exist
-                await _database.CreateTableAsync<Suplement>();
-                //await _database.CreateTableAsync<Notif>();
-            }
+            // Use raw SQL to get data from SuplementData table
+            var supplements = await _database.QueryAsync<Suplement>("SELECT * FROM SuplementData");
+            return supplements;
         }
     }
 }
