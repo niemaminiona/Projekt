@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,36 +9,33 @@ namespace Projekt.DataHandling
 {
     public class Suplement
     {
-        private static int numberofInstances = 0;
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
 
-        public String name;
-        public String description { set; get; }
-        private int id;
+        public string name { get; set; }
+        public string description { get; set; }
 
         // konstruktory ktore ustawiaja domyslny opis na "info about" i nazwe
         public Suplement(String name) : this(name, "Info about " + name) { }
         public Suplement(int index) : this(index, "Info about " + SuplementData.list.ElementAt(index).name) { }
         
         // normalne konstruktory
-        public Suplement(String name, String description)
+        public Suplement(String name, String Description)
         {
-            this.id = numberofInstances;
-            numberofInstances++;
             this.name = name;
-            this.description = description;
+            this.description = Description;
         }
 
-        public Suplement(int index, String description)
+        public Suplement(int index, String Description)
         {
             if (index >= 0 && index < SuplementData.list.Count && SuplementData.list.Any())
             {
-                this.id = numberofInstances;
-                numberofInstances++;
                 this.name = SuplementData.list.ElementAt(index).name;
-                this.description = description;
+                this.description = Description;
             }
         }
 
-        public int getId() => id;
+        // Required for SQLite
+        public Suplement() { }
     }
 }

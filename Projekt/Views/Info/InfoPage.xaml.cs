@@ -108,7 +108,7 @@ public partial class InfoPage : ContentPage
                     TapGestureRecognizer tapGesture = new();
                     tapGesture.Tapped += async (s, e) =>
                     {
-                        SuplementData.SelectedInfoIndex = item.getId();
+                        SuplementData.SelectedInfoIndex = item.Id;
                         await Shell.Current.GoToAsync("DisplayInfo");
                     };
 

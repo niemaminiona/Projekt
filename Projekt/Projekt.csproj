@@ -112,7 +112,14 @@
 
 	<ItemGroup>
 	  <None Remove="calendar.png" />
+	  <None Remove="DataHandling\ProjectDataBase.db" />
 	  <None Remove="Resources\Splash\splash.svg" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="DataHandling\ProjectDataBase.db">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -158,10 +165,6 @@
 	  <MauiXaml Update="Views\StatisticsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	</ItemGroup>
-	
-	<ItemGroup>
-	   <MauiAsset Include="DataHandling/NotifData.json" />
 	</ItemGroup>
 	
 	<ItemGroup>
