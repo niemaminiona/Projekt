@@ -6,7 +6,7 @@
     <ScrollView>
         <VerticalStackLayout Padding="10" Spacing="10" BackgroundColor="White">
             <Label 
-                Text="Informati🍆n"
+                Text="Information"
                 HorizontalOptions="Center"
                 TextColor="Black"
                 FontSize="25"
