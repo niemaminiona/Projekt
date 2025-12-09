@@ -11,12 +11,15 @@ public partial class StatisticsPage : ContentPage
     private double bodyWeight;
 	private double bodyHeight;
 	private int age;
-	private string BMILevel = "";
+	private bool isMen;
+	private bool isWomen;
+    private string BMILevel = "";
 	private string BMRLevel = "";
 
 	private string BenchPress = "";
 	private string Squat1 = "";
 	private string Deadlift = "";
+
 
 
     private void Button_Clicked(object sender, EventArgs e)
@@ -28,6 +31,7 @@ public partial class StatisticsPage : ContentPage
 		
 		//Wywo³ywanie metod
 		BMI();
+		BMR();
 		RM1Weight();
 		
     }
@@ -63,8 +67,26 @@ public partial class StatisticsPage : ContentPage
 
 	private void BMR()
 	{
+        if (WomenRadio.IsChecked)
+        {
+            isWomen = true;
+        }
+        else
+        {
+            isMen = true;
+        }
 
-	}
+		if(isMen == true)
+		{
+			BMRLevel = Convert.ToString(10 * bodyWeight + 6.25 * bodyHeight - 5 * age + 5);
+		}
+		if(isWomen == true)
+		{
+            BMRLevel = Convert.ToString(10 * bodyWeight + 6.25 * bodyHeight - 5 * age - 161);
+        }
+		BMRFrame.FontSize = 11;
+		BMRFrame.Text = BMRLevel;
+    }
 
 	private void RM1Weight()
 	{

@@ -125,8 +125,8 @@
             Grid.Row="1"
             Grid.Column="3"/>
 
-        <RadioButton Grid.Row="3" Grid.Column="3" Content="mężczyzna" GroupName="sex" CheckedChanged="RadioButton_CheckedChanged"/>
-        <RadioButton Grid.Row="4" Grid.Column="3" Content="kobieta" GroupName="sex" CheckedChanged="RadioButton_CheckedChanged"/>
+        <RadioButton FontSize="12" IsChecked="True" x:Name="MenRadio" Grid.Row="3" Grid.Column="3" Content="Mężczyzna" GroupName="sex" CheckedChanged="RadioButton_CheckedChanged"/>
+        <RadioButton FontSize="12" x:Name="WomenRadio" Grid.Row="4" Grid.Column="3" Content="Kobieta" GroupName="sex" CheckedChanged="RadioButton_CheckedChanged"/>
 
 
 
