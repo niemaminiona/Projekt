@@ -13,7 +13,7 @@ public partial class DisplayInfo : ContentPage
 
     private void CreateInfo()
     {
-        Suplement wybranySuplement = SuplementData.list.ElementAt(SuplementData.SelectedInfoIndex);
+        Suplement wybranySuplement = DataService.Suplements.list.ElementAt(DataService.Suplements.SelectedInfoIndex);
         Title.Text = wybranySuplement.name;
         DescriptionLabel.Text = wybranySuplement.description;
     }

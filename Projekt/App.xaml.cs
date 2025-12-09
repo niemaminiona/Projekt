@@ -1,4 +1,6 @@
-﻿namespace Projekt
+﻿using Projekt.DataHandling;
+
+namespace Projekt
 {
     public partial class App : Application
     {

@@ -8,7 +8,7 @@ public partial class AddingNotificationPage : ContentPage
     {
         InitializeComponent();
 
-        foreach (Suplement item in SuplementData.list)
+        foreach (Suplement item in DataService.Suplements.list)
         {
             SuplementPicker.Items.Add(item.name);
         }
@@ -43,7 +43,7 @@ public partial class AddingNotificationPage : ContentPage
 
         if (isValid)
         {
-            NotifData.list.Add(new Notif(new Suplement(SuplementPicker.SelectedIndex), int.Parse(AmountEntry.Text), DatePicker.Date + TimePicker.Time));
+            DataService.Notifications.list.Add(new Notif(new Suplement(SuplementPicker.SelectedIndex), int.Parse(AmountEntry.Text), DatePicker.Date + TimePicker.Time));
             await Shell.Current.GoToAsync("//Home");
         }
     }
@@ -61,7 +61,7 @@ public partial class AddingNotificationPage : ContentPage
 
     private async void AddRandom(object sender, EventArgs e)
     {
-        NotifData.AddRandomNotif();
+        DataService.Notifications.AddRandomNotif();
         await Shell.Current.GoToAsync("//Home");
     }
 }

@@ -27,7 +27,11 @@
                     />
             </Grid>
             <!---->
-            
+
+            <Button
+                Clicked="ClearData"
+                Text="Clear data"
+                />
         </VerticalStackLayout>
     </ScrollView>
     

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,38 +7,37 @@ using System.Threading.Tasks;
 
 namespace Projekt.DataHandling
 {
+    [Table("SuplementData")]
     public class Suplement
     {
-        private static int numberofInstances = 0;
-
-        public String name;
-        public String description { set; get; }
-        private int id;
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
+        public string name { get; set; }
+        public string description { get; set; }
 
         // konstruktory ktore ustawiaja domyslny opis na "info about" i nazwe
         public Suplement(String name) : this(name, "Info about " + name) { }
-        public Suplement(int index) : this(index, "Info about " + SuplementData.list.ElementAt(index).name) { }
+        // konstruktor ktory wybiera po indexie
+        public Suplement(int index) : this(index, "Info about " + DataService.Suplements.list.ElementAt(index).name) { }
         
         // normalne konstruktory
-        public Suplement(String name, String description)
+        public Suplement(String name, String Description)
         {
-            this.id = numberofInstances;
-            numberofInstances++;
             this.name = name;
-            this.description = description;
+            this.description = Description;
         }
 
-        public Suplement(int index, String description)
+        // konstruktor ktory wybiera po indexie
+        public Suplement(int index, String Description)
         {
-            if (index >= 0 && index < SuplementData.list.Count && SuplementData.list.Any())
+            if (index >= 0 && index < DataService.Suplements.list.Count && DataService.Suplements.list.Any())
             {
-                this.id = numberofInstances;
-                numberofInstances++;
-                this.name = SuplementData.list.ElementAt(index).name;
-                this.description = description;
+                this.name = DataService.Suplements.list.ElementAt(index).name;
+                this.description = Description;
             }
         }
 
-        public int getId() => id;
+        // Wymagane dla SQLite
+        public Suplement() { }
     }
 }

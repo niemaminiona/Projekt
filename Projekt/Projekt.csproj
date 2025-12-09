@@ -112,6 +112,7 @@
 
 	<ItemGroup>
 	  <None Remove="calendar.png" />
+	  <None Remove="DataHandling\ProjectDataBase.db" />
 	  <None Remove="Resources\Splash\splash.svg" />
 	</ItemGroup>
 
@@ -161,13 +162,6 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-	   <MauiAsset Include="DataHandling/NotifData.json" />
-	</ItemGroup>
-	
-	<ItemGroup>
-	  <Folder Include="Nowy folder\" />
-	  <Folder Include="Platforms\Nowy folder1\" />
-	  <Folder Include="Platforms\Nowy folder\" />
 	  <Folder Include="Resources\Splash\" />
 	</ItemGroup>
 	
@@ -175,6 +169,12 @@
 	  <Compile Update="Views\Info\DisplayInfoSubPage.xaml.cs">
 	    <DependentUpon>DisplayInfoSubPage.xaml</DependentUpon>
 	  </Compile>
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <MauiAsset Update="Resources\Raw\ProjectDataBase.db">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </MauiAsset>
 	</ItemGroup>
 
 </Project>
