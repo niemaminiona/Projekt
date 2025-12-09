@@ -10,7 +10,7 @@ public partial class StatisticsPage : ContentPage
     //Stworzenie zmiennych globalnych do przechowywania danych
     private double bodyWeight;
 	private double bodyHeight;
-
+	private int age;
 	private string BMILevel = "";
 	private string BMRLevel = "";
 
@@ -23,8 +23,9 @@ public partial class StatisticsPage : ContentPage
     {
         //Pobranie danych od uzyytkownika
         bodyWeight = Convert.ToDouble(Weight.Text);
-		 bodyHeight = Convert.ToDouble(Height.Text);
-
+		bodyHeight = Convert.ToDouble(Height.Text);
+		age = Convert.ToInt32(AgeEntry.Text);
+		
 		//Wywo³ywanie metod
 		BMI();
 		RM1Weight();
@@ -83,4 +84,8 @@ public partial class StatisticsPage : ContentPage
 		Squat1RM.FontSize = 15;
 	}
 
+    private void RadioButton_CheckedChanged(object sender, CheckedChangedEventArgs e)
+    {
+
+    }
 }

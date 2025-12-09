@@ -163,6 +163,7 @@
 	
 	<ItemGroup>
 	  <Folder Include="Resources\Splash\" />
+	  <Folder Include="Services\" />
 	</ItemGroup>
 	
 	<ItemGroup>
