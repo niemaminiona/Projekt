@@ -16,7 +16,8 @@ public partial class DataSettingsPage : ContentPage
     private void ClearData(object sender, EventArgs e)
     {
         Task.Run(async () => await DatabaseService.ForceFreshDatabase()).Wait();
-        Task.Run(async () => await SuplementData.LoadSupplements());
+        Task.Run(async () => await DataService.Suplements.LoadSupplements());
+        
     }
 
 }

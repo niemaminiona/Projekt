@@ -241,7 +241,7 @@ public partial class CalendarPage : ContentPage
 
     private void CopyNotifications() //Funkcja kopiuj¹ca powiadomienia z bazy danych do lokalnej listy
     {
-        NotificationList = new List<Notif>(NotifData.list);
+        NotificationList = new List<Notif>(DataService.Notifications.list);
     }
     //metoda odswiezajaca kalendarz
     public void RefreshCalendar()

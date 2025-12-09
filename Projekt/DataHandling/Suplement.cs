@@ -18,7 +18,7 @@ namespace Projekt.DataHandling
         // konstruktory ktore ustawiaja domyslny opis na "info about" i nazwe
         public Suplement(String name) : this(name, "Info about " + name) { }
         // konstruktor ktory wybiera po indexie
-        public Suplement(int index) : this(index, "Info about " + SuplementData.list.ElementAt(index).name) { }
+        public Suplement(int index) : this(index, "Info about " + DataService.Suplements.list.ElementAt(index).name) { }
         
         // normalne konstruktory
         public Suplement(String name, String Description)
@@ -30,9 +30,9 @@ namespace Projekt.DataHandling
         // konstruktor ktory wybiera po indexie
         public Suplement(int index, String Description)
         {
-            if (index >= 0 && index < SuplementData.list.Count && SuplementData.list.Any())
+            if (index >= 0 && index < DataService.Suplements.list.Count && DataService.Suplements.list.Any())
             {
-                this.name = SuplementData.list.ElementAt(index).name;
+                this.name = DataService.Suplements.list.ElementAt(index).name;
                 this.description = Description;
             }
         }

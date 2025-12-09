@@ -7,10 +7,13 @@ namespace Projekt
     {
         public static MauiApp CreateMauiApp()
         {
+            // zmusza do odswierzania bazy za kazdym odpaleniem aplikacji
+            Task.Run(async () => await DatabaseService.ForceFreshDatabase()).Wait(); // USUN POZNIEJ (TESTY)
+
             // kopiuje baze danych
             Task.Run(async () => await DatabaseService.CopyDatabaseIfNeeded()).Wait();
             // Laduje suplementy z bazy do listy
-            Task.Run(async () => await SuplementData.LoadSupplements());
+            Task.Run(async () => await DataService.Suplements.LoadSupplements());
             
 
 

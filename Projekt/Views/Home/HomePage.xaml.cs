@@ -16,7 +16,7 @@ namespace Projekt.Views.Home
 
             CreateMainMenu();
 
-            NotifData.list.CollectionChanged += (s, e) =>
+            DataService.Notifications.list.CollectionChanged += (s, e) =>
             {
                 // Za kazdym razem gdy dodasz lub usuniesz element odswiezy menu
                 CreateMainMenu();
@@ -33,7 +33,7 @@ namespace Projekt.Views.Home
             NotificationLayout.Children.Clear();// czysci poprzednie powiadomienia
             //jesli lista popwiadomien jest pusta to pokazuje napis
             //NotifData.Refresh();
-            if (!NotifData.list.Any())
+            if (!DataService.Notifications.list.Any())
             {
                 NotificationLayout.Children.Add(new Label
                 {
@@ -48,7 +48,7 @@ namespace Projekt.Views.Home
             else
             {
                 //wyswietla te powiadomienia z listy
-                foreach (Notif item in NotifData.list)
+                foreach (Notif item in DataService.Notifications.list)
                 {
                     //budowa powiadomienia pojedynczego
                     Grid notifGrid = new Grid()
@@ -118,7 +118,7 @@ namespace Projekt.Views.Home
                     };
                     deleteButton.Clicked += async (sender, e) =>
                     {
-                        NotifData.list.Remove(item);
+                        DataService.Notifications.list.Remove(item);
                         //await NotifData.Save();
                         CreateMainMenu();
                     };

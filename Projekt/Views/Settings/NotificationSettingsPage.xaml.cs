@@ -8,7 +8,7 @@ public partial class NotificationSettingsPage : ContentPage
 	{
 		InitializeComponent();
 
-        NotificationEnableSwitch.IsToggled = SettingsData.NotificationEnabled; 
+        NotificationEnableSwitch.IsToggled = DataService.Settings.NotificationEnabled; 
 
     }
 
@@ -19,6 +19,6 @@ public partial class NotificationSettingsPage : ContentPage
 
     private void NotificationEnableSwitchToggled(object sender, ToggledEventArgs e)
     {
-        SettingsData.NotificationEnabled = e.Value;
+        DataService.Settings.NotificationEnabled = e.Value;
     }
 }

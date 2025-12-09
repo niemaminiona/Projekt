@@ -5,7 +5,7 @@ namespace Projekt.Views.Info;
 
 public partial class InfoPage : ContentPage
 {
-    private bool SearchOnInternet = SettingsData.SearchInfoOnInternet;
+    private bool SearchOnInternet = DataService.Settings.SearchInfoOnInternet;
 	public InfoPage()
 	{
 		InitializeComponent();
@@ -27,7 +27,7 @@ public partial class InfoPage : ContentPage
         }
         else
         {
-            if (!SuplementData.list.Any())
+            if (!DataService.Suplements.list.Any())
             {
                 InfoLayout.Children.Add(new Label
                 {
@@ -37,7 +37,7 @@ public partial class InfoPage : ContentPage
             }
             else
             {
-                foreach (Suplement item in SuplementData.list)
+                foreach (Suplement item in DataService.Suplements.list)
                 {
                     Grid mainGrid = new()
                     {
@@ -108,7 +108,7 @@ public partial class InfoPage : ContentPage
                     TapGestureRecognizer tapGesture = new();
                     tapGesture.Tapped += async (s, e) =>
                     {
-                        SuplementData.SelectedInfoIndex = item.Id;
+                        DataService.Suplements.SelectedInfoIndex = item.Id;
                         await Shell.Current.GoToAsync("DisplayInfo");
                     };
 

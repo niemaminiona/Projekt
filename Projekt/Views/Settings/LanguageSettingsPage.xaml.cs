@@ -8,7 +8,7 @@ public partial class LanguageSettingsPage : ContentPage
 	{
 		InitializeComponent();
 
-        LanguagePicker.SelectedIndex = SettingsData.Language;
+        LanguagePicker.SelectedIndex = DataService.Settings.Language;
 	}
 
     private async void GoToSettings(object sender, EventArgs e)
@@ -20,6 +20,6 @@ public partial class LanguageSettingsPage : ContentPage
     {
         var picker = (Picker)sender;
         if (picker.SelectedIndex == -1) return; // nic nie zaznaczono
-        SettingsData.Language = (short)picker.SelectedIndex;
+        DataService.Settings.Language = (short)picker.SelectedIndex;
     }
 }
