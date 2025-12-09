@@ -165,6 +165,9 @@
 	</ItemGroup>
 	
 	<ItemGroup>
+	  <Folder Include="Nowy folder\" />
+	  <Folder Include="Platforms\Nowy folder1\" />
+	  <Folder Include="Platforms\Nowy folder\" />
 	  <Folder Include="Resources\Splash\" />
 	</ItemGroup>
 	
