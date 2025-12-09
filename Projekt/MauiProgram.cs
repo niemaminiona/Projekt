@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Projekt.DataHandling;
 
 namespace Projekt
 {
@@ -6,6 +7,13 @@ namespace Projekt
     {
         public static MauiApp CreateMauiApp()
         {
+            // kopiuje baze danych
+            Task.Run(async () => await DatabaseService.CopyDatabaseIfNeeded()).Wait();
+            // Laduje suplementy z bazy do listy
+            Task.Run(async () => await SuplementData.LoadSupplements());
+            
+
+
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()

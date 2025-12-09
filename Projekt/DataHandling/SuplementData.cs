@@ -14,8 +14,18 @@ namespace Projekt.DataHandling
 
         public static async Task LoadSupplements()
         {
+            Console.WriteLine("Before sql question <1--------------");
             var supplements = await _db.GetAllSupplements();
-            list.Clear();
+            if (!supplements.Any())
+            {
+                Console.WriteLine("The list is empty <2---------------------------------");
+            }
+            else
+            {
+                Console.WriteLine("Something is in list: ");
+                Console.WriteLine(supplements);
+            }
+                list.Clear();
 
             foreach (var sup in supplements)
             {
@@ -24,10 +34,6 @@ namespace Projekt.DataHandling
         }
 
         //{
-        //    new Suplement("Magnessium", ""),
-        //    new Suplement("Creatine", "Creatine is a naturally occurring compound found in muscles and some foods (like meat and fish) that helps produce energy during high-intensity, short-duration activities. It boosts strength, power, and exercise performance by replenishing ATP, the body’s energy currency. Creatine also supports muscle growth, recovery, and brain function, making it popular as a supplement for athletes and fitness enthusiasts."),
-        //    new Suplement("Omega 3", "Omega-3 fatty acids are essential polyunsaturated fats found in fatty fish, flaxseeds, chia seeds, and walnuts. They support heart and brain health, reduce inflammation, improve blood lipid levels, and promote healthy vision and joint function. Omega-3s are vital for overall health, especially cardiovascular and cognitive well-being."),
-        //    new Suplement("Colagen", "Collagen is the most abundant protein in the body, forming the structural framework of skin, bones, tendons, ligaments, and cartilage. It provides strength, elasticity, and support to tissues, promotes healthy joints, and helps maintain skin firmness. Collagen production naturally declines with age, making supplementation beneficial for skin and joint health."),
         //    new Suplement("Ashwaganda"),
         //    new Suplement("Melatonin"),
         //    new Suplement("Zinc"),
