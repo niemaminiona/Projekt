@@ -6,4 +6,108 @@ public partial class StatisticsPage : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    //Stworzenie zmiennych globalnych do przechowywania danych
+    private double bodyWeight;
+	private double bodyHeight;
+	private int age;
+	private bool isMen;
+	private bool isWomen;
+    private string BMILevel = "";
+	private string BMRLevel = "";
+
+	private string BenchPress = "";
+	private string Squat1 = "";
+	private string Deadlift = "";
+
+
+
+    private void Button_Clicked(object sender, EventArgs e)
+    {
+        //Pobranie danych od uzyytkownika
+        bodyWeight = Convert.ToDouble(Weight.Text);
+		bodyHeight = Convert.ToDouble(Height.Text);
+		age = Convert.ToInt32(AgeEntry.Text);
+		
+		//Wywo³ywanie metod
+		BMI();
+		BMR();
+		RM1Weight();
+		
+    }
+
+	private void BMI()
+	{
+        //obliczanie BMI
+        double BMI = Math.Round(bodyWeight / Math.Pow((bodyHeight/100),2), 1);
+
+        //Okreœlenie poziomu BMI
+        if (BMI < 18.5)
+		{
+			BMILevel = $"{BMI} niedowaga!";
+			BMIFrame.TextColor = Colors.Red;
+		}
+
+		if (BMI > 18.5 && BMI < 24.9)
+		{
+			BMILevel = $"{BMI}  waga prawid³owa!";
+            BMIFrame.TextColor = Colors.Green;
+        }
+
+		if(BMI > 24.9)
+		{
+            BMILevel = $"{BMI}  nadwaga!";
+            BMIFrame.TextColor = Colors.Red;
+		}
+
+        //Wypisywanie wyniku na ekran
+        BMIFrame.FontSize = 11;
+        BMIFrame.Text = BMILevel;
+    }
+
+	private void BMR()
+	{
+        if (WomenRadio.IsChecked)
+        {
+            isWomen = true;
+        }
+        else
+        {
+            isMen = true;
+        }
+
+		if(isMen == true)
+		{
+			BMRLevel = Convert.ToString(10 * bodyWeight + 6.25 * bodyHeight - 5 * age + 5);
+		}
+		if(isWomen == true)
+		{
+            BMRLevel = Convert.ToString(10 * bodyWeight + 6.25 * bodyHeight - 5 * age - 161);
+        }
+		BMRFrame.FontSize = 11;
+		BMRFrame.Text = BMRLevel;
+    }
+
+	private void RM1Weight()
+	{
+		//obliczanie
+		BenchPress = Convert.ToString(bodyWeight * 1 + "kg");
+		Deadlift = Convert.ToString(bodyWeight * 1.5 + "kg");
+		Squat1 = Convert.ToString(bodyWeight * 2.0 + "kg");
+
+        //Wypisywanie wyników na ekran
+        BenchPress1RM.Text = BenchPress;
+		Deadlift1RM.Text = Deadlift;
+		Squat1RM.Text = Squat1;
+
+        //zmiany wielkoœci czcionki
+        BenchPress1RM.FontSize = 15;
+		Deadlift1RM.FontSize = 15;
+		Squat1RM.FontSize = 15;
+	}
+
+    private void RadioButton_CheckedChanged(object sender, CheckedChangedEventArgs e)
+    {
+
+    }
 }

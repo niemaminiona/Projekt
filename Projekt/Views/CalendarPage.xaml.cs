@@ -1,4 +1,6 @@
-
+using Microsoft.Maui.Controls.Shapes;
+using Microsoft.Maui.Graphics.Text;
+using Projekt.DataHandling;
 
 using Android.App;
 using Microsoft.Maui.Controls.Shapes;
@@ -9,58 +11,60 @@ namespace Projekt.Views;
 
 public partial class CalendarPage : ContentPage
 {
-	public CalendarPage()
-	{
-		InitializeComponent();
-		CreateMonthsList();
+    public CalendarPage()
+    {
+        InitializeComponent();
+        CreateMonthsList();
+        CopyNotifications();
         CreateCalendarLayout();
-	}
+    }
 
-	private class Month
-	{
-		public string? Name { get; set; }
-		public int Days { get; set; }
+    private class Month
+    {
+        public string? Name { get; set; }
+        public int Days { get; set; }
 
         public Month(string Name, int Days)
         {
             this.Name = Name;
-			this.Days = Days;
+            this.Days = Days;
         }
     }
 
-	List<Month> Months = new List<Month>();
-	private Month currentMonth;
-	private Label SelectMonthBox;
+    List<Month> Months = new List<Month>();
+    private Month currentMonth;
+    private Label SelectMonthBox;
     public List<Notif> NotificationList = new List<Notif>();//lista na powiadomienia
     private void CreateMonthsList()
-	{
-		Months.Add(new Month("Styczeñ", 31));
-		Months.Add(new Month("Luty", 28));
-		Months.Add(new Month("Marzec", 31));
-		Months.Add(new Month("Kwiecieñ", 30));
-		Months.Add(new Month("Maj", 31));
-		Months.Add(new Month("Czerwiec", 30));
-		Months.Add(new Month("Lipiec", 31));
-		Months.Add(new Month("Sierpieñ", 31));
-		Months.Add(new Month("Wrzeœieñ", 30));
-		Months.Add(new Month("PaŸdziernik", 31));
-		Months.Add(new Month("Listopad", 30));
-		Months.Add(new Month("Grudzieñ", 31));
-        currentMonth = Months[0];
+    {
+        Months.Add(new Month("StyczeÃ±", 31));
+        Months.Add(new Month("Luty", 28));
+        Months.Add(new Month("Marzec", 31));
+        Months.Add(new Month("KwiecieÃ±", 30));
+        Months.Add(new Month("Maj", 31));
+        Months.Add(new Month("Czerwiec", 30));
+        Months.Add(new Month("Lipiec", 31));
+        Months.Add(new Month("SierpieÃ±", 31));
+        Months.Add(new Month("WrzeÅ“ieÃ±", 30));
+        Months.Add(new Month("PaÅ¸dziernik", 31));
+        Months.Add(new Month("Listopad", 30));
+        Months.Add(new Month("GrudzieÃ±", 31));
+        int actualMonthIndex = DateTime.Now.Month - 1;
+        currentMonth = Months[actualMonthIndex]; ;
     }
     private void CreateCalendarLayout()
-	{
+    {
         Grid CalendarGrid = new Grid();//utworzenie grida
 
         //style Girda
         CalendarGrid.RowSpacing = 1;
         CalendarGrid.ColumnSpacing = 1;
-        CalendarGrid.BackgroundColor = Colors.LightSlateGrey;
+        CalendarGrid.BackgroundColor = Colors.White;
 
-		for (int i = 0; i < 7; i++)
-			CalendarGrid.ColumnDefinitions.Add(new ColumnDefinition(GridLength.Star));
-		for (int i = 0; i < 9; i++)
-			CalendarGrid.RowDefinitions.Add(new RowDefinition(GridLength.Star));
+        for (int i = 0; i < 7; i++)
+            CalendarGrid.ColumnDefinitions.Add(new ColumnDefinition(GridLength.Star));
+        for (int i = 0; i < 9; i++)
+            CalendarGrid.RowDefinitions.Add(new RowDefinition(GridLength.Star));
 
         var CalendarHeader = new Label
         {
@@ -72,25 +76,25 @@ public partial class CalendarPage : ContentPage
             VerticalTextAlignment = TextAlignment.Center,
         };
 
-		var LeftSwitchButton = new Button //przycisk do prze³¹czania miesiêcy w lewo
+        var LeftSwitchButton = new Button //przycisk do przeÂ³Â¹czania miesiÃªcy w lewo
         {
-			Text = "<",
-			FontSize = 30,
+            Text = "<",
+            FontSize = 30,
             FontAttributes = FontAttributes.Bold,
-            BackgroundColor = Colors.LightSlateGrey,
-			TextColor = Colors.Black,
+            BackgroundColor = Colors.White,
+            TextColor = Colors.Black,
         };
 
-        var RightSwitchButton = new Button //przycisk do prze³¹czania miesiêcy w prawo
+        var RightSwitchButton = new Button //przycisk do przeÂ³Â¹czania miesiÃªcy w prawo
         {
             Text = ">",
             FontSize = 30,
             FontAttributes = FontAttributes.Bold,
-            BackgroundColor = Colors.LightSlateGrey,
+            BackgroundColor = Colors.White,
             TextColor = Colors.Black,
         };
 
-        SelectMonthBox = new Label //blok wyœwietlaj¹cy aktualny miesi¹c
+        SelectMonthBox = new Label //blok wyÅ“wietlajÂ¹cy aktualny miesiÂ¹c
         {
             Text = currentMonth.Name,
             FontSize = 25,
@@ -100,19 +104,19 @@ public partial class CalendarPage : ContentPage
         };
 
 
-        //ustawienie nag³ówka kalendarza
+        //ustawienie nagÂ³Ã³wka kalendarza
         CalendarGrid.SetRow(CalendarHeader, 0);
         CalendarGrid.SetColumn(CalendarHeader, 0);
         CalendarGrid.SetColumnSpan(CalendarHeader, 7);
-		//ustawienie pe³nego bloku bloku odpowiedzialnego za wybranie miesiaca <---
-		CalendarGrid.SetRow(LeftSwitchButton, 1);
-		CalendarGrid.SetColumn(LeftSwitchButton, 1);
+        //ustawienie peÂ³nego bloku bloku odpowiedzialnego za wybranie miesiaca <---
+        CalendarGrid.SetRow(LeftSwitchButton, 1);
+        CalendarGrid.SetColumn(LeftSwitchButton, 1);
 
-		CalendarGrid.SetRow(RightSwitchButton, 1);
-		CalendarGrid.SetColumn(RightSwitchButton, 5);
+        CalendarGrid.SetRow(RightSwitchButton, 1);
+        CalendarGrid.SetColumn(RightSwitchButton, 5);
 
-		CalendarGrid.SetRow(SelectMonthBox, 1);
-		CalendarGrid.SetColumn(SelectMonthBox, 2);
+        CalendarGrid.SetRow(SelectMonthBox, 1);
+        CalendarGrid.SetColumn(SelectMonthBox, 2);
         CalendarGrid.SetColumnSpan(SelectMonthBox, 3);
         LeftSwitchButton.Clicked += SwitchLeftCurrentMonth;
         RightSwitchButton.Clicked += RightSwitchButton_Clicked;
@@ -120,17 +124,17 @@ public partial class CalendarPage : ContentPage
 
 
         //tworzenie okienek kalendarza
-		int dayCounter = 1;
+        int dayCounter = 1;
 
         //aktualizacja listy powiadomien
         CopyNotifications();
 
         for (int rowsCounter = 2; rowsCounter <= 10; rowsCounter++)
-		{
-			
+        {
 
-			for(int columnCounter = 0; columnCounter < 7; columnCounter++)
-			{
+
+            for (int columnCounter = 0; columnCounter < 7; columnCounter++)
+            {
                 //jesli licznik dni przekroczy liczbe dni miesiaca petla sie konczy
                 if (dayCounter > currentMonth.Days)
                 {
@@ -154,7 +158,7 @@ public partial class CalendarPage : ContentPage
                         TextColor = Colors.Black,
                     }
 
-                    
+
                 }; //stworzenie wygladu jednego okienka kalendarza
 
                 //dodawanie powiadomien do kalendarza
@@ -178,11 +182,12 @@ public partial class CalendarPage : ContentPage
                 },
                 new Label
                 {
-                    Text = $"• {notif.suplement.name} x{notif.amount}",
+                    Text = $"â€¢ {notif.suplement.name} x{notif.amount}",
                     FontSize = 14,
                     HorizontalTextAlignment = TextAlignment.Start,
                     VerticalTextAlignment = TextAlignment.Center,
                     TextColor = Colors.DarkGreen,
+                    TextTransform = TextTransform.Uppercase,
                 }
             }
                         };
@@ -190,8 +195,8 @@ public partial class CalendarPage : ContentPage
                 }
 
                 CalendarGrid.SetRow(dayWindow, rowsCounter);
-				CalendarGrid.SetColumn(dayWindow, columnCounter);
-				dayCounter++;
+                CalendarGrid.SetColumn(dayWindow, columnCounter);
+                dayCounter++;
                 CalendarGrid.Children.Add(dayWindow);
             }
         }
@@ -203,7 +208,7 @@ public partial class CalendarPage : ContentPage
         this.Content = CalendarGrid;
     }
 
-    private void RightSwitchButton_Clicked(object? sender, EventArgs e) //Funkcja oblsugujaca przycisk prze³¹czania miesiêcy w prawo
+    private void RightSwitchButton_Clicked(object? sender, EventArgs e) //Funkcja oblsugujaca przycisk przeÂ³Â¹czania miesiÃªcy w prawo
     {
         if (currentMonth == Months[Months.Count - 1])
         {
@@ -213,7 +218,7 @@ public partial class CalendarPage : ContentPage
         {
             int currentIndex = Months.IndexOf(currentMonth);
             currentMonth = Months[currentIndex + 1];
-			SelectMonthBox.Text = currentMonth.Name;
+            SelectMonthBox.Text = currentMonth.Name;
         }
 
         //po zmianie miesiaca cala zawartosc znika i generuje sie na nowo z nowym miesiacem
@@ -221,7 +226,7 @@ public partial class CalendarPage : ContentPage
         CreateCalendarLayout();
     }
 
-    private void SwitchLeftCurrentMonth(object? sender, EventArgs e) //Funkcja oblsugujaca przycisk prze³¹czania miesiêcy w lewo
+    private void SwitchLeftCurrentMonth(object? sender, EventArgs e) //Funkcja oblsugujaca przycisk przeÂ³Â¹czania miesiÃªcy w lewo
     {
         if (currentMonth == Months[0])
         {
@@ -239,9 +244,24 @@ public partial class CalendarPage : ContentPage
         CreateCalendarLayout();
     }
 
-    private void CopyNotifications() //Funkcja kopiuj¹ca powiadomienia z bazy danych do lokalnej listy
+    private void CopyNotifications() //Funkcja kopiujÂ¹ca powiadomienia z bazy danych do lokalnej listy
     {
-        NotificationList = new List<Notif>(NotifData.list);
+        NotificationList = new List<Notif>(DataService.Notifications.list);
+    }
+    //metoda odswiezajaca kalendarz
+    public void RefreshCalendar()
+    {
+        CopyNotifications();
+        this.Content = null;
+        CreateCalendarLayout();
+    }
+    //metoda wywolujaca odswiezenie za kazdym wczytaniem strony
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        // OdÅ“wieÂ¿anie powiadomieÃ± i kalendarza
+        RefreshCalendar();
     }
 
 }

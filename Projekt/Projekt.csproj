@@ -29,6 +29,7 @@
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
 		<ApplicationVersion>1</ApplicationVersion>
+		<LangVersion>14.0</LangVersion>
 
 		<!-- To develop, package, and publish an app to the Microsoft Store, see: https://aka.ms/MauiTemplateUnpackaged -->
 		<WindowsPackageType>None</WindowsPackageType>
@@ -43,10 +44,10 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+		<MauiIcon Include="Resources\Images\AppIcon\appicon.svg" Color="#0a0a0a" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#0a0a0a" BaseSize="128,128" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -63,31 +64,37 @@
 	  <AndroidResource Remove="Data\**" />
 	  <AndroidResource Remove="Icons\**" />
 	  <AndroidResource Remove="Resources\Nowy folder\**" />
+	  <AndroidResource Remove="Services\**" />
 	  <AndroidResource Remove="Views\Nowy folder1\**" />
 	  <AndroidResource Remove="Views\Nowy folder\**" />
 	  <Compile Remove="Data\**" />
 	  <Compile Remove="Icons\**" />
 	  <Compile Remove="Resources\Nowy folder\**" />
+	  <Compile Remove="Services\**" />
 	  <Compile Remove="Views\Nowy folder1\**" />
 	  <Compile Remove="Views\Nowy folder\**" />
 	  <EmbeddedResource Remove="Data\**" />
 	  <EmbeddedResource Remove="Icons\**" />
 	  <EmbeddedResource Remove="Resources\Nowy folder\**" />
+	  <EmbeddedResource Remove="Services\**" />
 	  <EmbeddedResource Remove="Views\Nowy folder1\**" />
 	  <EmbeddedResource Remove="Views\Nowy folder\**" />
 	  <MauiCss Remove="Data\**" />
 	  <MauiCss Remove="Icons\**" />
 	  <MauiCss Remove="Resources\Nowy folder\**" />
+	  <MauiCss Remove="Services\**" />
 	  <MauiCss Remove="Views\Nowy folder1\**" />
 	  <MauiCss Remove="Views\Nowy folder\**" />
 	  <MauiXaml Remove="Data\**" />
 	  <MauiXaml Remove="Icons\**" />
 	  <MauiXaml Remove="Resources\Nowy folder\**" />
+	  <MauiXaml Remove="Services\**" />
 	  <MauiXaml Remove="Views\Nowy folder1\**" />
 	  <MauiXaml Remove="Views\Nowy folder\**" />
 	  <None Remove="Data\**" />
 	  <None Remove="Icons\**" />
 	  <None Remove="Resources\Nowy folder\**" />
+	  <None Remove="Services\**" />
 	  <None Remove="Views\Nowy folder1\**" />
 	  <None Remove="Views\Nowy folder\**" />
 	</ItemGroup>
@@ -102,13 +109,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiFont Remove="Resources\Fonts\Archivo-VariableFont_wdth,wght.ttf" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Remove="Views\MainPage.xaml" />
 	  <MauiXaml Remove="Views\NewPage1.xaml" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <None Remove="calendar.png" />
-	  <None Remove="DataHandling\Data.json" />
+	  <None Remove="DataHandling\ProjectDataBase.db" />
+	  <None Remove="Resources\Splash\splash.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -116,6 +128,7 @@
 		<PackageReference Include="Microsoft.Data.Sqlite.Core" Version="10.0.0" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
+		<PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
 		<PackageReference Include="SQLite" Version="3.13.0" />
 	</ItemGroup>
 
@@ -129,7 +142,28 @@
 	  <MauiXaml Update="Views\InfoPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\Info\DisplayInfoSubPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\SettingsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\AddingNotificationPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Settings\DataSettingsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Settings\LanguageSettingsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Settings\NotificationSettingsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Settings\SettingsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Settings\ViewSettingsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\StatisticsPage.xaml">
@@ -138,7 +172,19 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-	   <MauiAsset Include="DataHandling/NotifData.json" />
+	  <Folder Include="Resources\Splash\" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <Compile Update="Views\Info\DisplayInfoSubPage.xaml.cs">
+	    <DependentUpon>DisplayInfoSubPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <MauiAsset Update="Resources\Raw\ProjectDataBase.db">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </MauiAsset>
 	</ItemGroup>
 
 </Project>

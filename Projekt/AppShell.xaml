@@ -4,6 +4,9 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:Projekt.Views"
+    xmlns:info="clr-namespace:Projekt.Views.Info"
+    xmlns:home="clr-namespace:Projekt.Views.Home"
+    xmlns:settings="clr-namespace:Projekt.Views.Settings"
     Title="Projekt"
     Shell.NavBarIsVisible="False"
     Shell.TabBarBackgroundColor="#FFC9C9C9"
@@ -17,7 +20,7 @@
         <ShellContent
         Title="Info"
         Icon="info.svg"
-        ContentTemplate="{DataTemplate views:InfoPage}" />
+        ContentTemplate="{DataTemplate info:InfoPage}" />
 
         <!-- Calendar Tab -->
         <ShellContent
@@ -30,7 +33,7 @@
         Route="Home"
         Title="Home"
         Icon="home.svg"
-        ContentTemplate="{DataTemplate views:HomePage}" />
+        ContentTemplate="{DataTemplate home:HomePage}" />
 
         <!-- Statistics Tab -->
         <ShellContent
@@ -42,8 +45,7 @@
         <ShellContent
         Title="Settings"
         Icon="settings.svg"
-        ContentTemplate="{DataTemplate views:SettingsPage}" />
+        ContentTemplate="{DataTemplate settings:SettingsPage}" />
     </TabBar>
-
 
 </Shell>
