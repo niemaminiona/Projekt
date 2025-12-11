@@ -34,6 +34,7 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
             
+            
         </Grid.ColumnDefinitions>
 
         
@@ -58,7 +59,6 @@
             VerticalTextAlignment="Center"
             
             Grid.Row="1"
-            Grid.RowSpan="2"
             Grid.Column="1"
             
         />
@@ -81,14 +81,32 @@
             FontSize = "20"
             HorizontalTextAlignment="Center"
             VerticalTextAlignment="Center"
-
             Grid.Row="1"
-            Grid.RowSpan="2"
-            Grid.Column="2"
+            Grid.Column="0"
             />
 
         <Entry
             Placeholder="Wpisz liczbę"
+            PlaceholderColor="Grey"
+            Grid.Row="3"
+            Grid.Column="0"
+            VerticalTextAlignment="Center"
+            HorizontalTextAlignment="Center"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            x:Name="Height"
+        />
+        <!--Wpisanie wieku-->
+        <Label
+            Text="Wiek"
+            FontSize="20"
+            HorizontalTextAlignment="Center"
+            VerticalTextAlignment="Center"
+            Grid.Row="1"
+            Grid.Column="2"
+            />
+        <Entry
+            Placeholder="Wpisz wiek"
             PlaceholderColor="Grey"
             Grid.Row="3"
             Grid.Column="2"
@@ -96,8 +114,21 @@
             HorizontalTextAlignment="Center"
             VerticalOptions="Center"
             HorizontalOptions="Center"
-            x:Name="Height"
-        />
+            x:Name="AgeEntry"
+            />
+        <!--Wybór płci-->
+        <Label
+            Text="Płeć"
+            FontSize="20"
+            HorizontalTextAlignment="Center"
+            VerticalTextAlignment="Center"
+            Grid.Row="1"
+            Grid.Column="3"/>
+
+        <RadioButton FontSize="12" IsChecked="True" x:Name="MenRadio" Grid.Row="3" Grid.Column="3" Content="Mężczyzna" GroupName="sex" CheckedChanged="RadioButton_CheckedChanged"/>
+        <RadioButton FontSize="12" x:Name="WomenRadio" Grid.Row="4" Grid.Column="3" Content="Kobieta" GroupName="sex" CheckedChanged="RadioButton_CheckedChanged"/>
+
+
 
         <Button
             Text="Oblicz"
@@ -107,7 +138,6 @@
             HorizontalOptions="Center"
             VerticalOptions="Center"
             Clicked="Button_Clicked">   
-
         </Button>
         <!--Zapychacze-->
         
