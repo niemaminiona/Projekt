@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Projekt.Views.Settings.NotificationSettingsPage"
+             Title="NotificationSettingsPage">
+    
+    <ScrollView BackgroundColor="White">
+        <VerticalStackLayout Spacing="20">
+            <!--Header-->
+            <Grid ColumnDefinitions="*,6*,*" Padding="5" HeightRequest="60">
+                <ImageButton 
+                    Grid.Column="0" 
+                    Clicked="GoToSettings"
+                    Source="back.svg"
+                    Aspect="Fill"
+                    Padding="-6"
+                    WidthRequest="50"
+                    />
+                <Label 
+                    Grid.Column="1"
+                    Text="Notification Settings"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center" 
+                    FontAttributes="Bold"
+                    FontSize="17"
+                    TextColor="Black"
+                    />
+            </Grid>
+            <!---->
+            
+            
+            <!-- border z ustawieniami-->
+            <Border
+                BackgroundColor="#C9C9C9"
+                Margin="10"
+                Stroke="Grey"
+                StrokeShape="RoundRectangle 10"
+                >
+                <Border.Shadow>
+                    <Shadow
+                        Brush="Grey"
+                        Opacity="0.5"
+                        Radius="100"
+                        />
+                </Border.Shadow>
+                
+                <Grid ColumnDefinitions="*,*">
+                    <Label 
+                        Grid.Column="0" 
+                        Text="Notifications Enabled"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        Padding="10,0,0,0"
+                        FontAttributes="Bold"
+                        TextColor="Black"
+                        />
+                    <Switch 
+                        x:Name="NotificationEnableSwitch"
+                        Toggled="NotificationEnableSwitchToggled"
+                        Grid.Column="1"
+                        HorizontalOptions="End"
+                        Margin="0,0,10,0"
+                        />
+                </Grid>
+                
+            </Border>
+            <!---->
+        </VerticalStackLayout>
+    </ScrollView>
+    
+</ContentPage>

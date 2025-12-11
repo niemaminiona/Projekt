@@ -2,30 +2,47 @@ using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.Shapes;
 using Projekt.DataHandling; //Korzystanie w klas oraz danych z folderu Data
 
-namespace Projekt.Views
+namespace Projekt.Views.Home
 {
     public partial class HomePage : ContentPage
     {
+
+
+
+        //Glowny kod tutaj
         public HomePage()
         {
             InitializeComponent();
 
             CreateMainMenu();
+
+            DataService.Notifications.list.CollectionChanged += (s, e) =>
+            {
+                // Za kazdym razem gdy dodasz lub usuniesz element odswiezy menu
+                CreateMainMenu();
+            };
         }
+        //---------------
+
+
+
 
         //metoda ktora tworzy glowny ekran z powiadomieniami
-        private void CreateMainMenu()
+        public void CreateMainMenu()
         {
             NotificationLayout.Children.Clear();// czysci poprzednie powiadomienia
+
+            var listOfNotifications = DataService.Notifications.list; // pobiera liste powiadomien
+
+
             //jesli lista popwiadomien jest pusta to pokazuje napis
-            //NotifData.Refresh();
-            if (!NotifData.list.Any())
+            if (!listOfNotifications.Any())
             {
                 NotificationLayout.Children.Add(new Label
                 {
                     Text = "You have no notifications.",
                     HorizontalOptions = LayoutOptions.Center,
-                    Margin = new Thickness(0, 40, 0, 0),
+                    Margin = new Thickness(0, 40, 0, 40),
                     TextColor = Colors.Gray,
                     FontSize = 15
                 });
@@ -34,8 +51,9 @@ namespace Projekt.Views
             else
             {
                 //wyswietla te powiadomienia z listy
-                foreach (Notif item in NotifData.list)
+                foreach (Notif item in listOfNotifications)
                 {
+
                     //budowa powiadomienia pojedynczego
                     Grid notifGrid = new Grid()
                     {
@@ -104,8 +122,7 @@ namespace Projekt.Views
                     };
                     deleteButton.Clicked += async (sender, e) =>
                     {
-                        NotifData.list.Remove(item);
-                        //await NotifData.Save();
+                        listOfNotifications.Remove(item);
                         CreateMainMenu();
                     };
 
@@ -145,21 +162,19 @@ namespace Projekt.Views
             }
             Button btn = new()
             {
-                Text = "Add (test)"
+                Text = "Add",
+                BackgroundColor = Color.FromArgb("#1a1a1a"),
+                TextColor = Colors.White
             };
 
-            btn.Clicked += async (sender, e) =>
-            {
-                NotifData.list.Add(
-                    new Notif(new Suplement("Creatine"), 2, DateTime.Now, new Random().Next(2) == 0)
-                );
-
-                //await NotifData.Save();  // now OK
-                CreateMainMenu();
-            };
-
+            btn.Clicked += GoToAddingNotification!;
 
             NotificationLayout.Children.Add(btn);
         }
+        private async void GoToAddingNotification(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("AddingNotification");
+        }
     }
+        
 }

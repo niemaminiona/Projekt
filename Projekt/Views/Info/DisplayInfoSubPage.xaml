@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Projekt.Views.Info.DisplayInfo"
+             Title="DisplayInfo">
+    
+    <VerticalStackLayout BackgroundColor="White">
+        <!--Header-->
+        <Grid ColumnDefinitions="*,6*,*" Padding="5" HeightRequest="60">
+            <ImageButton 
+                Grid.Column="0" 
+                Clicked="GoToInfo"
+                Source="back.svg"
+                Aspect="Fill"
+                Padding="-6"
+                WidthRequest="50"
+                />
+            <Label 
+                x:Name="Title"
+                Grid.Column="1"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" 
+                FontAttributes="Bold"
+                FontSize="30"
+                TextColor="Black"
+                />
+        </Grid>
+        <!---->
+        <ScrollView>
+            <VerticalStackLayout>
+                <Border
+                    BackgroundColor="#C9C9C9"
+                    Margin="10"
+                    Stroke="Grey"
+                    StrokeShape="RoundRectangle 10"
+                    >
+                    <Border.Shadow>
+                        <Shadow
+                            Brush="Grey"
+                            Opacity="0.25"
+                            Radius="10"
+                            />
+                    </Border.Shadow>
+                    <VerticalStackLayout>
+                        <Label
+                            Padding="5"
+                            x:Name="DescriptionLabel"
+                            FontAttributes="Bold"
+                            FontSize="15"
+                            TextColor="Black"
+                            />
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+    </VerticalStackLayout>
+</ContentPage>

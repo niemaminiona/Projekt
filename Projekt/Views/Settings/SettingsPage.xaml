@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Projekt.Views.Settings.SettingsPage"
+             Title="SettingsPage">
+    <ScrollView BackgroundColor="White">
+        <VerticalStackLayout>
+            <Label 
+                Text="Settings"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Padding="75"
+                FontAttributes="Bold"
+                FontSize="30"
+                TextColor="Black"
+                />
+            <Border
+                BackgroundColor="#C9C9C9"
+                Margin="10"
+                Stroke="Grey"
+                StrokeShape="RoundRectangle 10"
+                >
+                <Border.Shadow>
+                    <Shadow
+                        Brush="Grey"
+                        Opacity="0.5"
+                        Radius="100"
+                        />
+                </Border.Shadow>
+                <VerticalStackLayout Padding="0,5,0,5" Spacing="5">
+                    
+                    <!-- Notifications tab -->
+                    <Grid BackgroundColor="Transparent" ColumnDefinitions="*,6*,*" HeightRequest="40">
+                        <!--Caly grid jest teraz buttonem oraz wykonuje funckje-->
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="GoToNotificationSettings"/>
+                        </Grid.GestureRecognizers>
+                        <!---->
+                        <Image Source="notification.svg" Grid.Column="0"/>
+                        <Label Text="Notifications" Grid.Column="1" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontSize="15" FontAttributes="Bold" TextColor="Black"/>
+                        <Label Text=">" Grid.Column="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="17" FontAttributes="Bold" TextColor="Black"/>
+                    </Grid>
+
+                    
+                    <Grid ColumnDefinitions="*,50*,*">
+                        <BoxView
+                            Grid.Column="1"
+                            BackgroundColor="Grey"
+                            HeightRequest="1"
+                            HorizontalOptions="Fill"
+                            />  
+                    </Grid>
+
+
+                    <!-- View tab -->
+                    <Grid BackgroundColor="Transparent" ColumnDefinitions="*,6*,*" HeightRequest="40">
+                        <!--Caly grid jest teraz buttonem oraz wykonuje funckje-->
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="GoToViewSettings"/>
+                        </Grid.GestureRecognizers>
+                        <!---->
+                        <Image Source="view2.svg" Grid.Column="0" HeightRequest="35"/>
+                        <Label Text="View" Grid.Column="1" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontSize="15" FontAttributes="Bold" TextColor="Black"/>
+                        <Label Text=">" Grid.Column="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="17" FontAttributes="Bold" TextColor="Black"/>
+                    </Grid>
+
+
+                    <Grid ColumnDefinitions="*,50*,*">
+                        <BoxView
+                            Grid.Column="1"
+                            BackgroundColor="Grey"
+                            HeightRequest="1"
+                            HorizontalOptions="Fill"
+                            />
+                    </Grid>
+
+                    
+                    <!-- Language tab -->
+                    <Grid BackgroundColor="Transparent" ColumnDefinitions="*,6*,*" HeightRequest="40">
+                        <!--Caly grid jest teraz buttonem oraz wykonuje funckje-->
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="GoToLanguageSettings"/>
+                        </Grid.GestureRecognizers>
+                        <!---->
+                        <Image Source="language.svg" Grid.Column="0" HeightRequest="30"/>
+                        <Label Text="Language" Grid.Column="1" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontSize="15" FontAttributes="Bold" TextColor="Black"/>
+                        <Label Text=">" Grid.Column="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="17" FontAttributes="Bold" TextColor="Black"/>
+                    </Grid>
+
+                    
+                    <Grid ColumnDefinitions="*,50*,*">
+                        <BoxView
+                            Grid.Column="1"
+                            BackgroundColor="Grey"
+                            HeightRequest="1"
+                            HorizontalOptions="Fill"
+                            />
+                    </Grid>
+
+                    
+                    <!-- Data tab -->
+                    <Grid BackgroundColor="Transparent" ColumnDefinitions="*,6*,*" HeightRequest="40">
+                        <!--Caly grid jest teraz buttonem oraz wykonuje funckje-->
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="GoToDataSettings"/>
+                        </Grid.GestureRecognizers>
+                        <!---->
+                        <Image Source="data.svg" Grid.Column="0" HeightRequest="30"/>
+                        <Label Text="Data" Grid.Column="1" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontSize="15" FontAttributes="Bold" TextColor="Black"/>
+                        <Label Text=">" Grid.Column="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="17" FontAttributes="Bold" TextColor="Black"/>
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+            
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

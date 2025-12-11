@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Projekt.Views.Settings.DataSettingsPage"
+             Title="DataSettingsPage">
+
+    <ScrollView BackgroundColor="White">
+        <VerticalStackLayout Spacing="20">
+            <!--Header-->
+            <Grid ColumnDefinitions="*,6*,*" Padding="5" HeightRequest="60">
+                <ImageButton 
+                    Grid.Column="0" 
+                    Clicked="GoToSettings"
+                    Source="back.svg"
+                    Aspect="Fill"
+                    Padding="-6"
+                    WidthRequest="50"
+                    />
+                <Label 
+                    Grid.Column="1"
+                    Text="Data Settings"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center" 
+                    FontAttributes="Bold"
+                    FontSize="17"
+                    TextColor="Black"
+                    />
+            </Grid>
+            <!---->
+
+            <Button
+                Clicked="ClearData"
+                Text="Clear data"
+                />
+        </VerticalStackLayout>
+    </ScrollView>
+    
+</ContentPage>
