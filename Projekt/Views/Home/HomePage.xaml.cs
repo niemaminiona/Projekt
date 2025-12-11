@@ -31,9 +31,12 @@ namespace Projekt.Views.Home
         public void CreateMainMenu()
         {
             NotificationLayout.Children.Clear();// czysci poprzednie powiadomienia
+
+            var listOfNotifications = DataService.Notifications.list; // pobiera liste powiadomien
+
+
             //jesli lista popwiadomien jest pusta to pokazuje napis
-            //NotifData.Refresh();
-            if (!DataService.Notifications.list.Any())
+            if (!listOfNotifications.Any())
             {
                 NotificationLayout.Children.Add(new Label
                 {
@@ -48,8 +51,9 @@ namespace Projekt.Views.Home
             else
             {
                 //wyswietla te powiadomienia z listy
-                foreach (Notif item in DataService.Notifications.list)
+                foreach (Notif item in listOfNotifications)
                 {
+
                     //budowa powiadomienia pojedynczego
                     Grid notifGrid = new Grid()
                     {
@@ -118,8 +122,7 @@ namespace Projekt.Views.Home
                     };
                     deleteButton.Clicked += async (sender, e) =>
                     {
-                        DataService.Notifications.list.Remove(item);
-                        //await NotifData.Save();
+                        listOfNotifications.Remove(item);
                         CreateMainMenu();
                     };
 

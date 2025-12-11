@@ -12,8 +12,8 @@ namespace Projekt.DataHandling
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
-        public string name { get; set; }
-        public string description { get; set; }
+        public string name { get; set; } = "";
+        public string description { get; set; } = "";
 
         // konstruktory ktore ustawiaja domyslny opis na "info about" i nazwe
         public Suplement(String name) : this(name, "Info about " + name) { }

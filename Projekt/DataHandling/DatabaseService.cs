@@ -7,10 +7,12 @@ namespace Projekt.DataHandling
     public class DatabaseService
     {
         private SQLiteAsyncConnection _database;
-        private const string dbName = "ProjectDataBase.db";
+        private const string dbName = "ProjectDataBase.db";  // nazwa bazy danych
+        private string dbPath = Path.Combine(FileSystem.AppDataDirectory, dbName); // sceiezka na ktorej znaduje sie baza
+
+        
         public DatabaseService()
         {
-            string dbPath = Path.Combine(FileSystem.AppDataDirectory, dbName);
             _database = new SQLiteAsyncConnection(dbPath);
         }
 
@@ -32,7 +34,7 @@ namespace Projekt.DataHandling
             }
         }
 
-        // Zmusza do odswierzenia bazy 
+        // Zmusza do skopiowania bazy
         public static async Task ForceFreshDatabase()
         {
             string targetPath = Path.Combine(FileSystem.AppDataDirectory, dbName);
