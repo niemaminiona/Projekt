@@ -30,6 +30,7 @@ public partial class CalendarPage : ContentPage
         yearLabel.Text = selectedDate.ToString("yyyy");
 
         int dayCounter = 1;
+        DateTime clickedDate = currentDate.Date;
         for (int rowsCounter = 0; rowsCounter <= 6; rowsCounter++)
         {
             for (int columnCounter = 0; columnCounter < 7; columnCounter++)
@@ -39,10 +40,13 @@ public partial class CalendarPage : ContentPage
                 {
                     break;
                 }
+
+                var currentDay = new DateTime(selectedDate.Year, selectedDate.Month, dayCounter);
+
                 //stworzenie wygladu jednego okienka kalendarza
                 var dayWindow = new Border
                 {
-                    Stroke = Colors.Black,
+                    Stroke = currentDay == currentDate.Date ? Colors.Blue : Colors.Black,
                     HeightRequest = 75,
                     StrokeThickness = 2,
                     Padding = 5,
@@ -61,10 +65,9 @@ public partial class CalendarPage : ContentPage
                         FontAttributes = FontAttributes.Bold
                     }
                 };
-                
-
+                 
                 //dodawanie powiadomien do kalendarza
-                var currentDay = new DateTime(selectedDate.Year, selectedDate.Month, dayCounter);
+                
                 if (notifDates.Any())
                 {
                     foreach (var notif in notifDates)
@@ -72,6 +75,26 @@ public partial class CalendarPage : ContentPage
                         if (notifDates.Contains(currentDay))
                         {
                             dayWindow.BackgroundColor = Color.FromArgb("#afffa1");
+                            var tapGesture = new TapGestureRecognizer();
+                            tapGesture.Tapped += (s, e) =>
+                            {
+                                dayInfo.Children.Clear();
+                                dayInfo.Children.Add(new Label
+                                {
+                                    Text = $"{currentDay:dd MMMM yyyy}"
+                                });
+
+                                foreach (var item in NotificationList.Where(n => n.date.Date == currentDay))
+                                {
+                                    dayInfo.Children.Add(new Label
+                                    {
+                                        Text = $"• {item.suplement.name} ({item.amount})"
+                                    });
+                                }
+
+                                dayBorder.IsVisible = dayInfo.Children.Count > 0;
+                            };
+                            dayWindow.GestureRecognizers.Add(tapGesture);
                         }
                         else
                         {
@@ -84,12 +107,6 @@ public partial class CalendarPage : ContentPage
                     dayWindow.BackgroundColor = Colors.LightGrey;
                 }
 
-                if (currentDay == currentDate.Date)
-                {
-                    dayWindow.Stroke = Colors.Blue;
-                }
-
-
                 CalendarGrid.SetRow(dayWindow, rowsCounter);
                 CalendarGrid.SetColumn(dayWindow, columnCounter);
                 CalendarGrid.Children.Add(dayWindow);
@@ -97,8 +114,9 @@ public partial class CalendarPage : ContentPage
                 dayCounter++;
             }
         }
-        calendarBorder.Content = CalendarGrid;
+        dayBorder.IsVisible = dayInfo.Children.Count > 0;
     }
+
 
     //Funkcja oblsugujaca przycisk prze³¹czania miesiêcy w prawo
     private void RightSwitchButton_Clicked(object? sender, EventArgs e) 

@@ -82,7 +82,7 @@ namespace Projekt.DataHandling
             {
                 if (DataService.Suplements.list.Any())
                 {
-                    list.Add(new Notif(new Suplement(new Random().Next(DataService.Suplements.list.Count)), 3, DateTime.Now));
+                    list.Add(new Notif(new Suplement(new Random().Next(DataService.Suplements.list.Count)), new Random().Next(10), new DateTime(DateTime.Now.Year, DateTime.Now.Month, new Random().Next(20) + 1)));
                 }
             }
         }

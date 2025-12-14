@@ -35,7 +35,6 @@
                 Stroke="Black"
                 StrokeThickness="2"
                 StrokeShape="RoundRectangle 6">
-
                 <Button
                     Text="&lt;"
                     Clicked="LeftSwitchButton_Clicked"
@@ -51,7 +50,6 @@
                 Stroke="Black"
                 StrokeThickness="2"
                 StrokeShape="RoundRectangle 6">
-
                 <Button
                     Text="&gt;"
                     Clicked="RightSwitchButton_Clicked"
@@ -61,8 +59,9 @@
                     FontAttributes="Bold" />
             </Border>
         </Grid>
+        
+        
         <Border
-            x:Name="calendarBorder"
             Background="White"
             Stroke="Black"
             StrokeThickness="2"
@@ -77,6 +76,24 @@
                 ColumnSpacing="2"
                 RowSpacing="2"
                 Padding="3"
+                />
+        </Border>
+        
+        
+        <Border
+            x:Name="dayBorder"
+            Background="White"
+            Stroke="Black"
+            StrokeThickness="2"
+            >
+            
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="8"/>
+            </Border.StrokeShape>
+            
+            <VerticalStackLayout 
+                x:Name="dayInfo"
+                Padding="5"
                 />
         </Border>
     </VerticalStackLayout>

@@ -14,7 +14,6 @@ namespace Projekt
             Task.Run(async () => await DatabaseService.CopyDatabaseIfNeeded()).Wait();
             // Laduje suplementy z bazy do listy
             Task.Run(async () => await DataService.Suplements.LoadSupplements());
-            
 
 
             var builder = MauiApp.CreateBuilder();
