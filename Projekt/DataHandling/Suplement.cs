@@ -19,7 +19,7 @@ namespace Projekt.DataHandling
         public Suplement(String name) : this(name, "Info about " + name) { }
         // konstruktor ktory wybiera po indexie
         public Suplement(int index) : this(index, "Info about " + DataService.Suplements.list.ElementAt(index).name) { }
-        
+    
         // normalne konstruktory
         public Suplement(String name, String Description)
         {

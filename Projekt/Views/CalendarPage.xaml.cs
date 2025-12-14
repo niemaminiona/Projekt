@@ -2,11 +2,6 @@ using Microsoft.Maui.Controls.Shapes;
 using Microsoft.Maui.Graphics.Text;
 using Projekt.DataHandling;
 
-using Android.App;
-using Microsoft.Maui.Controls.Shapes;
-using Microsoft.Maui.Graphics.Text;
-using Projekt.DataHandling;
-
 namespace Projekt.Views;
 
 public partial class CalendarPage : ContentPage
@@ -14,140 +9,47 @@ public partial class CalendarPage : ContentPage
     public CalendarPage()
     {
         InitializeComponent();
-        CreateMonthsList();
-        CopyNotifications();
         CreateCalendarLayout();
     }
 
-    private class Month
-    {
-        public string? Name { get; set; }
-        public int Days { get; set; }
 
-        public Month(string Name, int Days)
-        {
-            this.Name = Name;
-            this.Days = Days;
-        }
-    }
+    private DateTime currentDate = DateTime.Now; // zmienna ktora przechowuje aktualna date
+    private DateTime selectedDate = DateTime.Now; // data ktora jest aktualnie wyswietlana w kalendarzu
 
-    List<Month> Months = new List<Month>();
-    private Month currentMonth;
-    private Label SelectMonthBox;
     public List<Notif> NotificationList = new List<Notif>();//lista na powiadomienia
-    private void CreateMonthsList()
-    {
-        Months.Add(new Month("Styczeñ", 31));
-        Months.Add(new Month("Luty", 28));
-        Months.Add(new Month("Marzec", 31));
-        Months.Add(new Month("Kwiecieñ", 30));
-        Months.Add(new Month("Maj", 31));
-        Months.Add(new Month("Czerwiec", 30));
-        Months.Add(new Month("Lipiec", 31));
-        Months.Add(new Month("Sierpieñ", 31));
-        Months.Add(new Month("Wrzeœieñ", 30));
-        Months.Add(new Month("PaŸdziernik", 31));
-        Months.Add(new Month("Listopad", 30));
-        Months.Add(new Month("Grudzieñ", 31));
-        int actualMonthIndex = DateTime.Now.Month - 1;
-        currentMonth = Months[actualMonthIndex]; ;
-    }
+
     private void CreateCalendarLayout()
     {
-        Grid CalendarGrid = new Grid();//utworzenie grida
+        CalendarGrid.Children.Clear();
+        NotificationList = new List<Notif>(DataService.Notifications.list); // pobiera liste
 
-        //style Girda
-        CalendarGrid.RowSpacing = 1;
-        CalendarGrid.ColumnSpacing = 1;
-        CalendarGrid.BackgroundColor = Colors.White;
-
-        for (int i = 0; i < 7; i++)
-            CalendarGrid.ColumnDefinitions.Add(new ColumnDefinition(GridLength.Star));
-        for (int i = 0; i < 9; i++)
-            CalendarGrid.RowDefinitions.Add(new RowDefinition(GridLength.Star));
-
-        var CalendarHeader = new Label
-        {
-            Text = "kalendarz",
-            FontSize = 40,
-            TextColor = Colors.Tomato,
-            FontAttributes = FontAttributes.Bold,
-            HorizontalTextAlignment = TextAlignment.Center,
-            VerticalTextAlignment = TextAlignment.Center,
-        };
-
-        var LeftSwitchButton = new Button //przycisk do prze³¹czania miesiêcy w lewo
-        {
-            Text = "<",
-            FontSize = 30,
-            FontAttributes = FontAttributes.Bold,
-            BackgroundColor = Colors.White,
-            TextColor = Colors.Black,
-        };
-
-        var RightSwitchButton = new Button //przycisk do prze³¹czania miesiêcy w prawo
-        {
-            Text = ">",
-            FontSize = 30,
-            FontAttributes = FontAttributes.Bold,
-            BackgroundColor = Colors.White,
-            TextColor = Colors.Black,
-        };
-
-        SelectMonthBox = new Label //blok wyœwietlaj¹cy aktualny miesi¹c
-        {
-            Text = currentMonth.Name,
-            FontSize = 25,
-            FontAttributes = FontAttributes.Italic,
-            HorizontalTextAlignment = TextAlignment.Center,
-            VerticalTextAlignment = TextAlignment.Center,
-        };
-
-
-        //ustawienie nag³ówka kalendarza
-        CalendarGrid.SetRow(CalendarHeader, 0);
-        CalendarGrid.SetColumn(CalendarHeader, 0);
-        CalendarGrid.SetColumnSpan(CalendarHeader, 7);
-        //ustawienie pe³nego bloku bloku odpowiedzialnego za wybranie miesiaca <---
-        CalendarGrid.SetRow(LeftSwitchButton, 1);
-        CalendarGrid.SetColumn(LeftSwitchButton, 1);
-
-        CalendarGrid.SetRow(RightSwitchButton, 1);
-        CalendarGrid.SetColumn(RightSwitchButton, 5);
-
-        CalendarGrid.SetRow(SelectMonthBox, 1);
-        CalendarGrid.SetColumn(SelectMonthBox, 2);
-        CalendarGrid.SetColumnSpan(SelectMonthBox, 3);
-        LeftSwitchButton.Clicked += SwitchLeftCurrentMonth;
-        RightSwitchButton.Clicked += RightSwitchButton_Clicked;
-        //------>
-
+        var notifDates = NotificationList.Select(n => n.date.Date).ToHashSet(); // pobiera same daty z listy 
 
         //tworzenie okienek kalendarza
+        monthLabel.Text = selectedDate.ToString("MMMM");
+        yearLabel.Text = selectedDate.ToString("yyyy");
+
         int dayCounter = 1;
-
-        //aktualizacja listy powiadomien
-        CopyNotifications();
-
-        for (int rowsCounter = 2; rowsCounter <= 10; rowsCounter++)
+        for (int rowsCounter = 0; rowsCounter <= 6; rowsCounter++)
         {
-
-
             for (int columnCounter = 0; columnCounter < 7; columnCounter++)
             {
                 //jesli licznik dni przekroczy liczbe dni miesiaca petla sie konczy
-                if (dayCounter > currentMonth.Days)
+                if (dayCounter > DateTime.DaysInMonth(selectedDate.Year, selectedDate.Month))
                 {
                     break;
                 }
+                //stworzenie wygladu jednego okienka kalendarza
                 var dayWindow = new Border
                 {
-                    Background = Colors.LightGray,
-                    Stroke = Colors.Red,
-                    StrokeThickness = 1,
-                    Padding = new Thickness(3),
-                    Margin = new Thickness(1),
-                    StrokeShape = new RoundRectangle { CornerRadius = 6 },
+                    Stroke = Colors.Black,
+                    HeightRequest = 75,
+                    StrokeThickness = 2,
+                    Padding = 5,
+                    StrokeShape = new RoundRectangle 
+                    { 
+                        CornerRadius = 6,
+                    },
 
                     Content = new Label
                     {
@@ -156,112 +58,71 @@ public partial class CalendarPage : ContentPage
                         HorizontalTextAlignment = TextAlignment.End,
                         VerticalTextAlignment = TextAlignment.Start,
                         TextColor = Colors.Black,
+                        FontAttributes = FontAttributes.Bold
                     }
-
-
-                }; //stworzenie wygladu jednego okienka kalendarza
+                };
+                
 
                 //dodawanie powiadomien do kalendarza
-                foreach (var notif in NotificationList)
+                var currentDay = new DateTime(selectedDate.Year, selectedDate.Month, dayCounter);
+                if (notifDates.Any())
                 {
-                    if (notif.date.Day == dayCounter &&
-                        notif.date.Month == Months.IndexOf(currentMonth) + 1)
+                    foreach (var notif in notifDates)
                     {
-                        dayWindow.Content = new StackLayout
+                        if (notifDates.Contains(currentDay))
                         {
-                            Spacing = 0,
-                            Children =
-            {
-                new Label
-                {
-                    Text = dayCounter.ToString(),
-                    FontSize = 18,
-                    HorizontalTextAlignment = TextAlignment.End,
-                    VerticalTextAlignment = TextAlignment.Start,
-                    TextColor = Colors.Black,
-                },
-                new Label
-                {
-                    Text = $"• {notif.suplement.name} x{notif.amount}",
-                    FontSize = 14,
-                    HorizontalTextAlignment = TextAlignment.Start,
-                    VerticalTextAlignment = TextAlignment.Center,
-                    TextColor = Colors.DarkGreen,
-                    TextTransform = TextTransform.Uppercase,
-                }
-            }
-                        };
+                            dayWindow.BackgroundColor = Color.FromArgb("#afffa1");
+                        }
+                        else
+                        {
+                            dayWindow.BackgroundColor = Colors.LightGrey;
+                        }
                     }
                 }
+                else
+                {
+                    dayWindow.BackgroundColor = Colors.LightGrey;
+                }
+
+                if (currentDay == currentDate.Date)
+                {
+                    dayWindow.Stroke = Colors.Blue;
+                }
+
 
                 CalendarGrid.SetRow(dayWindow, rowsCounter);
                 CalendarGrid.SetColumn(dayWindow, columnCounter);
-                dayCounter++;
                 CalendarGrid.Children.Add(dayWindow);
+
+                dayCounter++;
             }
         }
-
-        CalendarGrid.Children.Add(LeftSwitchButton);
-        CalendarGrid.Children.Add(RightSwitchButton);
-        CalendarGrid.Children.Add(SelectMonthBox);
-        CalendarGrid.Children.Add(CalendarHeader);
-        this.Content = CalendarGrid;
+        calendarBorder.Content = CalendarGrid;
     }
 
-    private void RightSwitchButton_Clicked(object? sender, EventArgs e) //Funkcja oblsugujaca przycisk prze³¹czania miesiêcy w prawo
+    //Funkcja oblsugujaca przycisk prze³¹czania miesiêcy w prawo
+    private void RightSwitchButton_Clicked(object? sender, EventArgs e) 
     {
-        if (currentMonth == Months[Months.Count - 1])
-        {
-            return;
-        }
-        else
-        {
-            int currentIndex = Months.IndexOf(currentMonth);
-            currentMonth = Months[currentIndex + 1];
-            SelectMonthBox.Text = currentMonth.Name;
-        }
+        selectedDate = selectedDate.AddMonths(1);
 
         //po zmianie miesiaca cala zawartosc znika i generuje sie na nowo z nowym miesiacem
-        this.Content = null;
         CreateCalendarLayout();
     }
 
-    private void SwitchLeftCurrentMonth(object? sender, EventArgs e) //Funkcja oblsugujaca przycisk prze³¹czania miesiêcy w lewo
+    //Funkcja oblsugujaca przycisk prze³¹czania miesiêcy w lewo
+    private void LeftSwitchButton_Clicked(object? sender, EventArgs e) 
     {
-        if (currentMonth == Months[0])
-        {
-            return;
-        }
-        else
-        {
-            int currentIndex = Months.IndexOf(currentMonth);
-            currentMonth = Months[currentIndex - 1];
-            SelectMonthBox.Text = currentMonth.Name;
-        }
-
-        //po zmianie miesiaca cala zawartosc znika i generuje sie na nowo z nowym miesiacem
-        this.Content = null;
+        selectedDate = selectedDate.AddMonths(-1);
         CreateCalendarLayout();
     }
 
-    private void CopyNotifications() //Funkcja kopiuj¹ca powiadomienia z bazy danych do lokalnej listy
-    {
-        NotificationList = new List<Notif>(DataService.Notifications.list);
-    }
-    //metoda odswiezajaca kalendarz
-    public void RefreshCalendar()
-    {
-        CopyNotifications();
-        this.Content = null;
-        CreateCalendarLayout();
-    }
     //metoda wywolujaca odswiezenie za kazdym wczytaniem strony
     protected override void OnAppearing()
     {
         base.OnAppearing();
-
-        // Odœwie¿anie powiadomieñ i kalendarza
-        RefreshCalendar();
+        
+        selectedDate = currentDate;
+        CreateCalendarLayout();
     }
 
 }

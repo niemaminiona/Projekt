@@ -10,7 +10,7 @@ namespace Projekt.DataHandling
         private const string dbName = "ProjectDataBase.db";  // nazwa bazy danych
         private string dbPath = Path.Combine(FileSystem.AppDataDirectory, dbName); // sceiezka na ktorej znaduje sie baza
 
-        
+
         public DatabaseService()
         {
             _database = new SQLiteAsyncConnection(dbPath);
