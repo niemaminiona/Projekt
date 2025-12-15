@@ -11,9 +11,7 @@ namespace Projekt.DataHandling
 {
     public static class DataService
     {
-        private static DatabaseService _database = new();
-
-
+        private static DatabaseService.SQLite _databaseSQL = new(); // tworzy polaczenie z baza sql
 
         // klasa Suplements ////////////////////////
         internal class Suplements
@@ -23,7 +21,7 @@ namespace Projekt.DataHandling
 
             public static async Task LoadSupplements()
             {
-                var supplements = await _database.GetAllSupplements();
+                var supplements = await _databaseSQL.GetAllSupplements();
                 list.Clear();
 
                 foreach (var sup in supplements)
@@ -64,13 +62,13 @@ namespace Projekt.DataHandling
                     switch (e.Action)
                     {
                         case NotifyCollectionChangedAction.Add:
-                            var added = (Notif)e.NewItems[0]!;
+                            var added = (Notif)e.NewItems![0]!;
                             Console.WriteLine($"Dodano: {added.suplement.name}, indeks: {e.NewStartingIndex}");
                             // tu twój kod dla dodawania
                             break;
 
                         case NotifyCollectionChangedAction.Remove:
-                            var removed = (Notif)e.OldItems[0]!;
+                            var removed = (Notif)e.OldItems![0]!;
                             Console.WriteLine($"Usunięto: {removed.suplement.name}, indeks: {e.OldStartingIndex}");
                             // tu twój kod dla usuwania
                             break;
@@ -92,21 +90,18 @@ namespace Projekt.DataHandling
         // klasa Settings ////////////////////////
         internal class Settings
         {
-            public static bool NotificationEnabled = true;
-            public static int Language = 0;
-            public static int Theme = 0;
-            public static bool SearchInfoOnInternet = false;
+            public static bool NotificationEnabled { get; set; } = true;
+            public static int Language { get; set; } = 0;
+            public static int Theme { get; set; } = 0;
+            public static bool SearchInfoOnInternet { get; set; } = false;
 
-            [Table("AppSettings")]
-            public class SettingsModel
+            // klasa pomocniczna dla databaseService (jesli dodajesz zmienna, dodaj ja w oby miejscach)
+            internal class SettingsData
             {
-                [PrimaryKey]
-                public int Id { get; set; } = 1; // Always 1 for single settings record
-
-                public bool NotificationEnabled { get; set; } = true;
-                public int Language { get; set; } = 0;
-                public int Theme { get; set; } = 0;
-                public bool SearchInfoOnInternet { get; set; } = false;
+                public bool NotificationEnabled { get; set; }
+                public int Language { get; set; }
+                public int Theme { get; set; }
+                public bool SearchInfoOnInternet { get; set; }
             }
         }
     }

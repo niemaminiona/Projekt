@@ -138,7 +138,8 @@ public partial class CalendarPage : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
-        
+
+        currentDate = DateTime.Now;
         selectedDate = currentDate;
         CreateCalendarLayout();
     }
