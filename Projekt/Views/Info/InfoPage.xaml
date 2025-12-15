@@ -18,7 +18,8 @@
                         Grid.Column="0"
                         HorizontalOptions="End"
                         VerticalOptions="Center"
-                        Text="Search on internet:"/>
+                        Text="Search on internet:"
+                        TextColor="Black"/>
                     <Switch
                         x:Name="SearchOnInternetSwitch"
                         Grid.Column="1"
