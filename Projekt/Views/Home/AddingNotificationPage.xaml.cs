@@ -62,6 +62,10 @@ public partial class AddingNotificationPage : ContentPage
     private async void AddRandom(object sender, EventArgs e)
     {
         DataService.Notifications.AddRandomNotif();
+        DataService.Notifications.AddRandomNotif();
+        DataService.Notifications.AddRandomNotif();
+        DataService.Notifications.AddRandomNotif();
+
         await Shell.Current.GoToAsync("//Home");
     }
 }

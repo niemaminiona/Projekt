@@ -10,7 +10,7 @@ namespace Projekt.DataHandling
     {
         private static int numberofInstances = 0;
 
-        public int id;
+        public int Id;
         public Suplement suplement;
         public int amount;
         public DateTime date;
@@ -18,7 +18,7 @@ namespace Projekt.DataHandling
 
         public Notif(Suplement suplement, int amount, DateTime date, Boolean toggled = true)
         {
-            this.id = numberofInstances;
+            this.Id = numberofInstances;
             this.suplement = suplement;
             this.amount = amount;
             this.date = date;
