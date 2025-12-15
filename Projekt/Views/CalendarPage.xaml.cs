@@ -88,7 +88,7 @@ public partial class CalendarPage : ContentPage
                                 {
                                     dayInfo.Children.Add(new Label
                                     {
-                                        Text = $"• {item.suplement.name} ({item.amount})"
+                                        Text = $"• {item.suplement.name} ({item.amount})",
                                     });
                                 }
 

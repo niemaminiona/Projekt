@@ -8,7 +8,7 @@ public partial class LanguageSettingsPage : ContentPage
 	{
 		InitializeComponent();
 
-        DatabaseService.JSON.QuickLoad(); // odswieza dane (pobiera z pliku)
+        DatabaseService.JSON.Settings.QuickLoad(); // odswieza dane (pobiera z pliku)
 
         LanguagePicker.SelectedIndex = DataService.Settings.Language;
 	}
@@ -24,6 +24,6 @@ public partial class LanguageSettingsPage : ContentPage
         if (picker.SelectedIndex == -1) return; // nic nie zaznaczono
         DataService.Settings.Language = (short)picker.SelectedIndex;
 
-        DatabaseService.JSON.QuickSave(); // zapisuje dane
+        DatabaseService.JSON.Settings.QuickSave(); // zapisuje dane
     }
 }

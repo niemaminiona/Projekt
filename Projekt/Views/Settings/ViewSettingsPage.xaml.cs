@@ -9,7 +9,7 @@ public partial class ViewSettingsPage : ContentPage
 	{
 		InitializeComponent();
 
-        DatabaseService.JSON.QuickLoad(); // odswieza dane (pobiera z pliku)
+        DatabaseService.JSON.Settings.QuickLoad(); // odswieza dane (pobiera z pliku)
 
         ThemePicker.SelectedIndex = DataService.Settings.Theme;
 
@@ -26,13 +26,13 @@ public partial class ViewSettingsPage : ContentPage
         if (picker.SelectedIndex == -1) return; // nic nie zaznaczono
         DataService.Settings.Theme = (short)picker.SelectedIndex;
 
-        DatabaseService.JSON.QuickSave();
+        DatabaseService.JSON.Settings.QuickSave();
     }
 
     private void SearchInfoOnInternetChanged(object sender, CheckedChangedEventArgs e)
     {
         DataService.Settings.SearchInfoOnInternet = e.Value;
 
-        DatabaseService.JSON.QuickSave();
+        DatabaseService.JSON.Settings.QuickSave();
     }
 }

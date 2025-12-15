@@ -17,14 +17,16 @@ namespace Projekt
         {
             base.OnSleep();
             // zapisuje ustawienia przy usypianiu/zamknieciu aplikacji
-            Task.Run(async () => await DatabaseService.JSON.SaveSettingsAsync());
+            Task.Run(async () => await DatabaseService.JSON.Settings.SaveSettingsAsync());
+            Task.Run(async () => await DatabaseService.JSON.Notifications.SaveNotificationsAsync());
         }
 
         protected override void OnStart()
         {
             base.OnStart();
             // laduje ustawienia przy starcie aplikacji
-            Task.Run(async () => await DatabaseService.JSON.LoadSettingsAsync());
+            Task.Run(async () => await DatabaseService.JSON.Settings.LoadSettingsAsync());
+            Task.Run(async () => await DatabaseService.JSON.Notifications.SaveNotificationsAsync());
         }
     }
 }

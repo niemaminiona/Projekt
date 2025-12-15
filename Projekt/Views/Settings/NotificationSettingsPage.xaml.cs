@@ -8,7 +8,7 @@ public partial class NotificationSettingsPage : ContentPage
 	{
 		InitializeComponent();
 
-        DatabaseService.JSON.QuickLoad(); // odswieza dane (pobiera z pliku)
+        DatabaseService.JSON.Settings.QuickLoad(); // odswieza dane (pobiera z pliku)
 
         NotificationEnableSwitch.IsToggled = DataService.Settings.NotificationEnabled; 
     }
@@ -22,6 +22,6 @@ public partial class NotificationSettingsPage : ContentPage
     {
         DataService.Settings.NotificationEnabled = e.Value;
 
-        DatabaseService.JSON.QuickSave();
+        DatabaseService.JSON.Settings.QuickSave();
     }
 }

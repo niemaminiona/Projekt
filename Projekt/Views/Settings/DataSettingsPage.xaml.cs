@@ -8,7 +8,7 @@ public partial class DataSettingsPage : ContentPage
 	{
 		InitializeComponent();
 
-        DatabaseService.JSON.QuickLoad(); // odswieza dane (pobiera z pliku)
+        DatabaseService.JSON.Settings.QuickLoad(); // odswieza dane (pobiera z pliku)
     }
     private async void GoToSettings(object sender, EventArgs e)
     {

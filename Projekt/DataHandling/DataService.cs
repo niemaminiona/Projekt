@@ -40,40 +40,11 @@ namespace Projekt.DataHandling
         // klasa Notifications ////////////////////////
         internal class Notifications
         {
-            private static ObservableCollection<Notif> _list = new();
+            public static List<Notif> list = new();
 
-            public static ObservableCollection<Notif> list
+            public static async Task LoadNotifications()
             {
-                get
-                {
-                    Console.WriteLine("downloads list from database");
-                    return _list;
-                }
-                set
-                {
-                    _list = value;
-                }
-            }
-
-            static Notifications()
-            {
-                _list.CollectionChanged += (s, e) =>
-                {
-                    switch (e.Action)
-                    {
-                        case NotifyCollectionChangedAction.Add:
-                            var added = (Notif)e.NewItems![0]!;
-                            Console.WriteLine($"Dodano: {added.suplement.name}, indeks: {e.NewStartingIndex}");
-                            // tu twój kod dla dodawania
-                            break;
-
-                        case NotifyCollectionChangedAction.Remove:
-                            var removed = (Notif)e.OldItems![0]!;
-                            Console.WriteLine($"Usunięto: {removed.suplement.name}, indeks: {e.OldStartingIndex}");
-                            // tu twój kod dla usuwania
-                            break;
-                    }
-                };
+                await DatabaseService.JSON.Notifications.LoadNotificationsAsync();
             }
 
             public static void AddRandomNotif()

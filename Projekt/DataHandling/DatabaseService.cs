@@ -1,5 +1,6 @@
 ﻿using SQLite;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text.Json;
 using System.Threading.Tasks;
 using static Projekt.DataHandling.DataService.Settings;
@@ -56,80 +57,158 @@ namespace Projekt.DataHandling
         // kod ktory obslugije zapisywanie danych w pliku json
         internal class JSON
         {
-            private static string settingsPath = Path.Combine(FileSystem.AppDataDirectory, "settings.json");
-
-            // Save current settings to JSON
-            public static async Task SaveSettingsAsync()
+            //klasa ktora obsluguje ustawienia aplikacji
+            internal class Settings
             {
-                try
-                {
-                    // tworzy instancje, pobiera dane z dataservice
-                    var settingsData = new DataService.Settings.SettingsData
-                    {
-                        NotificationEnabled = DataService.Settings.NotificationEnabled,
-                        Language = DataService.Settings.Language,
-                        Theme = DataService.Settings.Theme,
-                        SearchInfoOnInternet = DataService.Settings.SearchInfoOnInternet
-                    };
+                private static string settingsPath = Path.Combine(FileSystem.AppDataDirectory, "settings.json");
 
-                    // wpisuje dane instancje do pliku
-                    string json = JsonSerializer.Serialize(settingsData, new JsonSerializerOptions { WriteIndented = true });
-                    await File.WriteAllTextAsync(settingsPath, json);
-                }
-                catch (Exception ex)
+                // Save current settings to JSON
+                public static async Task SaveSettingsAsync()
                 {
-                    Console.WriteLine($"Failed to save settings: {ex.Message}"); // wylapie potencjalne bledy
-                }
-            }
-
-            // Load settings from JSON
-            public static async Task LoadSettingsAsync()
-            {
-                if (!File.Exists(settingsPath))
-                {
-                    Console.WriteLine("Plik nie istnieje");
-                    return;
-                }
-                
-                try
-                {
-                    string json = await File.ReadAllTextAsync(settingsPath);
-                    var settingsData = JsonSerializer.Deserialize<DataService.Settings.SettingsData>(json);
-                    if (settingsData != null)
+                    try
                     {
-                        DataService.Settings.NotificationEnabled = settingsData.NotificationEnabled;
-                        DataService.Settings.Language = settingsData.Language;
-                        DataService.Settings.Theme = settingsData.Theme;
-                        DataService.Settings.SearchInfoOnInternet = settingsData.SearchInfoOnInternet;
+                        // tworzy instancje, pobiera dane z dataservice
+                        var settingsData = new DataService.Settings.SettingsData
+                        {
+                            NotificationEnabled = DataService.Settings.NotificationEnabled,
+                            Language = DataService.Settings.Language,
+                            Theme = DataService.Settings.Theme,
+                            SearchInfoOnInternet = DataService.Settings.SearchInfoOnInternet
+                        };
+
+                        // wpisuje dane instancje do pliku
+                        string json = JsonSerializer.Serialize(settingsData, new JsonSerializerOptions { WriteIndented = true });
+                        await File.WriteAllTextAsync(settingsPath, json);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Failed to save settings: {ex.Message}"); // wylapie potencjalne bledy
                     }
                 }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Failed to load settings: {ex.Message}"); // wylapie potencjalne bledy
-                }
-            }
 
-            public static async Task CopyDatabaseIfNeeded()
-            {
-                if (!File.Exists(settingsPath))
+                // Load settings from JSON
+                public static async Task LoadSettingsAsync()
+                {
+                    if (!File.Exists(settingsPath))
+                    {
+                        Console.WriteLine("Plik nie istnieje");
+                        return;
+                    }
+
+                    try
+                    {
+                        string json = await File.ReadAllTextAsync(settingsPath);
+                        var settingsData = JsonSerializer.Deserialize<DataService.Settings.SettingsData>(json);
+                        if (settingsData != null)
+                        {
+                            DataService.Settings.NotificationEnabled = settingsData.NotificationEnabled;
+                            DataService.Settings.Language = settingsData.Language;
+                            DataService.Settings.Theme = settingsData.Theme;
+                            DataService.Settings.SearchInfoOnInternet = settingsData.SearchInfoOnInternet;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Failed to load settings: {ex.Message}"); // wylapie potencjalne bledy
+                    }
+                }
+
+                public static async Task CopyDatabaseIfNeeded()
+                {
+                    if (!File.Exists(settingsPath))
+                    {
+                        var defaultSettings = new SettingsData();
+                        string json = JsonSerializer.Serialize(defaultSettings, new JsonSerializerOptions { WriteIndented = true });
+                        File.WriteAllText(settingsPath, json);
+
+                        await SaveSettingsAsync();
+                    }
+                }
+
+                public static void ResetSettings()
                 {
                     var defaultSettings = new SettingsData();
                     string json = JsonSerializer.Serialize(defaultSettings, new JsonSerializerOptions { WriteIndented = true });
                     File.WriteAllText(settingsPath, json);
-
-                    await SaveSettingsAsync();
                 }
-            }
 
-            public static void ResetSettings()
+                public static void QuickLoad() => Task.Run(async () => await DatabaseService.JSON.Settings.LoadSettingsAsync());
+                public static void QuickSave() => Task.Run(async () => await DatabaseService.JSON.Settings.SaveSettingsAsync());
+            }
+            
+
+
+
+
+
+
+
+            internal class Notifications
             {
-                var defaultSettings = new SettingsData();
-                string json = JsonSerializer.Serialize(defaultSettings, new JsonSerializerOptions { WriteIndented = true });
-                File.WriteAllText(settingsPath, json);
-            }
+                private static string notificationsPath = Path.Combine(FileSystem.AppDataDirectory, "notifications.json");
 
-            public static void QuickLoad() => Task.Run(async () => await DatabaseService.JSON.LoadSettingsAsync());
-            public static void QuickSave() => Task.Run(async () => await DatabaseService.JSON.SaveSettingsAsync());
+                // Zapisuje listę powiadomień do pliku json
+                public static async Task SaveNotificationsAsync()
+                {
+                    try
+                    {
+                        // Pobieramy listę powiadomień z DataService
+                        var notifications = DataService.Notifications.list.ToList();
+                        string json = JsonSerializer.Serialize(notifications, new JsonSerializerOptions { WriteIndented = true });
+                        await File.WriteAllTextAsync(notificationsPath, json);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Failed to save notifications: {ex.Message}");
+                    }
+                }
+
+                // Wczytuje listę powiadomień z pliku json
+                public static async Task LoadNotificationsAsync()
+                {
+                    if (!File.Exists(notificationsPath))
+                    {
+                        Console.WriteLine("Plik powidomien nie istnieje.");
+                        return;
+                    }
+
+                    try
+                    {
+                        string json = await File.ReadAllTextAsync(notificationsPath);
+                        var loadedNotifications = JsonSerializer.Deserialize<List<Notif>>(json);
+
+                        if (loadedNotifications != null)
+                        {
+                            // Aktualizujemy listę w DataService
+                            DataService.Notifications.list.Clear();
+                            foreach (var notif in loadedNotifications)
+                            {
+                                DataService.Notifications.list.Add(notif);
+                                //Console.WriteLine(notif.suplement.name + "");
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Failed to load notifications: {ex.Message}");
+                    }
+                }
+
+                // Tworzy plik z domyślną pustą listą, jeśli nie istnieje
+                public static async Task CopyDatabaseIfNeeded()
+                {
+                    if (!File.Exists(notificationsPath))
+                    {
+                        var defaultNotifications = new ObservableCollection<Notif>();
+                        string json = JsonSerializer.Serialize(defaultNotifications, new JsonSerializerOptions { WriteIndented = true });
+                        await File.WriteAllTextAsync(notificationsPath, json);
+                    }
+                }
+
+                // Metody szybkiego zapisu/odczytu (opcjonalnie)
+                public static void QuickSave() => Task.Run(async () => await SaveNotificationsAsync());
+                public static void QuickLoad() => Task.Run(async () => await LoadNotificationsAsync());
+            }
         }
     }
 }

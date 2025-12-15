@@ -13,13 +13,17 @@ namespace Projekt
 
             Task.Run(async () => await DatabaseService.SQLite.CopyDatabaseIfNeeded()).Wait(); // kopiuje baze danych jesli nie ma
 
-            Task.Run(async () => await DatabaseService.JSON.CopyDatabaseIfNeeded()).Wait(); // kopiuje plik json jesli nie ma
+            Task.Run(async () => await DatabaseService.JSON.Settings.CopyDatabaseIfNeeded()).Wait(); // kopiuje plik ustawien json jesli nie ma
+
+            Task.Run(async () => await DatabaseService.JSON.Notifications.CopyDatabaseIfNeeded()).Wait(); // kopiuje plik powiadomien json jesli nie ma
 
             Task.Run(async () => await DataService.Suplements.LoadSupplements()); // Laduje suplementy z bazy do listy
 
-            Task.Run(async () => await DatabaseService.JSON.LoadSettingsAsync()); // Laduje ustawienia z jsona
+            Task.Run(async () => await DatabaseService.JSON.Settings.LoadSettingsAsync()); // Laduje ustawienia z jsona
 
-            
+            Task.Run(async () => await DatabaseService.JSON.Notifications.LoadNotificationsAsync()); // Laduje powiadomienia z jsona
+
+
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()

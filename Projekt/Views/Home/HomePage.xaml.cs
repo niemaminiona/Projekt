@@ -15,12 +15,6 @@ namespace Projekt.Views.Home
             InitializeComponent();
 
             CreateMainMenu();
-
-            DataService.Notifications.list.CollectionChanged += (s, e) =>
-            {
-                // Za kazdym razem gdy dodasz lub usuniesz element odswiezy menu
-                CreateMainMenu();
-            };
         }
         //---------------
 
@@ -30,6 +24,8 @@ namespace Projekt.Views.Home
         //metoda ktora tworzy glowny ekran z powiadomieniami
         public void CreateMainMenu()
         {
+            DatabaseService.JSON.Notifications.QuickLoad(); //laduje powiadomienia z pliku JSON
+
             NotificationLayout.Children.Clear();// czysci poprzednie powiadomienia
 
             var listOfNotifications = DataService.Notifications.list; // pobiera liste powiadomien
@@ -175,6 +171,12 @@ namespace Projekt.Views.Home
         {
             await Shell.Current.GoToAsync("AddingNotification");
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            CreateMainMenu();
+        }
     }
-        
 }

@@ -25,5 +25,8 @@ namespace Projekt.DataHandling
             this.toggled = toggled;
             numberofInstances++;
         }
+
+        // Konstruktor potrzebny do deserializacji JSON
+        public Notif() { }
     }    
 }
