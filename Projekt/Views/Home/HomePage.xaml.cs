@@ -188,7 +188,7 @@ namespace Projekt.Views.Home
 
             var listOfNotifications = DataService.Notifications.list;
 #if ANDROID
-            if (listOfNotifications.Any())
+            if (listOfNotifications.Any() && DataService.Settings.NotificationEnabled)
             {
             
                 foreach (var notification in listOfNotifications)
