@@ -1,6 +1,9 @@
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.Shapes;
 using Projekt.DataHandling; //Korzystanie w klas oraz danych z folderu Data
+#if ANDROID
+using Projekt.Platforms.Android;
+#endif
 
 namespace Projekt.Views.Home
 {
@@ -12,6 +15,7 @@ namespace Projekt.Views.Home
         //Glowny kod tutaj
         public HomePage()
         {
+
             InitializeComponent();
 
             CreateMainMenu();
@@ -21,11 +25,12 @@ namespace Projekt.Views.Home
                 // Za kazdym razem gdy dodasz lub usuniesz element odswiezy menu
                 CreateMainMenu();
             };
+
+
         }
         //---------------
 
-
-
+        
 
         //metoda ktora tworzy glowny ekran z powiadomieniami
         public void CreateMainMenu()
@@ -175,6 +180,33 @@ namespace Projekt.Views.Home
         {
             await Shell.Current.GoToAsync("AddingNotification");
         }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            CreateMainMenu();
+
+            var listOfNotifications = DataService.Notifications.list;
+#if ANDROID
+            if (listOfNotifications.Any())
+            {
+            
+                foreach (var notification in listOfNotifications)
+                {
+                    if(notification.date.Date == DateTime.Now.Date)
+                    NotificationService.Show(
+                    $"{notification.suplement.name}",
+                    $"{notification.date}"
+                );
+                }
+            }
+
+
+#endif
+        }
+
     }
+
         
 }
+

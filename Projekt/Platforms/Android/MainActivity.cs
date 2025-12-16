@@ -1,6 +1,7 @@
 ﻿#nullable enable
 using System;
 using System.Runtime.Versioning;
+using Android;
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
@@ -25,6 +26,20 @@ namespace Projekt
         {
             base.OnCreate(savedInstanceState);
 
+#if ANDROID
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.Tiramisu)
+            {
+                if (CheckSelfPermission(Manifest.Permission.PostNotifications)
+                    != Permission.Granted)
+                {
+                    RequestPermissions(
+                        new[] { Manifest.Permission.PostNotifications },
+                        1000
+                    );
+                }
+            }
+#endif
+            CreateNotificationChannel();
             // Set status bar color on Android 21+ (Lollipop+)
             if (OperatingSystem.IsAndroidVersionAtLeast(21))
             {
@@ -47,6 +62,26 @@ namespace Projekt
             else if (OperatingSystem.IsAndroidVersionAtLeast(23)) // API 23 introduced LightStatusBar flag
             {
                 Window.DecorView.SystemUiVisibility = (StatusBarVisibility)SystemUiFlags.LightStatusBar;
+            }
+        }
+
+        void CreateNotificationChannel()
+        {
+            // Sprawdzamy czy Android ma wersję 8.0 lub wyższą
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
+            {
+                // Tworzymy nowy kanał powiadomień
+                var channel = new NotificationChannel(
+                    "default_channel",           // ID kanału (musi być takie samo wszędzie)
+                    "Powiadomienia",             // Nazwa widoczna w ustawieniach Androida
+                    NotificationImportance.High  // Ważność (High = pokaż na pasku)
+                );
+
+                // Pobieramy systemowy manager powiadomień
+                var manager = (NotificationManager)GetSystemService(NotificationService);
+
+                // Rejestrujemy kanał w systemie Android
+                manager.CreateNotificationChannel(channel);
             }
         }
     }
